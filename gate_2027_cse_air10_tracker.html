@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GATE 2027 CSE — AIR &lt; 10 Interactive Command Center</title>
+  <style>
+    :root[data-theme="dark"] {
+      --bg-main: #0b0f19;
+      --bg-surface: #131b2e;
+      --bg-elevated: #1b253d;
+      --bg-card-hover: #212d4a;
+      --border: #2a395c;
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.18);
+      --accent-strong: #0284c7;
+      --success: #22c55e;
+      --success-bg: rgba(34, 197, 94, 0.14);
+      --warning: #f59e0b;
+      --warning-bg: rgba(245, 158, 11, 0.14);
+      --purple: #a855f7;
+      --purple-bg: rgba(168, 85, 247, 0.14);
+      --pink: #ec4899;
+      --pink-bg: rgba(236, 72, 153, 0.14);
+      --danger: #ef4444;
+      --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+    }
+
+    :root[data-theme="light"] {
+      --bg-main: #f8fafc;
+      --bg-surface: #ffffff;
+      --bg-elevated: #f1f5f9;
+      --bg-card-hover: #e2e8f0;
+      --border: #cbd5e1;
+      --text-primary: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      --accent: #0284c7;
+      --accent-glow: rgba(2, 132, 199, 0.12);
+      --accent-strong: #0369a1;
+      --success: #16a34a;
+      --success-bg: rgba(22, 163, 74, 0.12);
+      --warning: #d97706;
+      --warning-bg: rgba(217, 119, 6, 0.12);
+      --purple: #7e22ce;
+      --purple-bg: rgba(126, 34, 206, 0.1);
+      --pink: #db2777;
+      --pink-bg: rgba(219, 39, 119, 0.1);
+      --danger: #dc2626;
+      --shadow: 0 8px 24px -6px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-primary);
+      line-height: 1.5;
+      padding-bottom: 4rem;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Top Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0.85rem 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: var(--shadow);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-badge {
+      background: linear-gradient(135deg, #0284c7, #7c3aed);
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 0.35rem 0.65rem;
+      border-radius: 8px;
+      letter-spacing: 0.04em;
+    }
+
+    .brand h1 {
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+
+    .nav-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn {
+      background: var(--bg-elevated);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      padding: 0.45rem 0.85rem;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.15s ease;
+    }
+
+    .btn:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent);
+    }
+
+    .btn-primary {
+      background: var(--accent-strong);
+      color: #fff;
+      border-color: transparent;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent);
+      color: #0b0f19;
+    }
+
+    .container {
+      max-width: 1340px;
+      margin: 0 auto;
+      padding: 1.25rem 1.5rem;
+    }
+
+    /* Quick Resource Bar */
+    .resource-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-bottom: 1.25rem;
+      padding: 0.75rem 1rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      align-items: center;
+    }
+
+    .resource-bar span.label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-secondary);
+      margin-right: 0.35rem;
+    }
+
+    .res-chip {
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.3rem 0.65rem;
+      border-radius: 6px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      color: var(--accent);
+    }
+
+    /* KPI & Syllabus Progress Grid */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .stat-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem 1.15rem;
+      box-shadow: var(--shadow);
+    }
+
+    .stat-label {
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-secondary);
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+
+    .stat-value {
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+
+    .stat-sub {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      margin-top: 0.3rem;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 8px;
+      background: var(--bg-elevated);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 0.55rem;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--purple));
+      border-radius: 999px;
+      transition: width 0.3s ease;
+    }
+
+    /* TOP PINNED CURRENT DAY HERO CARD */
+    .today-hero {
+      background: linear-gradient(145deg, var(--bg-surface), var(--bg-elevated));
+      border: 2px solid var(--accent);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 1.75rem;
+      box-shadow: 0 0 28px var(--accent-glow);
+      position: relative;
+    }
+
+    .today-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1.15rem;
+    }
+
+    .today-title-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .live-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+    }
+
+    .today-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+    }
+
+    .today-phase {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    .day-nav-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .day-select {
+      background: var(--bg-main);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      padding: 0.45rem 0.7rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    /* Today Task Checklists */
+    .today-blocks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .task-box {
+      background: var(--bg-main);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 0.75rem;
+      transition: all 0.2s ease;
+    }
+
+    .task-box.done {
+      border-color: var(--success);
+      background: var(--success-bg);
+    }
+
+    .task-box-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+    }
+
+    .task-box-header input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      margin-top: 0.15rem;
+      accent-color: var(--success);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .task-box-tag {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 0.2rem 0.5rem;
+      border-radius: 5px;
+      display: inline-block;
+      margin-bottom: 0.35rem;
+    }
+
+    .tag-b1 { background: var(--accent-glow); color: var(--accent); }
+    .tag-b2 { background: var(--purple-bg); color: var(--purple); }
+    .tag-b3 { background: var(--warning-bg); color: var(--warning); }
+    .tag-ext { background: var(--pink-bg); color: var(--pink); }
+
+    .task-desc {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .task-sub {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      border-top: 1px dashed var(--border);
+      padding-top: 0.5rem;
+    }
+
+    /* Interactive Timer & Daily Logging Bar */
+    .today-footer {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      align-items: center;
+    }
+
+    .timer-widget {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+      background: var(--bg-main);
+      padding: 0.65rem 0.9rem;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+
+    .timer-display {
+      font-family: "Courier New", Courier, monospace;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--accent);
+      min-width: 90px;
+    }
+
+    .log-inputs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      align-items: center;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .input-group label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+    }
+
+    .input-field {
+      background: var(--bg-main);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 0.4rem 0.65rem;
+      font-size: 0.85rem;
+    }
+
+    /* Filter & Search Controls */
+    .controls-bar {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem;
+      margin-bottom: 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .pill {
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+      color: var(--text-secondary);
+      transition: all 0.15s ease;
+    }
+
+    .pill.active {
+      background: var(--accent);
+      color: #0b0f19;
+      border-color: var(--accent);
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .search-input {
+      background: var(--bg-main);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.45rem 0.85rem;
+      font-size: 0.85rem;
+      min-width: 240px;
+    }
+
+    /* Schedule Table */
+    .table-wrapper {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow-x: auto;
+      box-shadow: var(--shadow);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 980px;
+    }
+
+    th {
+      background: var(--bg-elevated);
+      color: var(--text-secondary);
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.85rem 0.9rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    td {
+      padding: 0.85rem 0.9rem;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.85rem;
+      vertical-align: top;
+    }
+
+    tr:hover {
+      background: var(--bg-card-hover);
+    }
+
+    tr.row-today {
+      background: var(--accent-glow);
+      border-left: 4px solid var(--accent);
+    }
+
+    tr.row-completed {
+      opacity: 0.62;
+      background: var(--success-bg);
+    }
+
+    tr.row-holiday {
+      background: var(--warning-bg);
+    }
+
+    tr.row-mock {
+      background: var(--purple-bg);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .badge-holiday { background: var(--warning-bg); color: var(--warning); border: 1px solid var(--warning); }
+    .badge-mock { background: var(--purple-bg); color: var(--purple); border: 1px solid var(--purple); }
+    .badge-phase1 { background: var(--accent-glow); color: var(--accent); }
+    .badge-phase2 { background: var(--success-bg); color: var(--success); }
+    .badge-phase3 { background: var(--pink-bg); color: var(--pink); }
+    .badge-phase4 { background: var(--warning-bg); color: var(--warning); }
+
+    .star-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+    }
+
+    .star-btn.starred {
+      color: #facc15;
+    }
+
+    .mini-checks {
+      display: flex;
+      gap: 0.35rem;
+      margin-top: 0.35rem;
+      flex-wrap: wrap;
+    }
+
+    .mini-check-pill {
+      font-size: 0.7rem;
+      padding: 0.12rem 0.4rem;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .mini-check-pill.checked {
+      background: var(--success);
+      color: #0b0f19;
+      border-color: var(--success);
+      font-weight: 700;
+    }
+
+    @media (max-width: 768px) {
+      .today-title { font-size: 1.15rem; }
+      .navbar { padding: 0.75rem 1rem; }
+      .container { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="navbar">
+    <div class="brand">
+      <span class="brand-badge">AIR &lt; 10</span>
+      <div>
+        <h1>GATE 2027 CSE Interactive Master Tracker</h1>
+      </div>
+    </div>
+    <div class="nav-actions">
+      <button class="btn btn-primary" onclick="jumpToRealToday()">Jump to Today</button>
+      <button class="btn" id="modeToggleBtn" onclick="togglePlanMode()">View: Unified AIR &lt;10 Plan</button>
+      <button class="btn" onclick="exportProgressJSON()">Export Backup (.json)</button>
+      <label class="btn" style="margin:0;">
+        Import Backup
+        <input type="file" id="importFile" accept=".json" style="display:none" onchange="importProgressJSON(event)" />
+      </label>
+      <button class="btn" onclick="exportUpdatedCSV()">Export CSV</button>
+      <button class="btn" onclick="toggleTheme()" id="themeBtn">Light Mode</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Quick Drive Links Bar -->
+    <div class="resource-bar">
+      <span class="label">Workspace Links:</span>
+      <a class="res-chip" href="https://docs.google.com/spreadsheets/d/1Lm6c6J8iCK2PuB8CsCbuv4UuT2zRuOOnoz64oc0NaK8/edit?usp=drivesdk&ouid=108737852913036745395" target="_blank">AIR &lt;10 Master Sheet</a>
+      <a class="res-chip" href="https://docs.google.com/spreadsheets/d/1w2HhcjUULbinuJyyp9DQYORfRluNvR8uzTyXlhCwWnM/edit?usp=drivesdk&ouid=108737852913036745395" target="_blank">4-Hour PYQ Sheet</a>
+      <a class="res-chip" href="https://drive.google.com/open?id=1Pqg3GYszhAuDKlvNPYCifyXqUaQZShVs3vI_8mZhy8k" target="_blank">CSE Topic Weightage Doc</a>
+      <a class="res-chip" href="https://drive.google.com/drive/folders/18a5Z-TkiPXqzzmmihK_afbqMyYoNhEQu" target="_blank">Gate CS 2027 Folder</a>
+      <a class="res-chip" href="https://drive.google.com/file/d/1UYGOIbkGj4HGe8bwfcjKEsb8YrL97QOz/view?usp=drivesdk" target="_blank">GATE FARREY Formulas</a>
+      <a class="res-chip" href="https://drive.google.com/open?id=1HoUbT7bsD4-kE_-NMVqPwtXdcl9AD7ch" target="_blank">Topper Prep Guide</a>
+    </div>
+
+    <!-- Live KPI Progress Cards -->
+    <section class="dashboard-grid">
+      <div class="stat-card">
+        <div class="stat-label">Overall Study Completion</div>
+        <div class="stat-value">
+          <span id="statDaysDone">0 / 104</span>
+          <span id="statPct" style="font-size:1rem;color:var(--accent);">0%</span>
+        </div>
+        <div class="progress-track"><div class="progress-fill" id="barOverall" style="width:0%"></div></div>
+        <div class="stat-sub" id="statCountdown">116 Days to GATE 2027 (12 Holidays Off)</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">TOC Syllabus (25% → 100%)</div>
+        <div class="stat-value">
+          <span id="statTOC">25%</span>
+          <span style="font-size:0.82rem;color:var(--text-secondary);">Target: Oct 30</span>
+        </div>
+        <div class="progress-track"><div class="progress-fill" id="barTOC" style="width:25%"></div></div>
+        <div class="stat-sub" id="subTOC">0 / 10 remaining modules done</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">Compiler Design (0% → 100%)</div>
+        <div class="stat-value">
+          <span id="statCD">0%</span>
+          <span style="font-size:0.82rem;color:var(--text-secondary);">Target: Nov 12</span>
+        </div>
+        <div class="progress-track"><div class="progress-fill" id="barCD" style="width:0%"></div></div>
+        <div class="stat-sub" id="subCD">0 / 10 modules done</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">Computer Networks (25% → 100%)</div>
+        <div class="stat-value">
+          <span id="statCN">25%</span>
+          <span style="font-size:0.82rem;color:var(--text-secondary);">Target: Nov 27</span>
+        </div>
+        <div class="progress-track"><div class="progress-fill" id="barCN" style="width:25%"></div></div>
+        <div class="stat-sub" id="subCN">0 / 12 remaining modules done</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">Weekly Mocks &amp; PYQ Volume</div>
+        <div class="stat-value">
+          <span id="statMocks">0 / 16 Mocks</span>
+          <span id="statTotalPYQs" style="font-size:0.95rem;color:var(--success);">0 PYQs</span>
+        </div>
+        <div class="progress-track"><div class="progress-fill" id="barMocks" style="width:0%"></div></div>
+        <div class="stat-sub" id="statAvgMock">Avg Mock Score: -- / 100 (Goal: 85+)</div>
+      </div>
+    </section>
+
+    <!-- PINNED CURRENT DAY MISSION AT TOP -->
+    <section class="today-hero" id="todayHero">
+      <div class="today-header">
+        <div class="today-title-group">
+          <div class="live-pill">
+            <span>● Pinned Active Day Mission</span>
+            <span id="todayStatusBadge"></span>
+          </div>
+          <h2 class="today-title" id="todayTitle">Loading...</h2>
+          <div class="today-phase" id="todayPhase"></div>
+        </div>
+        <div class="day-nav-controls">
+          <button class="btn" onclick="stepDay(-1)">← Prev Day</button>
+          <select class="day-select" id="daySelector" onchange="selectDayFromDropdown(this.value)"></select>
+          <button class="btn" onclick="stepDay(1)">Next Day →</button>
+          <button class="btn btn-primary" onclick="jumpToFirstIncomplete()">Next Unfinished Day</button>
+        </div>
+      </div>
+
+      <div class="today-blocks-grid" id="todayBlocksContainer"></div>
+
+      <div class="today-footer">
+        <div class="timer-widget">
+          <span class="timer-display" id="timerDisplay">01:45:00</span>
+          <button class="btn btn-primary" id="timerStartBtn" onclick="toggleTimer()">Start</button>
+          <button class="btn" onclick="resetTimer()">Reset</button>
+          <select class="input-field" id="timerPreset" onchange="changeTimerPreset(this.value)">
+            <option value="6300">Block 1 (1h 45m)</option>
+            <option value="5400">Block 2 (1h 30m)</option>
+            <option value="2700">Block 3 (45m)</option>
+            <option value="7200">PYQ Session A (2h)</option>
+            <option value="10800">Full Mock (3h)</option>
+          </select>
+        </div>
+
+        <div class="log-inputs">
+          <div class="input-group">
+            <label>PYQs Solved Today</label>
+            <input type="number" min="0" max="300" class="input-field" style="width:110px" id="inputPYQs" placeholder="e.g. 38" onchange="saveCurrentDayMetrics()" />
+          </div>
+          <div class="input-group">
+            <label>Mock / Test Score (/100)</label>
+            <input type="number" step="0.33" min="0" max="100" class="input-field" style="width:125px" id="inputMockScore" placeholder="e.g. 78.67" onchange="saveCurrentDayMetrics()" />
+          </div>
+          <div class="input-group" style="flex:1;min-width:220px;">
+            <label>Daily Error Log / Key Takeaway Note</label>
+            <input type="text" class="input-field" style="width:100%" id="inputNote" placeholder="Log tricky concepts, formula traps, or silly mistakes..." onchange="saveCurrentDayMetrics()" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filter & Search Controls -->
+    <section class="controls-bar">
+      <div class="filter-pills" id="filterPills">
+        <button class="pill active" data-filter="all" onclick="setFilter('all')">All 116 Days</button>
+        <button class="pill" data-filter="pending" onclick="setFilter('pending')">Remaining</button>
+        <button class="pill" data-filter="completed" onclick="setFilter('completed')">Completed</button>
+        <button class="pill" data-filter="phase1" onclick="setFilter('phase1')">Phase 1: Syllabus (TOC/CD/CN)</button>
+        <button class="pill" data-filter="phase2" onclick="setFilter('phase2')">Phase 2: Interleaved PYQs</button>
+        <button class="pill" data-filter="phase3" onclick="setFilter('phase3')">Phase 3: Past Papers</button>
+        <button class="pill" data-filter="phase4" onclick="setFilter('phase4')">Phase 4: Final Sprint</button>
+        <button class="pill" data-filter="mock" onclick="setFilter('mock')">16 Weekly Mocks</button>
+        <button class="pill" data-filter="holiday" onclick="setFilter('holiday')">Telugu Holidays (12 Off)</button>
+        <button class="pill" data-filter="starred" onclick="setFilter('starred')">★ Starred</button>
+      </div>
+
+      <div class="search-box">
+        <label style="font-size:0.8rem;display:flex;align-items:center;gap:0.35rem;cursor:pointer;">
+          <input type="checkbox" id="sortPendingTop" checked onchange="renderTable()" />
+          Pin Active &amp; Pending First
+        </label>
+        <input type="text" class="search-input" id="searchInput" placeholder="Search topic (e.g. LALR, CIDR, Sankranti, DP)..." oninput="renderTable()" />
+      </div>
+    </section>
+
+    <!-- Master Schedule Table -->
+    <section class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:55px">Done</th>
+            <th style="width:115px">Day &amp; Date</th>
+            <th style="width:26%">Block 1 (1h 45m Syllabus / Mock / Session A)</th>
+            <th style="width:24%">Block 2 (1h 30m Revision + Paired PYQs / Session B)</th>
+            <th style="width:20%">Block 3 (45m Math/GA + Error Log / Session C)</th>
+            <th style="width:16%">Metrics &amp; Notes</th>
+          </tr>
+        </thead>
+        <tbody id="scheduleTableBody"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script>
+    const SCHEDULE_DATA = [{"id": 1, "day": "Day 1", "date": "15-Oct-2026", "isoDate": "2026-10-15", "weekday": "Thursday", "phase": "Phase 1: Syllabus Completion (TOC/CD/CN) + Revision + PYQs", "category": "phase1", "sylSubj": "TOC", "b1": "Block 1 (1h 45m - New Syllabus + Topic PYQs): TOC (25%→33%): DFA Minimization, Myhill-Nerode Theorem & State Equivalence", "b2": "Block 2 (1h 30m - Simultaneous Revision + Paired PYQs): C Programming: Pointers, Arrays & Strings Revision + 15 PYQs", "b3": "Block 3 (45m - Daily Math/GA Foundation): Engg Math: Linear Algebra - Matrix Rank & Determinants (10 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Extended Lectures/Workbooks on New Syllabus + 2h Extra 30 Paired PYQs", "targetQ": "35 Core PYQs (65 with AIR<10 Extension)", "pyqOnlyA": "DS & Prog (2h): C Programming: Pointers, memory allocation, arrays", "pyqOnlyB": "Discrete Math (1h15m): Discrete Math: Propositional Logic & Truth Tables", "pyqOnlyC": "Daily Foundation (45m): GA: Numerical Ability - Percentages & Ratios", "focusSkill": "Concept Application & Code Tracing"}, {"id": 2, "day": "Day 2", "date": "16-Oct-2026", "isoDate": "2026-10-16", "weekday": "Friday", "phase": "Phase 1: Syllabus Completion (TOC/CD/CN) + Revision + PYQs", "category": "phase1", "sylSubj": "TOC", "b1": "Block 1 (1h 45m - New Syllabus + Topic PYQs): TOC (33%→40%): Regular Languages Closure Properties & Pumping Lemma", "b2": "Block 2 (1h 30m - Simultaneous Revision + Paired PYQs): C Programming: Recursion & Scope Rules Revision + 15 PYQs", "b3": "Block 3 (45m - Daily Math/GA Foundation): Engg Math: Linear Algebra - System of Equations (10 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Extended Lectures/Workbooks on New Syllabus + 2h Extra 30 Paired PYQs", "targetQ": "35 Core PYQs (65 with AIR<10 Extension)", "pyqOnlyA": "DS & Prog (2h): C Programming: Recursion, functions, scope rules", "pyqOnlyB": "Discrete Math (1h15m): Discrete Math: Predicate Logic & Quantifiers", "pyqOnlyC": "Daily Foundation (45m): GA: Numerical Ability - Speed, Distance, Time", "focusSkill": "Concept Application & Code Tracing"}, {"id": 3, "day": "Day 3", "date": "17-Oct-2026", "isoDate": "2026-10-17", "weekday": "Saturday", "phase": "WEEKLY MOCK TEST & POST-MORTEM", "category": "mock", "sylSubj": "", "b1": "Weekly Mock Test 1 (Shifted from Sun due to Bathukamma) (Hours 1–3, 2:00 PM–5:00 PM IST): Full 65-Question / 100-Mark Exam Simulation", "b2": "Hour 4 (60 mins): Full-Length Mock 1 (GO/NPTEL) + 25% TOC/CN Baseline Check", "b3": "Update 3-Category Error Register (Conceptual Gap / Calculation Slip / Misread)", "air10Ext": "Optional Evening (2h): Re-solve all unattempted & wrong Mock questions without timer", "targetQ": "65 Mock Questions", "pyqOnlyA": "DS & Prog (2h): Data Structures: Singly & Doubly Linked Lists", "pyqOnlyB": "Discrete Math (1h15m): Discrete Math: Set Theory, Relations & Equivalence", "pyqOnlyC": "Daily Foundation (45m): GA: Verbal Ability - Sentence Completion", "focusSkill": "Concept Application & Code Tracing"}, {"id": 4, "day": "Day 4", "date": "18-Oct-2026", "isoDate": "2026-10-18", "weekday": "Sunday", "phase": "FESTIVAL / PUBLIC HOLIDAY (NO WORK)", "category": "holiday", "sylSubj": "", "b1": "HOLIDAY: Saddula Bathukamma / Maha Saptami (Zero Work Assigned)", "b2": "OFF — Enjoy Festival & Recharge Mentally", "b3": "OFF — Zero Study Assigned", "air10Ext": "OFF — Full Festival Rest", "targetQ": "0 Questions (Holiday)", "pyqOnlyA": "Week 1 PYQ Revision: Starred questions in DS & Discrete Math", "pyqOnlyB": "Error Log Analysis & Re-solve incorrect PYQs", "pyqOnlyC": "Formula & Theorem Flashcard Drill", "focusSkill": "Error Correction & Short Notes"}, {"id": 5, "day": "Day 5", "date": "19-Oct-2026", "isoDate": "2026-10-19", "weekday": "Monday", "phase": "FESTIVAL / PUBLIC HOLIDAY (NO WORK)", "category": "holiday", "sylSubj": "", "b1": "HOLIDAY: Maharnavami / Maha Ashtami - Dussehra Break (Zero Work Assigned)", "b2": "OFF — Enjoy Festival & Recharge Mentally", "b3": "OFF — Zero Study Assigned", "air10Ext": "OFF — Full Festival Rest", "targetQ": "0 Questions (Holiday)", "pyqOnlyA": "DS & Prog (2h): Data Structures: Binary Trees & Tree Traversals", "pyqOnlyB": "Discrete Math (1h15m): Discrete Math: Functions, Invertibility & Bijections", "pyqOnlyC": "Daily Foundation (45m): GA: Reasoning - Blood Relations & Seating", "focusSkill": "Concept Application & Code Tracing"}, {"id": 6, "day": "Day 6", "date": "20-Oct-2026", "isoDate": "2026-10-20", "weekday": "Tuesday", "phase": "FESTIVAL / PUBLIC HOLIDAY (NO WORK)", "category": "holiday", "sylSubj": "", "b1": "HOLIDAY: Dussehra / Vijaya Dasami (Zero Work Assigned)", "b2": "OFF — Enjoy Festival & Recharge Mentally", "b3": "OFF — Zero Study Assigned", "air10Ext": "OFF — Full Festival Rest", "targetQ": "0 Questions (Holiday)", "pyqOnlyA": "DS & Prog (2h): Data Structures: BST operations, AVL Trees & Heaps", "pyqOnlyB": "Discrete Math (1h15m): Discrete Math: Mathematical Induction & Recurrences", "pyqOnlyC": "Daily Foundation (45m): GA: Verbal Ability - Vocabulary & Reading Comp", "focusSkill": "Concept Application & Code Tracing"}, {"id": 7, "day": "Day 7", "date": "21-Oct-2026", "isoDate": "2026-10-21", "weekday": "Wednesday", "phase": "FESTIVAL / PUBLIC HOLIDAY (NO WORK)", "category": "holiday", "sylSubj": "", "b1": "HOLIDAY: Following Day of Vijaya Dasami - Telangana Holiday (Zero Work Assigned)", "b2": "OFF — Enjoy Festival & Recharge Mentally", "b3": "OFF — Zero Study Assigned", "air10Ext": "OFF — Full Festival Rest", "targetQ": "0 Questions (Holiday)", "pyqOnlyA": "DS & Prog (2h): C Programming: Pointers, memory allocation, arrays", "pyqOnlyB": "Discrete Math (1h15m): Discrete Math: Propositional Logic & Truth Tables", "pyqOnlyC": "Daily Foundation (45m): GA: Numerical Ability - Percentages & Ratios", "focusSkill": "Concept Application & Code Tracing"}, {"id": 8, "day": "Day 8", "date": "22-Oct-2026", "isoDate": "2026-10-22", "weekday": "Thursday", "phase": "Phase 1: Syllabus Completion (TOC/CD/CN) + Revision + PYQs", "category": "phase1", "sylSubj": "TOC", "b1": "Block 1 (1h 45m - New Syllabus + Topic PYQs): TOC (40%→48%): Context-Free Grammars (CFG) Design, Parse Trees & Ambiguity", "b2": "Block 2 (1h 30m - Simultaneous Revision + Paired PYQs): Data Structures: Linked Lists, Stacks & Queues Revision + 15 PYQs", "b3": "Block 3 (45m - Daily Math/GA Foundation): Engg Math: Linear Algebra - Eigenvalues & Eigenvectors (10 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Extended Lectures/Workbooks on New Syllabus + 2h Extra 30 Paired PYQs", "targetQ": "35 Core PYQs (65 with AIR<10 Extension)", "pyqOnlyA": "Algorithms (2h): Algorithms: Asymptotic notations, Recurrence relations", "pyqOnlyB": "Discrete Math (1h15m): Discrete Math: Permutations & Combinations", "pyqOnlyC": "Daily Foundation (45m): GA: Numerical Ability - Permutation/Probability", "focusSkill": "Complexity Proofs & DP State Equations"}, {"id": 9, "day": "Day 9", "date": "23-Oct-2026", "isoDate": "2026-10-23", "weekday": "Friday", "phase": "Phase 1: Syllabus Completion (TOC/CD/CN) + Revision + PYQs", "category": "phase1", "sylSubj": "TOC", "b1": "Block 1 (1h 45m - New Syllabus + Topic PYQs): TOC (48%→56%): CFL Simplification, CNF/GNF, Closure & Pumping Lemma for CFL", "b2": "Block 2 (1h 30m - Simultaneous Revision + Paired PYQs): Data Structures: Binary Trees, BST & Traversals Revision + 15 PYQs", "b3": "Block 3 (45m - Daily Math/GA Foundation): General Aptitude: Numerical Ability - Percentages & Ratios (10 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Extended Lectures/Workbooks on New Syllabus + 2h Extra 30 Paired PYQs", "targetQ": "35 Core PYQs (65 with AIR<10 Extension)", "pyqOnlyA": "Algorithms (2h): Algorithms: Divide & Conquer, Merge/Quick Sort, Inversions", "pyqOnlyB": "Discrete Math (1h15m): Discrete Math: Generating Functions & Pigeonhole Principle", "pyqOnlyC": "Daily Foundation (45m): GA: Quantitative - Profit & Loss, Mixtures", "focusSkill": "Complexity Proofs & DP State Equations"}, {"id": 10, "day": "Day 10", "date": "24-Oct-2026", "isoDate": "2026-10-24", "weekday": "Saturday", "phase": "Phase 1: Syllabus Completion (TOC/CD/CN) + Revision + PYQs", "category": "phase1", "sylSubj": "TOC", "b1": "Block 1 (1h 45m - New Syllabus + Topic PYQs): TOC (56%→65%): Pushdown Automata (DPDA vs NPDA) & DCFL Properties", "b2": "Block 2 (1h 30m - Simultaneous Revision + Paired PYQs): Data Structures: AVL Trees, Heaps & Hashing Revision + 15 PYQs", "b3": "Block 3 (45m - Daily Math/GA Foundation): General Aptitude: Speed, Time, Work & Mixtures (10 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Extended Lectures/Workbooks on New Syllabus + 2h Extra 30 Paired PYQs", "targetQ": "35 Core PYQs (65 with AIR<10 Extension)", "pyqOnlyA": "Algorithms (2h): Algorithms: Greedy Algorithms (Huffman, Fractional Knapsack)", "pyqOnlyB": "Discrete Math (1h15m): Discrete Math: Graph Theory - Paths, Cycles, Eulerian/Hamiltonian", "pyqOnlyC": "Daily Foundation (45m): GA: Reasoning - Syllogisms & Logic Puzzles", "focusSkill": "Complexity Proofs & DP State Equations"}, {"id": 11, "day": "Day 11", "date": "25-Oct-2026", "isoDate": "2026-10-25", "weekday": "Sunday", "phase": "WEEKLY MOCK TEST & POST-MORTEM", "category": "mock", "sylSubj": "", "b1": "Weekly Mock Test 2 (Hours 1–3, 2:00 PM–5:00 PM IST): Full 65-Question / 100-Mark Exam Simulation", "b2": "Hour 4 (60 mins): Full-Length Mock 2 + Detailed Post-Mortem & Error Log Update", "b3": "Update 3-Category Error Register (Conceptual Gap / Calculation Slip / Misread)", "air10Ext": "Optional Evening (2h): Re-solve all unattempted & wrong Mock questions without timer", "targetQ": "65 Mock Questions", "pyqOnlyA": "Week 2 PYQ Revision: Starred questions in Algorithms & Graph Theory", "pyqOnlyB": "Error Log Re-attempt: Dynamic Programming & Combinatorics", "pyqOnlyC": "Formula & Time-Complexity Cheat Sheet Drill", "focusSkill": "Error Analysis & Proof Review"}, {"id": 12, "day": "Day 12", "date": "26-Oct-2026", "isoDate": "2026-10-26", "weekday": "Monday", "phase": "Phase 1: Syllabus Completion (TOC/CD/CN) + Revision + PYQs", "category": "phase1", "sylSubj": "TOC", "b1": "Block 1 (1h 45m - New Syllabus + Topic PYQs): TOC (65%→75%): Turing Machines Construction, Variants & Chomsky Hierarchy", "b2": "Block 2 (1h 30m - Simultaneous Revision + Paired PYQs): Algorithms: Asymptotic Analysis & Master Theorem Revision + 15 PYQs", "b3": "Block 3 (45m - Daily Math/GA Foundation): Discrete Math: Propositional & First-Order Logic (10 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Extended Lectures/Workbooks on New Syllabus + 2h Extra 30 Paired PYQs", "targetQ": "35 Core PYQs (65 with AIR<10 Extension)", "pyqOnlyA": "Algorithms (2h): Algorithms: Graph Traversals (BFS, DFS, Topological Sort)", "pyqOnlyB": "Discrete Math (1h15m): Discrete Math: Graph Isomorphism & Spanning Trees", "pyqOnlyC": "Daily Foundation (45m): GA: Quantitative - Algebra & Equations", "focusSkill": "Complexity Proofs & DP State Equations"}, {"id": 13, "day": "Day 13", "date": "27-Oct-2026", "isoDate": "2026-10-27", "weekday": "Tuesday", "phase": "Phase 1: Syllabus Completion (TOC/CD/CN) + Revision + PYQs", "category": "phase1", "sylSubj": "TOC", "b1": "Block 1 (1h 45m - New Syllabus + Topic PYQs): TOC (75%→85%): Decidability, Recursive vs Recursively Enumerable Languages", "b2": "Block 2 (1h 30m - Simultaneous Revision + Paired PYQs): Algorithms: Sorting, Searching & Divide-and-Conquer Revision + 15 PYQs", "b3": "Block 3 (45m - Daily Math/GA Foundation): Discrete Math: Set Theory, Relations & Partial Orders (10 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Extended Lectures/Workbooks on New Syllabus + 2h Extra 30 Paired PYQs", "targetQ": "35 Core PYQs (65 with AIR<10 Extension)", "pyqOnlyA": "Algorithms (2h): Algorithms: Shortest Paths (Dijkstra, Bellman-Ford, Floyd-Warshall) & MST", "pyqOnlyB": "Discrete Math (1h15m): Discrete Math: Group Theory & Algebraic Structures", "pyqOnlyC": "Daily Foundation (45m): GA: Verbal - Paragraph Jumbles & Critical Reasoning", "focusSkill": "Complexity Proofs & DP State Equations"}, {"id": 14, "day": "Day 14", "date": "28-Oct-2026", "isoDate": "2026-10-28", "weekday": "Wednesday", "phase": "Phase 1: Syllabus Completion (TOC/CD/CN) + Revision + PYQs", "category": "phase1", "sylSubj": "TOC", "b1": "Block 1 (1h 45m - New Syllabus + Topic PYQs): TOC (85%→93%): Undecidability, Halting Problem & Mapping Reductions", "b2": "Block 2 (1h 30m - Simultaneous Revision + Paired PYQs): Algorithms: Greedy Algorithms (Huffman, MST) Revision + 15 PYQs", "b3": "Block 3 (45m - Daily Math/GA Foundation): Discrete Math: Combinatorics & Recurrence Relations (10 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Extended Lectures/Workbooks on New Syllabus + 2h Extra 30 Paired PYQs", "targetQ": "35 Core PYQs (65 with AIR<10 Extension)", "pyqOnlyA": "Algorithms (2h): Algorithms: Asymptotic notations, Recurrence relations", "pyqOnlyB": "Discrete Math (1h15m): Discrete Math: Permutations & Combinations", "pyqOnlyC": "Daily Foundation (45m): GA: Numerical Ability - Permutation/Probability", "focusSkill": "Complexity Proofs & DP State Equations"}, {"id": 15, "day": "Day 15", "date": "29-Oct-2026", "isoDate": "2026-10-29", "weekday": "Thursday", "phase": "Phase 1: Syllabus Completion (TOC/CD/CN) + Revision + PYQs", "category": "phase1", "sylSubj": "TOC", "b1": "Block 1 (1h 45m - New Syllabus + Topic PYQs): TOC (93%→100%): Rice's Theorem & Complete Closure/Decidability Matrix", "b2": "Block 2 (1h 30m - Simultaneous Revision + Paired PYQs): Algorithms: Dynamic Programming Core Patterns Revision + 15 PYQs", "b3": "Block 3 (45m - Daily Math/GA Foundation): Discrete Math: Graph Theory - Connectivity, Coloring & Trees (10 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Extended Lectures/Workbooks on New Syllabus + 2h Extra 30 Paired PYQs", "targetQ": "35 Core PYQs (65 with AIR<10 Extension)", "pyqOnlyA": "TOC (2h): TOC: DFA/NFA Construction & Language Identification", "pyqOnlyB": "Digital Logic (1h15m): Digital Logic: Number Systems, Floating Point, Codes", "pyqOnlyC": "Daily Foundation (45m): Engg Math: Linear Algebra - Matrix Multiplication, Rank", "focusSkill": "Language Closure & Clock Period Timing"}, {"id": 16, "day": "Day 16", "date": "30-Oct-2026", "isoDate": "2026-10-30", "weekday": "Friday", "phase": "Phase 1: Syllabus Completion (TOC/CD/CN) + Revision + PYQs", "category": "phase1", "sylSubj": "TOC", "b1": "Block 1 (1h 45m - New Syllabus + Topic PYQs): TOC 100% Consolidation: Full TOC Short Notes + 25 High-Yield TOC PYQs", "b2": "Block 2 (1h 30m - Simultaneous Revision + Paired PYQs): Algorithms: Graph Shortest Paths (Dijkstra, Bellman-Ford) + 15 PYQs", "b3": "Block 3 (45m - Daily Math/GA Foundation): General Aptitude: Analytical & Logical Reasoning (10 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Extended Lectures/Workbooks on New Syllabus + 2h Extra 30 Paired PYQs", "targetQ": "35 Core PYQs (65 with AIR<10 Extension)", "pyqOnlyA": "TOC (2h): TOC: NFA to DFA Conversion, Regular Expressions", "pyqOnlyB": "Digital Logic (1h15m): Digital Logic: Boolean Algebra, Logic Gates, SOP/POS", "pyqOnlyC": "Daily Foundation (45m): Engg Math: Linear Algebra - System of Linear Equations", "focusSkill": "Language Closure & Clock Period Timing"}, {"id": 17, "day": "Day 17", "date": "31-Oct-2026", "isoDate": "2026-10-31", "weekday": "Saturday", "phase": "Phase 1: Syllabus Completion (TOC/CD/CN) + Revision + PYQs", "category": "phase1", "sylSubj": "CD", "b1": "Block 1 (1h 45m - New Syllabus + Topic PYQs): Compiler Design (0%→10%): Lexical Analysis, Token Count & Regex-to-DFA", "b2": "Block 2 (1h 30m - Simultaneous Revision + Paired PYQs): TOC (Newly Completed): Regular & CFL PYQ Combination (15 PYQs)", "b3": "Block 3 (45m - Daily Math/GA Foundation): Engg Math: Calculus - Limits, Continuity & Differentiability (10 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Extended Lectures/Workbooks on New Syllabus + 2h Extra 30 Paired PYQs", "targetQ": "35 Core PYQs (65 with AIR<10 Extension)", "pyqOnlyA": "TOC (2h): TOC: DFA Minimization, State Equivalence, Myhill-Nerode", "pyqOnlyB": "Digital Logic (1h15m): Digital Logic: K-Map minimization, Don't Care conditions", "pyqOnlyC": "Daily Foundation (45m): Engg Math: Linear Algebra - Determinants & Inverses", "focusSkill": "Language Closure & Clock Period Timing"}, {"id": 18, "day": "Day 18", "date": "01-Nov-2026", "isoDate": "2026-11-01", "weekday": "Sunday", "phase": "WEEKLY MOCK TEST & POST-MORTEM", "category": "mock", "sylSubj": "", "b1": "Weekly Mock Test 3 (Hours 1–3, 2:00 PM–5:00 PM IST): Full 65-Question / 100-Mark Exam Simulation", "b2": "Hour 4 (60 mins): Full-Length Mock 3 (Including Complete TOC) + Post-Mortem", "b3": "Update 3-Category Error Register (Conceptual Gap / Calculation Slip / Misread)", "air10Ext": "Optional Evening (2h): Re-solve all unattempted & wrong Mock questions without timer", "targetQ": "65 Mock Questions", "pyqOnlyA": "Week 3 PYQ Revision: Starred questions in TOC & Digital Logic", "pyqOnlyB": "Error Log Re-attempt: Minimization & Sequential Counters", "pyqOnlyC": "State Diagram & State Transition Drills", "focusSkill": "MSQ Edge Cases & State Transition Rigor"}, {"id": 19, "day": "Day 19", "date": "02-Nov-2026", "isoDate": "2026-11-02", "weekday": "Monday", "phase": "Phase 1: Syllabus Completion (TOC/CD/CN) + Revision + PYQs", "category": "phase1", "sylSubj": "CD", "b1": "Block 1 (1h 45m - New Syllabus + Topic PYQs): Compiler Design (10%→20%): Grammars, Left Recursion Removal & Left Factoring", "b2": "Block 2 (1h 30m - Simultaneous Revision + Paired PYQs): Digital Logic: Number Systems, IEEE 754 & Boolean Algebra + 15 PYQs", "b3": "Block 3 (45m - Daily Math/GA Foundation): Engg Math: Calculus - Maxima/Minima & Mean Value Theorem (10 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Extended Lectures/Workbooks on New Syllabus + 2h Extra 30 Paired PYQs", "targetQ": "35 Core PYQs (65 with AIR<10 Extension)", "pyqOnlyA": "TOC (2h): TOC: Context-Free Grammars (CFG), Ambiguity, Derivation Trees", "pyqOnlyB": "Digital Logic (1h15m): Digital Logic: Adders, Subtractors, Comparators, ALU slice", "pyqOnlyC": "Daily Foundation (45m): Engg Math: Linear Algebra - Diagonalization & Cayley-Hamilton", "focusSkill": "Language Closure & Clock Period Timing"}, {"id": 20, "day": "Day 20", "date": "03-Nov-2026", "isoDate": "2026-11-03", "weekday": "Tuesday", "phase": "Phase 1: Syllabus Completion (TOC/CD/CN) + Revision + PYQs", "category": "phase1", "sylSubj": "CD", "b1": "Block 1 (1h 45m - New Syllabus + Topic PYQs): Compiler Design (20%→32%): Top-Down Parsing, FIRST & FOLLOW Sets, LL(1) Table", "b2": "Block 2 (1h 30m - Simultaneous Revision + Paired PYQs): Digital Logic: K-Maps, MUX, Decoders & Adders Revision + 15 PYQs", "b3": "Block 3 (45m - Daily Math/GA Foundation): Engg Math: Calculus - Definite Integrals & Applications (10 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Extended Lectures/Workbooks on New Syllabus + 2h Extra 30 Paired PYQs", "targetQ": "35 Core PYQs (65 with AIR<10 Extension)", "pyqOnlyA": "TOC (2h): TOC: Pushdown Automata (PDA) & CFL Properties", "pyqOnlyB": "Digital Logic (1h15m): Digital Logic: Sequential Circuits - Latches, Flip-Flops, Setup/Hold Time", "pyqOnlyC": "Daily Foundation (45m): Engg Math: Linear Algebra - Vector Spaces & Basis", "focusSkill": "Language Closure & Clock Period Timing"}, {"id": 21, "day": "Day 21", "date": "04-Nov-2026", "isoDate": "2026-11-04", "weekday": "Wednesday", "phase": "Phase 1: Syllabus Completion (TOC/CD/CN) + Revision + PYQs", "category": "phase1", "sylSubj": "CD", "b1": "Block 1 (1h 45m - New Syllabus + Topic PYQs): Compiler Design (32%→45%): Bottom-Up Parsing, LR(0) Items & SLR(1) Tables", "b2": "Block 2 (1h 30m - Simultaneous Revision + Paired PYQs): Digital Logic: Sequential Circuits, Flip-Flops & Counters + 15 PYQs", "b3": "Block 3 (45m - Daily Math/GA Foundation): General Aptitude: Verbal Ability - Grammar & Sentence Completion (10 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Extended Lectures/Workbooks on New Syllabus + 2h Extra 30 Paired PYQs", "targetQ": "35 Core PYQs (65 with AIR<10 Extension)", "pyqOnlyA": "TOC (2h): TOC: DFA/NFA Construction & Language Identification", "pyqOnlyB": "Digital Logic (1h15m): Digital Logic: Number Systems, Floating Point, Codes", "pyqOnlyC": "Daily Foundation (45m): Engg Math: Linear Algebra - Matrix Multiplication, Rank", "focusSkill": "Language Closure & Clock Period Timing"}, {"id": 22, "day": "Day 22", "date": "05-Nov-2026", "isoDate": "2026-11-05", "weekday": "Thursday", "phase": "Phase 1: Syllabus Completion (TOC/CD/CN) + Revision + PYQs", "category": "phase1", "sylSubj": "CD", "b1": "Block 1 (1h 45m - New Syllabus + Topic PYQs): Compiler Design (45%→60%): CLR(1) & LALR(1) Parsing Tables & Conflict Analysis", "b2": "Block 2 (1h 30m - Simultaneous Revision + Paired PYQs): TOC + Digital Logic Paired Combination: State Machines (15 PYQs)", "b3": "Block 3 (45m - Daily Math/GA Foundation): General Aptitude: Reading Comprehension & Critical Reasoning (10 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Extended Lectures/Workbooks on New Syllabus + 2h Extra 30 Paired PYQs", "targetQ": "35 Core PYQs (65 with AIR<10 Extension)", "pyqOnlyA": "Compiler Design (2h): Compiler Design: Lexical Analysis, Token count, Regex to DFA", "pyqOnlyB": "TOC Deep-Dive (1h15m): TOC: Turing Machines & Recursive Enumerable Languages", "pyqOnlyC": "Daily Foundation (45m): Engg Math: Calculus - Limits, Continuity, Differentiability", "focusSkill": "Parsing Table Construction & Undecidability"}, {"id": 23, "day": "Day 23", "date": "06-Nov-2026", "isoDate": "2026-11-06", "weekday": "Friday", "phase": "Phase 1: Syllabus Completion (TOC/CD/CN) + Revision + PYQs", "category": "phase1", "sylSubj": "CD", "b1": "Block 1 (1h 45m - New Syllabus + Topic PYQs): Compiler Design (60%→72%): Syntax-Directed Translation (S-Attributed & L-Attributed)", "b2": "Block 2 (1h 30m - Simultaneous Revision + Paired PYQs): COA: Addressing Modes, Instruction Formats & ALU Revision + 15 PYQs", "b3": "Block 3 (45m - Daily Math/GA Foundation): Engg Math: Probability - Conditional Probability & Bayes' Theorem (10 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Extended Lectures/Workbooks on New Syllabus + 2h Extra 30 Paired PYQs", "targetQ": "35 Core PYQs (65 with AIR<10 Extension)", "pyqOnlyA": "Compiler Design (2h): Compiler Design: LL(1) Parsing, FIRST & FOLLOW sets", "pyqOnlyB": "TOC Deep-Dive (1h15m): TOC: Decidability, Undecidability & Halting Problem", "pyqOnlyC": "Daily Foundation (45m): Engg Math: Calculus - Maxima & Minima (Single & Multi-variable)", "focusSkill": "Parsing Table Construction & Undecidability"}, {"id": 24, "day": "Day 24", "date": "07-Nov-2026", "isoDate": "2026-11-07", "weekday": "Saturday", "phase": "WEEKLY MOCK TEST & POST-MORTEM", "category": "mock", "sylSubj": "", "b1": "Weekly Mock Test 4 (Shifted from Sun due to Diwali) (Hours 1–3, 2:00 PM–5:00 PM IST): Full 65-Question / 100-Mark Exam Simulation", "b2": "Hour 4 (60 mins): Full-Length Mock 4 (Including TOC + 60% CD) + Post-Mortem", "b3": "Update 3-Category Error Register (Conceptual Gap / Calculation Slip / Misread)", "air10Ext": "Optional Evening (2h): Re-solve all unattempted & wrong Mock questions without timer", "targetQ": "65 Mock Questions", "pyqOnlyA": "Compiler Design (2h): Compiler Design: LR(0), SLR(1) Parsing tables & conflicts", "pyqOnlyB": "TOC Deep-Dive (1h15m): TOC: Rice's Theorem & Reducibility concepts", "pyqOnlyC": "Daily Foundation (45m): Engg Math: Calculus - Mean Value Theorems & Taylor Series", "focusSkill": "Parsing Table Construction & Undecidability"}, {"id": 25, "day": "Day 25", "date": "08-Nov-2026", "isoDate": "2026-11-08", "weekday": "Sunday", "phase": "FESTIVAL / PUBLIC HOLIDAY (NO WORK)", "category": "holiday", "sylSubj": "", "b1": "HOLIDAY: Diwali / Deepavali & Naraka Chaturdasi (Zero Work Assigned)", "b2": "OFF — Enjoy Festival & Recharge Mentally", "b3": "OFF — Zero Study Assigned", "air10Ext": "OFF — Full Festival Rest", "targetQ": "0 Questions (Holiday)", "pyqOnlyA": "Week 4 PYQ Revision: Starred questions in Compiler Design & Decidability", "pyqOnlyB": "Error Log Re-attempt: LR Parsing Tables & Pumping Lemma", "pyqOnlyC": "Compiler Phase Grammar Rules & Calculus Formula Drill", "focusSkill": "Parsing Conflicts & Multi-variable Calculus"}, {"id": 26, "day": "Day 26", "date": "09-Nov-2026", "isoDate": "2026-11-09", "weekday": "Monday", "phase": "Phase 1: Syllabus Completion (TOC/CD/CN) + Revision + PYQs", "category": "phase1", "sylSubj": "CD", "b1": "Block 1 (1h 45m - New Syllabus + Topic PYQs): Compiler Design (72%→82%): SDT Dependency Graphs & Parse-Tree Evaluation Traces", "b2": "Block 2 (1h 30m - Simultaneous Revision + Paired PYQs): COA: Instruction Pipelining & Structural/Data/Control Hazards + 15 PYQs", "b3": "Block 3 (45m - Daily Math/GA Foundation): Engg Math: Probability - Binomial, Poisson & Normal Distributions (10 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Extended Lectures/Workbooks on New Syllabus + 2h Extra 30 Paired PYQs", "targetQ": "35 Core PYQs (65 with AIR<10 Extension)", "pyqOnlyA": "Compiler Design (2h): Compiler Design: Syntax Directed Translation (SDT, S-attributed/L-attributed)", "pyqOnlyB": "TOC Deep-Dive (1h15m): TOC: Non-deterministic vs Deterministic Language hierarchies", "pyqOnlyC": "Daily Foundation (45m): Engg Math: Calculus - Double & Triple Integrals, Vector Calculus", "focusSkill": "Parsing Table Construction & Undecidability"}, {"id": 27, "day": "Day 27", "date": "10-Nov-2026", "isoDate": "2026-11-10", "weekday": "Tuesday", "phase": "Phase 1: Syllabus Completion (TOC/CD/CN) + Revision + PYQs", "category": "phase1", "sylSubj": "CD", "b1": "Block 1 (1h 45m - New Syllabus + Topic PYQs): Compiler Design (82%→90%): Intermediate Code Gen, 3-Address Code, Quadruples", "b2": "Block 2 (1h 30m - Simultaneous Revision + Paired PYQs): COA: Cache Mapping (Direct, Set-Associative) & Performance + 15 PYQs", "b3": "Block 3 (45m - Daily Math/GA Foundation): Engg Math: Probability - Random Variables, Expectation & Variance (10 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Extended Lectures/Workbooks on New Syllabus + 2h Extra 30 Paired PYQs", "targetQ": "35 Core PYQs (65 with AIR<10 Extension)", "pyqOnlyA": "Compiler Design (2h): Compiler Design: Intermediate Code (3-Address Code, Basic Blocks, DAG, Optimization)", "pyqOnlyB": "TOC Deep-Dive (1h15m): TOC: Rapid Mixed Hard PYQs (GATE 2015-2024)", "pyqOnlyC": "Daily Foundation (45m): Engg Math: Calculus - Gradient, Divergence & Directional Derivatives", "focusSkill": "Parsing Table Construction & Undecidability"}, {"id": 28, "day": "Day 28", "date": "11-Nov-2026", "isoDate": "2026-11-11", "weekday": "Wednesday", "phase": "Phase 1: Syllabus Completion (TOC/CD/CN) + Revision + PYQs", "category": "phase1", "sylSubj": "CD", "b1": "Block 1 (1h 45m - New Syllabus + Topic PYQs): Compiler Design (90%→100%): Runtime Activation Records, Basic Blocks, DAG & Liveness", "b2": "Block 2 (1h 30m - Simultaneous Revision + Paired PYQs): COA: Secondary Storage, I/O, Interrupts & DMA Revision + 15 PYQs", "b3": "Block 3 (45m - Daily Math/GA Foundation): General Aptitude: Data Interpretation & Quantitative Trap Drills (10 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Extended Lectures/Workbooks on New Syllabus + 2h Extra 30 Paired PYQs", "targetQ": "35 Core PYQs (65 with AIR<10 Extension)", "pyqOnlyA": "Compiler Design (2h): Compiler Design: Lexical Analysis, Token count, Regex to DFA", "pyqOnlyB": "TOC Deep-Dive (1h15m): TOC: Turing Machines & Recursive Enumerable Languages", "pyqOnlyC": "Daily Foundation (45m): Engg Math: Calculus - Limits, Continuity, Differentiability", "focusSkill": "Parsing Table Construction & Undecidability"}, {"id": 29, "day": "Day 29", "date": "12-Nov-2026", "isoDate": "2026-11-12", "weekday": "Thursday", "phase": "Phase 1: Syllabus Completion (TOC/CD/CN) + Revision + PYQs", "category": "phase1", "sylSubj": "CD", "b1": "Block 1 (1h 45m - New Syllabus + Topic PYQs): Compiler Design 100% Consolidation: Full CD Short Notes + 25 High-Yield CD PYQs", "b2": "Block 2 (1h 30m - Simultaneous Revision + Paired PYQs): TOC + Compiler Design Paired Combination Drill (20 PYQs)", "b3": "Block 3 (45m - Daily Math/GA Foundation): Discrete Math: Group Theory, Lattices & Generating Functions (10 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Extended Lectures/Workbooks on New Syllabus + 2h Extra 30 Paired PYQs", "targetQ": "35 Core PYQs (65 with AIR<10 Extension)", "pyqOnlyA": "Operating Systems (2h): Operating Systems: Process Management, Threads, CPU Scheduling (FCFS, SJF, SRTF, RR)", "pyqOnlyB": "COA (1h15m): COA: Machine Instructions, Addressing Modes & Formats", "pyqOnlyC": "Daily Foundation (45m): Engg Math: Probability - Conditional Probability & Bayes' Theorem", "focusSkill": "Paging Numericals & Cache Miss Calculations"}, {"id": 30, "day": "Day 30", "date": "13-Nov-2026", "isoDate": "2026-11-13", "weekday": "Friday", "phase": "Phase 1: Syllabus Completion (TOC/CD/CN) + Revision + PYQs", "category": "phase1", "sylSubj": "CN", "b1": "Block 1 (1h 45m - New Syllabus + Topic PYQs): CN (25%→32%): Data Link Flow Control, Stop-and-Wait Efficiency & Throughput", "b2": "Block 2 (1h 30m - Simultaneous Revision + Paired PYQs): Operating Systems: Processes, Threads & CPU Scheduling + 15 PYQs", "b3": "Block 3 (45m - Daily Math/GA Foundation): Engg Math: Linear Algebra High-Yield Mixed PYQs (10 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Extended Lectures/Workbooks on New Syllabus + 2h Extra 30 Paired PYQs", "targetQ": "35 Core PYQs (65 with AIR<10 Extension)", "pyqOnlyA": "Operating Systems (2h): Operating Systems: Synchronization, Critical Section, Mutex, Semaphores", "pyqOnlyB": "COA (1h15m): COA: Instruction Pipelining, Cycles, Throughput & Speedup", "pyqOnlyC": "Daily Foundation (45m): Engg Math: Probability - Random Variables & Probability Mass/Density", "focusSkill": "Paging Numericals & Cache Miss Calculations"}, {"id": 31, "day": "Day 31", "date": "14-Nov-2026", "isoDate": "2026-11-14", "weekday": "Saturday", "phase": "Phase 1: Syllabus Completion (TOC/CD/CN) + Revision + PYQs", "category": "phase1", "sylSubj": "CN", "b1": "Block 1 (1h 45m - New Syllabus + Topic PYQs): CN (32%→40%): Sliding Window Protocols - Go-Back-N & Selective Repeat Numericals", "b2": "Block 2 (1h 30m - Simultaneous Revision + Paired PYQs): Operating Systems: Process Sync, Semaphores & Classical IPC + 15 PYQs", "b3": "Block 3 (45m - Daily Math/GA Foundation): Engg Math: Calculus High-Yield Mixed PYQs (10 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Extended Lectures/Workbooks on New Syllabus + 2h Extra 30 Paired PYQs", "targetQ": "35 Core PYQs (65 with AIR<10 Extension)", "pyqOnlyA": "Operating Systems (2h): Operating Systems: Classical IPC (Producer-Consumer, Reader-Writer, Dining Phil)", "pyqOnlyB": "COA (1h15m): COA: Pipeline Hazards (Data, Structural, Branch) & Branch Prediction", "pyqOnlyC": "Daily Foundation (45m): Engg Math: Probability - Binomial, Poisson & Normal Distributions", "focusSkill": "Paging Numericals & Cache Miss Calculations"}, {"id": 32, "day": "Day 32", "date": "15-Nov-2026", "isoDate": "2026-11-15", "weekday": "Sunday", "phase": "WEEKLY MOCK TEST & POST-MORTEM", "category": "mock", "sylSubj": "", "b1": "Weekly Mock Test 5 (Hours 1–3, 2:00 PM–5:00 PM IST): Full 65-Question / 100-Mark Exam Simulation", "b2": "Hour 4 (60 mins): Full-Length Mock 5 (Including Complete TOC & CD) + Post-Mortem", "b3": "Update 3-Category Error Register (Conceptual Gap / Calculation Slip / Misread)", "air10Ext": "Optional Evening (2h): Re-solve all unattempted & wrong Mock questions without timer", "targetQ": "65 Mock Questions", "pyqOnlyA": "Week 5 PYQ Revision: Starred questions in OS & COA", "pyqOnlyB": "Error Log Re-attempt: Cache Mapping & Synchronization Semaphores", "pyqOnlyC": "OS Algorithm Formula Sheets & Probability Distribution Tables", "focusSkill": "Virtual Memory & Pipeline Hazards"}, {"id": 33, "day": "Day 33", "date": "16-Nov-2026", "isoDate": "2026-11-16", "weekday": "Monday", "phase": "Phase 1: Syllabus Completion (TOC/CD/CN) + Revision + PYQs", "category": "phase1", "sylSubj": "CN", "b1": "Block 1 (1h 45m - New Syllabus + Topic PYQs): CN (40%→48%): MAC Layer - Pure/Slotted ALOHA, CSMA/CD, Backoff & Ethernet", "b2": "Block 2 (1h 30m - Simultaneous Revision + Paired PYQs): Operating Systems: Deadlocks, Banker's Algorithm & Recovery + 15 PYQs", "b3": "Block 3 (45m - Daily Math/GA Foundation): Engg Math: Probability High-Yield Mixed PYQs (10 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Extended Lectures/Workbooks on New Syllabus + 2h Extra 30 Paired PYQs", "targetQ": "35 Core PYQs (65 with AIR<10 Extension)", "pyqOnlyA": "Operating Systems (2h): Operating Systems: Deadlock Detection, Recovery & Memory Management basics", "pyqOnlyB": "COA (1h15m): COA: Cache Performance Numericals (Miss Penalty, Hit Rate, Write-through/back)", "pyqOnlyC": "Daily Foundation (45m): Engg Math: Probability - Expectation, Variance & Covariance", "focusSkill": "Paging Numericals & Cache Miss Calculations"}, {"id": 34, "day": "Day 34", "date": "17-Nov-2026", "isoDate": "2026-11-17", "weekday": "Tuesday", "phase": "Phase 1: Syllabus Completion (TOC/CD/CN) + Revision + PYQs", "category": "phase1", "sylSubj": "CN", "b1": "Block 1 (1h 45m - New Syllabus + Topic PYQs): CN (48%→56%): Network Layer - IPv4 Classful Addressing & Subnetting Numericals", "b2": "Block 2 (1h 30m - Simultaneous Revision + Paired PYQs): Operating Systems: Paging, Multi-Level Paging & TLB Access Time + 15 PYQs", "b3": "Block 3 (45m - Daily Math/GA Foundation): General Aptitude: Spatial Aptitude - 2D/3D Shapes & Folding (10 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Extended Lectures/Workbooks on New Syllabus + 2h Extra 30 Paired PYQs", "targetQ": "35 Core PYQs (65 with AIR<10 Extension)", "pyqOnlyA": "Operating Systems (2h): Operating Systems: Virtual Memory - Paging, Multi-level Paging, TLB, Inverted Paging", "pyqOnlyB": "COA (1h15m): COA: Main Memory Organization & Interleaving", "pyqOnlyC": "Daily Foundation (45m): Engg Math: Probability - Joint Distributions & Correlation", "focusSkill": "Paging Numericals & Cache Miss Calculations"}, {"id": 35, "day": "Day 35", "date": "18-Nov-2026", "isoDate": "2026-11-18", "weekday": "Wednesday", "phase": "Phase 1: Syllabus Completion (TOC/CD/CN) + Revision + PYQs", "category": "phase1", "sylSubj": "CN", "b1": "Block 1 (1h 45m - New Syllabus + Topic PYQs): CN (56%→64%): Network Layer - CIDR, Supernetting & Route Aggregation", "b2": "Block 2 (1h 30m - Simultaneous Revision + Paired PYQs): Operating Systems: Virtual Memory & Page Replacement (LRU, FIFO, Opt) + 15 PYQs", "b3": "Block 3 (45m - Daily Math/GA Foundation): Discrete Math: Graph Theory & Combinatorics Mixed PYQs (10 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Extended Lectures/Workbooks on New Syllabus + 2h Extra 30 Paired PYQs", "targetQ": "35 Core PYQs (65 with AIR<10 Extension)", "pyqOnlyA": "Operating Systems (2h): Operating Systems: Process Management, Threads, CPU Scheduling (FCFS, SJF, SRTF, RR)", "pyqOnlyB": "COA (1h15m): COA: Machine Instructions, Addressing Modes & Formats", "pyqOnlyC": "Daily Foundation (45m): Engg Math: Probability - Conditional Probability & Bayes' Theorem", "focusSkill": "Paging Numericals & Cache Miss Calculations"}, {"id": 36, "day": "Day 36", "date": "19-Nov-2026", "isoDate": "2026-11-19", "weekday": "Thursday", "phase": "Phase 1: Syllabus Completion (TOC/CD/CN) + Revision + PYQs", "category": "phase1", "sylSubj": "CN", "b1": "Block 1 (1h 45m - New Syllabus + Topic PYQs): CN (64%→72%): Network Layer - IPv4 Header, MTU & IP Fragmentation Offsets", "b2": "Block 2 (1h 30m - Simultaneous Revision + Paired PYQs): Operating Systems: File Systems, Inodes & Disk Scheduling (SCAN/C-SCAN) + 15 PYQs", "b3": "Block 3 (45m - Daily Math/GA Foundation): Discrete Math: First-Order Logic & Set Relations Mixed PYQs (10 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Extended Lectures/Workbooks on New Syllabus + 2h Extra 30 Paired PYQs", "targetQ": "35 Core PYQs (65 with AIR<10 Extension)", "pyqOnlyA": "COA (2h): COA: Secondary Storage (Disk Scheduling, RAID, Cylinders, Sector timing)", "pyqOnlyB": "Operating Systems (1h15m): Operating Systems: Page Replacement (FIFO, Optimal, LRU, Belady's Anomaly)", "pyqOnlyC": "Daily Foundation (45m): Engg Math: Linear Algebra & Calculus Combined Hard PYQs", "focusSkill": "IEEE 754 & File System Inode Mathematics"}, {"id": 37, "day": "Day 37", "date": "20-Nov-2026", "isoDate": "2026-11-20", "weekday": "Friday", "phase": "Phase 1: Syllabus Completion (TOC/CD/CN) + Revision + PYQs", "category": "phase1", "sylSubj": "CN", "b1": "Block 1 (1h 45m - New Syllabus + Topic PYQs): CN (72%→78%): Routing Algorithms - Distance Vector, Count-to-Infinity & Link State", "b2": "Block 2 (1h 30m - Simultaneous Revision + Paired PYQs): DBMS: ER Model, Relational Algebra & Tuple Relational Calculus + 15 PYQs", "b3": "Block 3 (45m - Daily Math/GA Foundation): General Aptitude: Permutations, Combinations & Probability (10 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Extended Lectures/Workbooks on New Syllabus + 2h Extra 30 Paired PYQs", "targetQ": "35 Core PYQs (65 with AIR<10 Extension)", "pyqOnlyA": "COA (2h): COA: I/O Interface, Programmed I/O, Interrupt-driven I/O, DMA transfer", "pyqOnlyB": "Operating Systems (1h15m): Operating Systems: File Systems, Directory Structures, Allocation Methods (Inode)", "pyqOnlyC": "Daily Foundation (45m): Engg Math: Linear Algebra & Probability Combined Hard PYQs", "focusSkill": "IEEE 754 & File System Inode Mathematics"}, {"id": 38, "day": "Day 38", "date": "21-Nov-2026", "isoDate": "2026-11-21", "weekday": "Saturday", "phase": "Phase 1: Syllabus Completion (TOC/CD/CN) + Revision + PYQs", "category": "phase1", "sylSubj": "CN", "b1": "Block 1 (1h 45m - New Syllabus + Topic PYQs): CN (78%→83%): IP Routing Protocols (RIP, OSPF, BGP), ARP, DHCP, NAT & ICMP", "b2": "Block 2 (1h 30m - Simultaneous Revision + Paired PYQs): DBMS: SQL Queries (Joins, Nested Subqueries, Aggregations) + 15 PYQs", "b3": "Block 3 (45m - Daily Math/GA Foundation): Engg Math: Eigenvalues & Cayley-Hamilton Speed Drill (10 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Extended Lectures/Workbooks on New Syllabus + 2h Extra 30 Paired PYQs", "targetQ": "35 Core PYQs (65 with AIR<10 Extension)", "pyqOnlyA": "COA (2h): COA: Data Path & Control Unit (Hardwired vs Microprogrammed, Micro-instructions)", "pyqOnlyB": "Operating Systems (1h15m): Operating Systems: Disk Scheduling Algorithms (SSTF, SCAN, C-SCAN, LOOK)", "pyqOnlyC": "Daily Foundation (45m): Engg Math: Calculus Integration & Area Under Curves PYQs", "focusSkill": "IEEE 754 & File System Inode Mathematics"}, {"id": 39, "day": "Day 39", "date": "22-Nov-2026", "isoDate": "2026-11-22", "weekday": "Sunday", "phase": "WEEKLY MOCK TEST & POST-MORTEM", "category": "mock", "sylSubj": "", "b1": "Weekly Mock Test 6 (Hours 1–3, 2:00 PM–5:00 PM IST): Full 65-Question / 100-Mark Exam Simulation", "b2": "Hour 4 (60 mins): Full-Length Mock 6 (Including Network Layer & Subnetting) + Post-Mortem", "b3": "Update 3-Category Error Register (Conceptual Gap / Calculation Slip / Misread)", "air10Ext": "Optional Evening (2h): Re-solve all unattempted & wrong Mock questions without timer", "targetQ": "65 Mock Questions", "pyqOnlyA": "Week 6 PYQ Revision: Starred questions in COA & OS", "pyqOnlyB": "Error Log Re-attempt: Virtual Memory Paging & Floating Point/IO", "pyqOnlyC": "Cache/Virtual Memory Formula & Architecture Blocks Drill", "focusSkill": "NAT Speed & Precision on Storage/IO"}, {"id": 40, "day": "Day 40", "date": "23-Nov-2026", "isoDate": "2026-11-23", "weekday": "Monday", "phase": "Phase 1: Syllabus Completion (TOC/CD/CN) + Revision + PYQs", "category": "phase1", "sylSubj": "CN", "b1": "Block 1 (1h 45m - New Syllabus + Topic PYQs): CN (83%→89%): Transport Layer - UDP vs TCP, TCP Header & 3-Way Handshake", "b2": "Block 2 (1h 30m - Simultaneous Revision + Paired PYQs): DBMS: Functional Dependencies, Candidate Keys & Normalization (1NF-BCNF) + 15 PYQs", "b3": "Block 3 (45m - Daily Math/GA Foundation): Engg Math: Bayes' Theorem & Distributions Speed Drill (10 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Extended Lectures/Workbooks on New Syllabus + 2h Extra 30 Paired PYQs", "targetQ": "35 Core PYQs (65 with AIR<10 Extension)", "pyqOnlyA": "COA (2h): COA: Integer Arithmetic - Booth's Algorithm, Restoring/Non-Restoring Division", "pyqOnlyB": "Operating Systems (1h15m): Operating Systems: Protection, Security & Memory Allocation (First, Best, Worst Fit)", "pyqOnlyC": "Daily Foundation (45m): GA: Spatial Aptitude - 2D/3D transformations & rotations", "focusSkill": "IEEE 754 & File System Inode Mathematics"}, {"id": 41, "day": "Day 41", "date": "24-Nov-2026", "isoDate": "2026-11-24", "weekday": "Tuesday", "phase": "FESTIVAL / PUBLIC HOLIDAY (NO WORK)", "category": "holiday", "sylSubj": "", "b1": "HOLIDAY: Karthika Purnima / Guru Nanak Jayanti (Zero Work Assigned)", "b2": "OFF — Enjoy Festival & Recharge Mentally", "b3": "OFF — Zero Study Assigned", "air10Ext": "OFF — Full Festival Rest", "targetQ": "0 Questions (Holiday)", "pyqOnlyA": "COA (2h): COA: Comprehensive Mixed Hard PYQs (GATE 2016-2024)", "pyqOnlyB": "Operating Systems (1h15m): Operating Systems: Mixed Multi-threading & Semaphore Code PYQs", "pyqOnlyC": "Daily Foundation (45m): GA: Comprehensive Mixed Aptitude Speed Drill", "focusSkill": "IEEE 754 & File System Inode Mathematics"}, {"id": 42, "day": "Day 42", "date": "25-Nov-2026", "isoDate": "2026-11-25", "weekday": "Wednesday", "phase": "Phase 1: Syllabus Completion (TOC/CD/CN) + Revision + PYQs", "category": "phase1", "sylSubj": "CN", "b1": "Block 1 (1h 45m - New Syllabus + Topic PYQs): CN (89%→95%): TCP Flow Control, Sequence/ACK Numbers & Retransmission Timers", "b2": "Block 2 (1h 30m - Simultaneous Revision + Paired PYQs): DBMS: Transactions, ACID, Conflict/View Serializability & 2PL + 15 PYQs", "b3": "Block 3 (45m - Daily Math/GA Foundation): General Aptitude: Verbal & Critical Reasoning Speed Drill (10 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Extended Lectures/Workbooks on New Syllabus + 2h Extra 30 Paired PYQs", "targetQ": "35 Core PYQs (65 with AIR<10 Extension)", "pyqOnlyA": "COA (2h): COA: Secondary Storage (Disk Scheduling, RAID, Cylinders, Sector timing)", "pyqOnlyB": "Operating Systems (1h15m): Operating Systems: Page Replacement (FIFO, Optimal, LRU, Belady's Anomaly)", "pyqOnlyC": "Daily Foundation (45m): Engg Math: Linear Algebra & Calculus Combined Hard PYQs", "focusSkill": "IEEE 754 & File System Inode Mathematics"}, {"id": 43, "day": "Day 43", "date": "26-Nov-2026", "isoDate": "2026-11-26", "weekday": "Thursday", "phase": "Phase 1: Syllabus Completion (TOC/CD/CN) + Revision + PYQs", "category": "phase1", "sylSubj": "CN", "b1": "Block 1 (1h 45m - New Syllabus + Topic PYQs): CN (95%→100%): TCP Congestion Control (Slow Start, AIMD), Leaky/Token Bucket", "b2": "Block 2 (1h 30m - Simultaneous Revision + Paired PYQs): DBMS: B-Trees, B+ Trees Indexing & Log-Based Recovery + 15 PYQs", "b3": "Block 3 (45m - Daily Math/GA Foundation): Discrete Math: Graph Planarity & Spanning Trees Speed Drill (10 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Extended Lectures/Workbooks on New Syllabus + 2h Extra 30 Paired PYQs", "targetQ": "35 Core PYQs (65 with AIR<10 Extension)", "pyqOnlyA": "DBMS (2h): DBMS: ER Model, Relational Model, Relational Algebra queries", "pyqOnlyB": "Computer Networks (1h15m): Computer Networks: OSI & TCP/IP Stack, Framing, Bit/Byte Stuffing", "pyqOnlyC": "Daily Foundation (45m): GA: Verbal Ability - Critical Reasoning & Arguments", "focusSkill": "SQL Equivalences & Subnet Mask Calculations"}, {"id": 44, "day": "Day 44", "date": "27-Nov-2026", "isoDate": "2026-11-27", "weekday": "Friday", "phase": "Phase 1: Syllabus Completion (TOC/CD/CN) + Revision + PYQs", "category": "phase1", "sylSubj": "CN", "b1": "Block 1 (1h 45m - New Syllabus + Topic PYQs): CN 100% Consolidation: Application Layer (DNS, HTTP, SMTP, FTP), RSA & CN Short Notes", "b2": "Block 2 (1h 30m - Simultaneous Revision + Paired PYQs): DBMS + CN Newly Completed Paired Combination (20 PYQs)", "b3": "Block 3 (45m - Daily Math/GA Foundation): General Aptitude: Full 15-Mark Timed Mini-Test (25 mins)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Extended Lectures/Workbooks on New Syllabus + 2h Extra 30 Paired PYQs", "targetQ": "35 Core PYQs (65 with AIR<10 Extension)", "pyqOnlyA": "DBMS (2h): DBMS: Tuple Relational Calculus (TRC), Domain Relational Calculus (DRC)", "pyqOnlyB": "Computer Networks (1h15m): Computer Networks: Error Detection (CRC, Checksum, Parity), Hamming Code", "pyqOnlyC": "Daily Foundation (45m): GA: Verbal Ability - Grammar, Tenses & Subject-Verb", "focusSkill": "SQL Equivalences & Subnet Mask Calculations"}, {"id": 45, "day": "Day 45", "date": "28-Nov-2026", "isoDate": "2026-11-28", "weekday": "Saturday", "phase": "Phase 2: 100% Syllabus Done -> Cyclic Revision + Interleaved PYQ Sprints", "category": "phase2", "sylSubj": "", "b1": "Revision + Workbook (1h45m): TOC & Compiler Design Short Notes + GO/ACE Hard Qs", "b2": "PYQ Combination (1h30m): TOC + Compiler Design (25 Mixed PYQs: Parsing & Decidability)", "b3": "Foundation (45m): Engg Math - Linear Algebra & Calculus (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Subject Test (30 Qs) + 2h StarredGATE Overflow L3 Questions", "targetQ": "40–45 Mixed PYQs", "pyqOnlyA": "DBMS (2h): DBMS: SQL Queries (Nested, Joins, Aggregations, Group By, Having)", "pyqOnlyB": "Computer Networks (1h15m): Computer Networks: Flow Control (Stop-and-Wait, Go-Back-N, Selective Repeat)", "pyqOnlyC": "Daily Foundation (45m): GA: Quantitative - Sequences, Series & Progressions", "focusSkill": "SQL Equivalences & Subnet Mask Calculations"}, {"id": 46, "day": "Day 46", "date": "29-Nov-2026", "isoDate": "2026-11-29", "weekday": "Sunday", "phase": "WEEKLY MOCK TEST & POST-MORTEM", "category": "mock", "sylSubj": "", "b1": "Weekly Mock Test 7 (Hours 1–3, 2:00 PM–5:00 PM IST): Full 65-Question / 100-Mark Exam Simulation", "b2": "Hour 4 (60 mins): Full-Length Mock 7 (100% Syllabus Completed Milestone Mock!) + Post-Mortem", "b3": "Update 3-Category Error Register (Conceptual Gap / Calculation Slip / Misread)", "air10Ext": "Optional Evening (2h): Re-solve all unattempted & wrong Mock questions without timer", "targetQ": "65 Mock Questions", "pyqOnlyA": "Week 7 PYQ Revision: Starred questions in DBMS & Computer Networks", "pyqOnlyB": "Error Log Re-attempt: B+ Trees & Subnetting/Sliding Window", "pyqOnlyC": "Relational Algebra & Network Header Format Drills", "focusSkill": "Query Optimization & Subnetting Accuracy"}, {"id": 47, "day": "Day 47", "date": "30-Nov-2026", "isoDate": "2026-11-30", "weekday": "Monday", "phase": "Phase 2: 100% Syllabus Done -> Cyclic Revision + Interleaved PYQ Sprints", "category": "phase2", "sylSubj": "", "b1": "Revision + Workbook (1h45m): Computer Networks Short Notes + Subnetting/TCP Drills", "b2": "PYQ Combination (1h30m): Computer Networks + DBMS (25 Mixed PYQs: CIDR, TCP & SQL)", "b3": "Foundation (45m): Engg Math - Probability & Statistics (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Subject Test (30 Qs) + 2h StarredGATE Overflow L3 Questions", "targetQ": "40–45 Mixed PYQs", "pyqOnlyA": "Week 7 PYQ Revision: Starred questions in DBMS & Computer Networks", "pyqOnlyB": "Error Log Re-attempt: B+ Trees & Subnetting/Sliding Window", "pyqOnlyC": "Relational Algebra & Network Header Format Drills", "focusSkill": "Query Optimization & Subnetting Accuracy"}, {"id": 48, "day": "Day 48", "date": "01-Dec-2026", "isoDate": "2026-12-01", "weekday": "Tuesday", "phase": "Phase 2: 100% Syllabus Done -> Cyclic Revision + Interleaved PYQ Sprints", "category": "phase2", "sylSubj": "", "b1": "Revision + Workbook (1h45m): Operating Systems + COA Memory Hierarchy Revision", "b2": "PYQ Combination (1h30m): OS + COA (25 Mixed PYQs: Paging, TLB, Cache & Pipelining)", "b3": "Foundation (45m): Discrete Math - Logic & Set Theory (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Subject Test (30 Qs) + 2h StarredGATE Overflow L3 Questions", "targetQ": "40–45 Mixed PYQs", "pyqOnlyA": "Week 7 PYQ Revision: Starred questions in DBMS & Computer Networks", "pyqOnlyB": "Error Log Re-attempt: B+ Trees & Subnetting/Sliding Window", "pyqOnlyC": "Relational Algebra & Network Header Format Drills", "focusSkill": "Query Optimization & Subnetting Accuracy"}, {"id": 49, "day": "Day 49", "date": "02-Dec-2026", "isoDate": "2026-12-02", "weekday": "Wednesday", "phase": "Phase 2: 100% Syllabus Done -> Cyclic Revision + Interleaved PYQ Sprints", "category": "phase2", "sylSubj": "", "b1": "Revision + Workbook (1h45m): Programming, Data Structures & Algorithms Revision", "b2": "PYQ Combination (1h30m): DS + Algorithms (25 Mixed PYQs: Trees, DP, Graphs & Recurrences)", "b3": "Foundation (45m): Discrete Math - Combinatorics & Graph Theory (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Subject Test (30 Qs) + 2h StarredGATE Overflow L3 Questions", "targetQ": "40–45 Mixed PYQs", "pyqOnlyA": "Week 7 PYQ Revision: Starred questions in DBMS & Computer Networks", "pyqOnlyB": "Error Log Re-attempt: B+ Trees & Subnetting/Sliding Window", "pyqOnlyC": "Relational Algebra & Network Header Format Drills", "focusSkill": "Query Optimization & Subnetting Accuracy"}, {"id": 50, "day": "Day 50", "date": "03-Dec-2026", "isoDate": "2026-12-03", "weekday": "Thursday", "phase": "Phase 2: 100% Syllabus Done -> Cyclic Revision + Interleaved PYQ Sprints", "category": "phase2", "sylSubj": "", "b1": "Revision + Workbook (1h45m): DBMS Normalization, Concurrency & B+ Tree Revision", "b2": "PYQ Combination (1h30m): DBMS + OS (25 Mixed PYQs: Serializability, Semaphores & Indexing)", "b3": "Foundation (45m): General Aptitude - Quantitative & Spatial (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Subject Test (30 Qs) + 2h StarredGATE Overflow L3 Questions", "targetQ": "40–45 Mixed PYQs", "pyqOnlyA": "Computer Networks (2h): Computer Networks: TCP Congestion Control (Slow Start, Congestion Avoidance, AIMD)", "pyqOnlyB": "DBMS (1h15m): DBMS: Comprehensive Hard Query PYQs (SQL vs Relational Algebra)", "pyqOnlyC": "Daily Foundation (45m): Discrete Math: Logic & Set Theory Speed Drill", "focusSkill": "Protocol Headers & Schedule Precedence Graphs"}, {"id": 51, "day": "Day 51", "date": "04-Dec-2026", "isoDate": "2026-12-04", "weekday": "Friday", "phase": "Phase 2: 100% Syllabus Done -> Cyclic Revision + Interleaved PYQ Sprints", "category": "phase2", "sylSubj": "", "b1": "Revision + Workbook (1h45m): Digital Logic + COA Arithmetic & Counters Revision", "b2": "PYQ Combination (1h30m): Digital Logic + TOC (25 Mixed PYQs: Sequential Circuits & Automata)", "b3": "Foundation (45m): General Aptitude - Verbal & Logical Reasoning (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Subject Test (30 Qs) + 2h StarredGATE Overflow L3 Questions", "targetQ": "40–45 Mixed PYQs", "pyqOnlyA": "Computer Networks (2h): Computer Networks: Application Layer - DNS, HTTP, SMTP, POP, IMAP, FTP", "pyqOnlyB": "DBMS (1h15m): DBMS: Comprehensive Hard B+ Tree & Normalization PYQs", "pyqOnlyC": "Daily Foundation (45m): Discrete Math: Combinatorics & Graph Theory Speed Drill", "focusSkill": "Protocol Headers & Schedule Precedence Graphs"}, {"id": 52, "day": "Day 52", "date": "05-Dec-2026", "isoDate": "2026-12-05", "weekday": "Saturday", "phase": "Phase 2: 100% Syllabus Done -> Cyclic Revision + Interleaved PYQ Sprints", "category": "phase2", "sylSubj": "", "b1": "Revision + Workbook (1h45m): TOC & Compiler Design Short Notes + GO/ACE Hard Qs", "b2": "PYQ Combination (1h30m): TOC + Compiler Design (25 Mixed PYQs: Parsing & Decidability)", "b3": "Foundation (45m): Engg Math - Linear Algebra & Calculus (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Subject Test (30 Qs) + 2h StarredGATE Overflow L3 Questions", "targetQ": "40–45 Mixed PYQs", "pyqOnlyA": "Computer Networks (2h): Computer Networks: Network Security - Cryptography (DES, AES, RSA), Digital Signatures, Firewalls", "pyqOnlyB": "DBMS (1h15m): DBMS: Mixed Multi-topic PYQ Marathon (GATE 2015-2024)", "pyqOnlyC": "Daily Foundation (45m): General Aptitude: Timed 15-Mark Comprehensive Test", "focusSkill": "Protocol Headers & Schedule Precedence Graphs"}, {"id": 53, "day": "Day 53", "date": "06-Dec-2026", "isoDate": "2026-12-06", "weekday": "Sunday", "phase": "WEEKLY MOCK TEST & POST-MORTEM", "category": "mock", "sylSubj": "", "b1": "Weekly Mock Test 8 (Hours 1–3, 2:00 PM–5:00 PM IST): Full 65-Question / 100-Mark Exam Simulation", "b2": "Hour 4 (60 mins): All-India Mock Test 8 + Weak-Topic Root Cause Analysis", "b3": "Update 3-Category Error Register (Conceptual Gap / Calculation Slip / Misread)", "air10Ext": "Optional Evening (2h): Re-solve all unattempted & wrong Mock questions without timer", "targetQ": "65 Mock Questions", "pyqOnlyA": "Week 8 Revision: Starred questions in Computer Networks & Transactions", "pyqOnlyB": "Error Log Re-attempt: TCP Congestion & Serializability", "pyqOnlyC": "Network Protocol Headers & Concurrency Tables", "focusSkill": "Transaction Schedules & TCP Window Sizing"}, {"id": 54, "day": "Day 54", "date": "07-Dec-2026", "isoDate": "2026-12-07", "weekday": "Monday", "phase": "Phase 2: 100% Syllabus Done -> Cyclic Revision + Interleaved PYQ Sprints", "category": "phase2", "sylSubj": "", "b1": "Revision + Workbook (1h45m): Computer Networks Short Notes + Subnetting/TCP Drills", "b2": "PYQ Combination (1h30m): Computer Networks + DBMS (25 Mixed PYQs: CIDR, TCP & SQL)", "b3": "Foundation (45m): Engg Math - Probability & Statistics (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Subject Test (30 Qs) + 2h StarredGATE Overflow L3 Questions", "targetQ": "40–45 Mixed PYQs", "pyqOnlyA": "Computer Networks (2h): Computer Networks: IP Routing Protocols (RIP, OSPF, BGP) & NAT, ARP, DHCP, ICMP", "pyqOnlyB": "DBMS (1h15m): DBMS: Concurrency Control - 2PL (Strict, Rigorous), Timestamp Ordering", "pyqOnlyC": "Daily Foundation (45m): Engg Math: Calculus High-Weightage PYQ Speed Drill", "focusSkill": "Protocol Headers & Schedule Precedence Graphs"}, {"id": 55, "day": "Day 55", "date": "08-Dec-2026", "isoDate": "2026-12-08", "weekday": "Tuesday", "phase": "Phase 2: 100% Syllabus Done -> Cyclic Revision + Interleaved PYQ Sprints", "category": "phase2", "sylSubj": "", "b1": "Revision + Workbook (1h45m): Operating Systems + COA Memory Hierarchy Revision", "b2": "PYQ Combination (1h30m): OS + COA (25 Mixed PYQs: Paging, TLB, Cache & Pipelining)", "b3": "Foundation (45m): Discrete Math - Logic & Set Theory (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Subject Test (30 Qs) + 2h StarredGATE Overflow L3 Questions", "targetQ": "40–45 Mixed PYQs", "pyqOnlyA": "Computer Networks (2h): Computer Networks: Transport Layer - TCP vs UDP, Header formats, 3-Way Handshake", "pyqOnlyB": "DBMS (1h15m): DBMS: Deadlock Handling in Transactions, Recovery System (Log-based, Checkpoints)", "pyqOnlyC": "Daily Foundation (45m): Engg Math: Probability High-Weightage PYQ Speed Drill", "focusSkill": "Protocol Headers & Schedule Precedence Graphs"}, {"id": 56, "day": "Day 56", "date": "09-Dec-2026", "isoDate": "2026-12-09", "weekday": "Wednesday", "phase": "Phase 2: 100% Syllabus Done -> Cyclic Revision + Interleaved PYQ Sprints", "category": "phase2", "sylSubj": "", "b1": "Revision + Workbook (1h45m): Programming, Data Structures & Algorithms Revision", "b2": "PYQ Combination (1h30m): DS + Algorithms (25 Mixed PYQs: Trees, DP, Graphs & Recurrences)", "b3": "Foundation (45m): Discrete Math - Combinatorics & Graph Theory (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Subject Test (30 Qs) + 2h StarredGATE Overflow L3 Questions", "targetQ": "40–45 Mixed PYQs", "pyqOnlyA": "Computer Networks (2h): Computer Networks: TCP Congestion Control (Slow Start, Congestion Avoidance, AIMD)", "pyqOnlyB": "DBMS (1h15m): DBMS: Comprehensive Hard Query PYQs (SQL vs Relational Algebra)", "pyqOnlyC": "Daily Foundation (45m): Discrete Math: Logic & Set Theory Speed Drill", "focusSkill": "Protocol Headers & Schedule Precedence Graphs"}, {"id": 57, "day": "Day 57", "date": "10-Dec-2026", "isoDate": "2026-12-10", "weekday": "Thursday", "phase": "Phase 2: 100% Syllabus Done -> Cyclic Revision + Interleaved PYQ Sprints", "category": "phase2", "sylSubj": "", "b1": "Revision + Workbook (1h45m): DBMS Normalization, Concurrency & B+ Tree Revision", "b2": "PYQ Combination (1h30m): DBMS + OS (25 Mixed PYQs: Serializability, Semaphores & Indexing)", "b3": "Foundation (45m): General Aptitude - Quantitative & Spatial (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Subject Test (30 Qs) + 2h StarredGATE Overflow L3 Questions", "targetQ": "40–45 Mixed PYQs", "pyqOnlyA": "Algorithms & DS (2h): Asymptotic Analysis & Recursion Trees", "pyqOnlyB": "Operating Systems (1h15m): Page Replacement & Disk Inode PYQs", "pyqOnlyC": "Discrete Math (45m): Combinatorics & Pigeonhole Principle", "focusSkill": "Cross-Disciplinary Analytical Speed"}, {"id": 58, "day": "Day 58", "date": "11-Dec-2026", "isoDate": "2026-12-11", "weekday": "Friday", "phase": "Phase 2: 100% Syllabus Done -> Cyclic Revision + Interleaved PYQ Sprints", "category": "phase2", "sylSubj": "", "b1": "Revision + Workbook (1h45m): Digital Logic + COA Arithmetic & Counters Revision", "b2": "PYQ Combination (1h30m): Digital Logic + TOC (25 Mixed PYQs: Sequential Circuits & Automata)", "b3": "Foundation (45m): General Aptitude - Verbal & Logical Reasoning (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Subject Test (30 Qs) + 2h StarredGATE Overflow L3 Questions", "targetQ": "40–45 Mixed PYQs", "pyqOnlyA": "Algorithms & DS (2h): Graph Shortest Paths & MST Variations", "pyqOnlyB": "Operating Systems (1h15m): Disk Scheduling & File System Allocation PYQs", "pyqOnlyC": "Engg Math (45m): Bayes' Theorem & Normal Distribution", "focusSkill": "Cross-Disciplinary Analytical Speed"}, {"id": 59, "day": "Day 59", "date": "12-Dec-2026", "isoDate": "2026-12-12", "weekday": "Saturday", "phase": "Phase 2: 100% Syllabus Done -> Cyclic Revision + Interleaved PYQ Sprints", "category": "phase2", "sylSubj": "", "b1": "Revision + Workbook (1h45m): TOC & Compiler Design Short Notes + GO/ACE Hard Qs", "b2": "PYQ Combination (1h30m): TOC + Compiler Design (25 Mixed PYQs: Parsing & Decidability)", "b3": "Foundation (45m): Engg Math - Linear Algebra & Calculus (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Subject Test (30 Qs) + 2h StarredGATE Overflow L3 Questions", "targetQ": "40–45 Mixed PYQs", "pyqOnlyA": "Algorithms & DS (2h): Array, Stack, Queue & Linked List Edge Cases", "pyqOnlyB": "Operating Systems (1h15m): System Calls & Memory Allocation Algorithms", "pyqOnlyC": "GA (45m): Logical & Spatial Reasoning Mixed Test", "focusSkill": "Cross-Disciplinary Analytical Speed"}, {"id": 60, "day": "Day 60", "date": "13-Dec-2026", "isoDate": "2026-12-13", "weekday": "Sunday", "phase": "WEEKLY MOCK TEST & POST-MORTEM", "category": "mock", "sylSubj": "", "b1": "Weekly Mock Test 9 (Hours 1–3, 2:00 PM–5:00 PM IST): Full 65-Question / 100-Mark Exam Simulation", "b2": "Hour 4 (60 mins): All-India Mock Test 9 + Speed & Accuracy Calibration", "b3": "Update 3-Category Error Register (Conceptual Gap / Calculation Slip / Misread)", "air10Ext": "Optional Evening (2h): Re-solve all unattempted & wrong Mock questions without timer", "targetQ": "65 Mock Questions", "pyqOnlyA": "Subject-Wise Test 1 (90 mins): Algorithms & Data Structures (30 Qs)", "pyqOnlyB": "Subject-Wise Test 2 (90 mins): Operating Systems (30 Qs)", "pyqOnlyC": "Dual Test Detailed Analysis & Error Log Logging", "focusSkill": "Timed Subject Exam Simulation"}, {"id": 61, "day": "Day 61", "date": "14-Dec-2026", "isoDate": "2026-12-14", "weekday": "Monday", "phase": "Phase 2: 100% Syllabus Done -> Cyclic Revision + Interleaved PYQ Sprints", "category": "phase2", "sylSubj": "", "b1": "Revision + Workbook (1h45m): Computer Networks Short Notes + Subnetting/TCP Drills", "b2": "PYQ Combination (1h30m): Computer Networks + DBMS (25 Mixed PYQs: CIDR, TCP & SQL)", "b3": "Foundation (45m): Engg Math - Probability & Statistics (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Subject Test (30 Qs) + 2h StarredGATE Overflow L3 Questions", "targetQ": "40–45 Mixed PYQs", "pyqOnlyA": "Algorithms & DS (2h): Greedy & Divide/Conquer Hard PYQs", "pyqOnlyB": "Operating Systems (1h15m): Complex Semaphore & Deadlock PYQs", "pyqOnlyC": "Engg Math (45m): Eigenvalues, Determinants & System of Equations", "focusSkill": "Cross-Disciplinary Analytical Speed"}, {"id": 62, "day": "Day 62", "date": "15-Dec-2026", "isoDate": "2026-12-15", "weekday": "Tuesday", "phase": "Phase 2: 100% Syllabus Done -> Cyclic Revision + Interleaved PYQ Sprints", "category": "phase2", "sylSubj": "", "b1": "Revision + Workbook (1h45m): Operating Systems + COA Memory Hierarchy Revision", "b2": "PYQ Combination (1h30m): OS + COA (25 Mixed PYQs: Paging, TLB, Cache & Pipelining)", "b3": "Foundation (45m): Discrete Math - Logic & Set Theory (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Subject Test (30 Qs) + 2h StarredGATE Overflow L3 Questions", "targetQ": "40–45 Mixed PYQs", "pyqOnlyA": "Algorithms & DS (2h): Binary Trees, AVL, Heaps & Hashing PYQs", "pyqOnlyB": "Operating Systems (1h15m): Multi-level Paging & Inverted Page Tables PYQs", "pyqOnlyC": "GA (45m): Quantitative Aptitude Speed Test", "focusSkill": "Cross-Disciplinary Analytical Speed"}, {"id": 63, "day": "Day 63", "date": "16-Dec-2026", "isoDate": "2026-12-16", "weekday": "Wednesday", "phase": "Phase 2: 100% Syllabus Done -> Cyclic Revision + Interleaved PYQ Sprints", "category": "phase2", "sylSubj": "", "b1": "Revision + Workbook (1h45m): Programming, Data Structures & Algorithms Revision", "b2": "PYQ Combination (1h30m): DS + Algorithms (25 Mixed PYQs: Trees, DP, Graphs & Recurrences)", "b3": "Foundation (45m): Discrete Math - Combinatorics & Graph Theory (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Subject Test (30 Qs) + 2h StarredGATE Overflow L3 Questions", "targetQ": "40–45 Mixed PYQs", "pyqOnlyA": "Algorithms & DS (2h): Asymptotic Analysis & Recursion Trees", "pyqOnlyB": "Operating Systems (1h15m): Page Replacement & Disk Inode PYQs", "pyqOnlyC": "Discrete Math (45m): Combinatorics & Pigeonhole Principle", "focusSkill": "Cross-Disciplinary Analytical Speed"}, {"id": 64, "day": "Day 64", "date": "17-Dec-2026", "isoDate": "2026-12-17", "weekday": "Thursday", "phase": "Phase 2: 100% Syllabus Done -> Cyclic Revision + Interleaved PYQ Sprints", "category": "phase2", "sylSubj": "", "b1": "Revision + Workbook (1h45m): DBMS Normalization, Concurrency & B+ Tree Revision", "b2": "PYQ Combination (1h30m): DBMS + OS (25 Mixed PYQs: Serializability, Semaphores & Indexing)", "b3": "Foundation (45m): General Aptitude - Quantitative & Spatial (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Subject Test (30 Qs) + 2h StarredGATE Overflow L3 Questions", "targetQ": "40–45 Mixed PYQs", "pyqOnlyA": "TOC & Compilers (2h): Ambiguous Grammars & LL(1) Parsing Table", "pyqOnlyB": "COA & Digital (1h15m): Secondary Storage & Disk Timing Numericals", "pyqOnlyC": "GA (45m): Verbal Ability & Reading Comprehension Drill", "focusSkill": "Hardware-Language Bridge Rigor"}, {"id": 65, "day": "Day 65", "date": "18-Dec-2026", "isoDate": "2026-12-18", "weekday": "Friday", "phase": "Phase 2: 100% Syllabus Done -> Cyclic Revision + Interleaved PYQ Sprints", "category": "phase2", "sylSubj": "", "b1": "Revision + Workbook (1h45m): Digital Logic + COA Arithmetic & Counters Revision", "b2": "PYQ Combination (1h30m): Digital Logic + TOC (25 Mixed PYQs: Sequential Circuits & Automata)", "b3": "Foundation (45m): General Aptitude - Verbal & Logical Reasoning (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Subject Test (30 Qs) + 2h StarredGATE Overflow L3 Questions", "targetQ": "40–45 Mixed PYQs", "pyqOnlyA": "TOC & Compilers (2h): Pushdown Automata & Turing Machine Encodings", "pyqOnlyB": "COA & Digital (1h15m): IEEE 754 Floating Point & Booth's Algorithm", "pyqOnlyC": "Engg Math (45m): Linear Algebra Rank & Inverse Precision", "focusSkill": "Hardware-Language Bridge Rigor"}, {"id": 66, "day": "Day 66", "date": "19-Dec-2026", "isoDate": "2026-12-19", "weekday": "Saturday", "phase": "Phase 2: 100% Syllabus Done -> Cyclic Revision + Interleaved PYQ Sprints", "category": "phase2", "sylSubj": "", "b1": "Revision + Workbook (1h45m): TOC & Compiler Design Short Notes + GO/ACE Hard Qs", "b2": "PYQ Combination (1h30m): TOC + Compiler Design (25 Mixed PYQs: Parsing & Decidability)", "b3": "Foundation (45m): Engg Math - Linear Algebra & Calculus (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Subject Test (30 Qs) + 2h StarredGATE Overflow L3 Questions", "targetQ": "40–45 Mixed PYQs", "pyqOnlyA": "TOC & Compilers (2h): Basic Blocks, DAG & Loop Optimization PYQs", "pyqOnlyB": "COA & Digital (1h15m): Microprogrammed Control & Interrupt Handling", "pyqOnlyC": "GA (45m): Quantitative Aptitude 15-Mark Test", "focusSkill": "Hardware-Language Bridge Rigor"}, {"id": 67, "day": "Day 67", "date": "20-Dec-2026", "isoDate": "2026-12-20", "weekday": "Sunday", "phase": "WEEKLY MOCK TEST & POST-MORTEM", "category": "mock", "sylSubj": "", "b1": "Weekly Mock Test 10 (Hours 1–3, 2:00 PM–5:00 PM IST): Full 65-Question / 100-Mark Exam Simulation", "b2": "Hour 4 (60 mins): All-India Mock Test 10 + NAT & MSQ Precision Review", "b3": "Update 3-Category Error Register (Conceptual Gap / Calculation Slip / Misread)", "air10Ext": "Optional Evening (2h): Re-solve all unattempted & wrong Mock questions without timer", "targetQ": "65 Mock Questions", "pyqOnlyA": "Subject-Wise Test 1 (90 mins): TOC & Compiler Design (30 Qs)", "pyqOnlyB": "Subject-Wise Test 2 (90 mins): Digital Logic & COA (30 Qs)", "pyqOnlyC": "Dual Test Detailed Analysis & Error Log Logging", "focusSkill": "Timed Architecture & Automata Simulation"}, {"id": 68, "day": "Day 68", "date": "21-Dec-2026", "isoDate": "2026-12-21", "weekday": "Monday", "phase": "Phase 2: 100% Syllabus Done -> Cyclic Revision + Interleaved PYQ Sprints", "category": "phase2", "sylSubj": "", "b1": "Revision + Workbook (1h45m): Computer Networks Short Notes + Subnetting/TCP Drills", "b2": "PYQ Combination (1h30m): Computer Networks + DBMS (25 Mixed PYQs: CIDR, TCP & SQL)", "b3": "Foundation (45m): Engg Math - Probability & Statistics (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Subject Test (30 Qs) + 2h StarredGATE Overflow L3 Questions", "targetQ": "40–45 Mixed PYQs", "pyqOnlyA": "TOC & Compilers (2h): Pumping Lemma & Decidability Hard PYQs", "pyqOnlyB": "COA & Digital (1h15m): Cache Memory Hierarchy & Mapping Numericals", "pyqOnlyC": "Discrete Math (45m): Predicate Logic & Equivalence Relations", "focusSkill": "Hardware-Language Bridge Rigor"}, {"id": 69, "day": "Day 69", "date": "22-Dec-2026", "isoDate": "2026-12-22", "weekday": "Tuesday", "phase": "Phase 2: 100% Syllabus Done -> Cyclic Revision + Interleaved PYQ Sprints", "category": "phase2", "sylSubj": "", "b1": "Revision + Workbook (1h45m): Operating Systems + COA Memory Hierarchy Revision", "b2": "PYQ Combination (1h30m): OS + COA (25 Mixed PYQs: Paging, TLB, Cache & Pipelining)", "b3": "Foundation (45m): Discrete Math - Logic & Set Theory (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Subject Test (30 Qs) + 2h StarredGATE Overflow L3 Questions", "targetQ": "40–45 Mixed PYQs", "pyqOnlyA": "TOC & Compilers (2h): Syntax Directed Translation (SDT) & Code Gen", "pyqOnlyB": "COA & Digital (1h15m): Sequential Counters & State Machine Design", "pyqOnlyC": "Engg Math (45m): Probability Distributions & Expectation", "focusSkill": "Hardware-Language Bridge Rigor"}, {"id": 70, "day": "Day 70", "date": "23-Dec-2026", "isoDate": "2026-12-23", "weekday": "Wednesday", "phase": "Phase 2: 100% Syllabus Done -> Cyclic Revision + Interleaved PYQ Sprints", "category": "phase2", "sylSubj": "", "b1": "Revision + Workbook (1h45m): Programming, Data Structures & Algorithms Revision", "b2": "PYQ Combination (1h30m): DS + Algorithms (25 Mixed PYQs: Trees, DP, Graphs & Recurrences)", "b3": "Foundation (45m): Discrete Math - Combinatorics & Graph Theory (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Subject Test (30 Qs) + 2h StarredGATE Overflow L3 Questions", "targetQ": "40–45 Mixed PYQs", "pyqOnlyA": "TOC & Compilers (2h): Ambiguous Grammars & LL(1) Parsing Table", "pyqOnlyB": "COA & Digital (1h15m): Secondary Storage & Disk Timing Numericals", "pyqOnlyC": "GA (45m): Verbal Ability & Reading Comprehension Drill", "focusSkill": "Hardware-Language Bridge Rigor"}, {"id": 71, "day": "Day 71", "date": "24-Dec-2026", "isoDate": "2026-12-24", "weekday": "Thursday", "phase": "Phase 2: 100% Syllabus Done -> Cyclic Revision + Interleaved PYQ Sprints", "category": "phase2", "sylSubj": "", "b1": "Revision + Workbook (1h45m): DBMS Normalization, Concurrency & B+ Tree Revision", "b2": "PYQ Combination (1h30m): DBMS + OS (25 Mixed PYQs: Serializability, Semaphores & Indexing)", "b3": "Foundation (45m): General Aptitude - Quantitative & Spatial (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Subject Test (30 Qs) + 2h StarredGATE Overflow L3 Questions", "targetQ": "40–45 Mixed PYQs", "pyqOnlyA": "DBMS & Networks (2h): B+ Tree Calculations & Routing Protocols (Distance Vector/OSPF)", "pyqOnlyB": "Discrete Math (1h15m): Permutations, Combinations & Derangements", "pyqOnlyC": "GA (45m): Spatial Aptitude 2D/3D Rotations", "focusSkill": "Complex Calculations & NAT Virtual Calculator"}, {"id": 72, "day": "Day 72", "date": "25-Dec-2026", "isoDate": "2026-12-25", "weekday": "Friday", "phase": "FESTIVAL / PUBLIC HOLIDAY (NO WORK)", "category": "holiday", "sylSubj": "", "b1": "HOLIDAY: Christmas Day Break (Zero Work Assigned)", "b2": "OFF — Enjoy Festival & Recharge Mentally", "b3": "OFF — Zero Study Assigned", "air10Ext": "OFF — Full Festival Rest", "targetQ": "0 Questions (Holiday)", "pyqOnlyA": "DBMS & Networks (2h): Transaction Recovery & Application Layer Protocols (HTTP/DNS)", "pyqOnlyB": "Discrete Math (1h15m): First Order Logic & Proof Techniques", "pyqOnlyC": "Engg Math (45m): Calculus Multi-variable & Vectors", "focusSkill": "Complex Calculations & NAT Virtual Calculator"}, {"id": 73, "day": "Day 73", "date": "26-Dec-2026", "isoDate": "2026-12-26", "weekday": "Saturday", "phase": "Phase 2: 100% Syllabus Done -> Cyclic Revision + Interleaved PYQ Sprints", "category": "phase2", "sylSubj": "", "b1": "Revision + Workbook (1h45m): Digital Logic + COA Arithmetic & Counters Revision", "b2": "PYQ Combination (1h30m): Digital Logic + TOC (25 Mixed PYQs: Sequential Circuits & Automata)", "b3": "Foundation (45m): General Aptitude - Verbal & Logical Reasoning (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Subject Test (30 Qs) + 2h StarredGATE Overflow L3 Questions", "targetQ": "40–45 Mixed PYQs", "pyqOnlyA": "DBMS & Networks (2h): Relational Algebra & Network Security / Error Control CRC", "pyqOnlyB": "Discrete Math (1h15m): Set Relations, Equivalence Classes & Partitions", "pyqOnlyC": "GA (45m): Comprehensive Full Aptitude Drill", "focusSkill": "Complex Calculations & NAT Virtual Calculator"}, {"id": 74, "day": "Day 74", "date": "27-Dec-2026", "isoDate": "2026-12-27", "weekday": "Sunday", "phase": "WEEKLY MOCK TEST & POST-MORTEM", "category": "mock", "sylSubj": "", "b1": "Weekly Mock Test 11 (Hours 1–3, 2:00 PM–5:00 PM IST): Full 65-Question / 100-Mark Exam Simulation", "b2": "Hour 4 (60 mins): All-India Mock Test 11 + Time Allocation Audit", "b3": "Update 3-Category Error Register (Conceptual Gap / Calculation Slip / Misread)", "air10Ext": "Optional Evening (2h): Re-solve all unattempted & wrong Mock questions without timer", "targetQ": "65 Mock Questions", "pyqOnlyA": "Subject-Wise Test 1 (90 mins): DBMS & Computer Networks (30 Qs)", "pyqOnlyB": "Subject-Wise Test 2 (90 mins): Engineering Mathematics & Discrete Math (30 Qs)", "pyqOnlyC": "Dual Test Detailed Analysis & Error Log Logging", "focusSkill": "Timed Data & Network Simulation"}, {"id": 75, "day": "Day 75", "date": "28-Dec-2026", "isoDate": "2026-12-28", "weekday": "Monday", "phase": "Phase 3: Full Past-Paper Sprints (2016–2026) + 3rd Revision Pass", "category": "phase3", "sylSubj": "", "b1": "Block 1 (2h 30m): GATE 2016 CS Official Past Paper Timed Sprint (All 65 Qs)", "b2": "Block 2 (45m): Immediate Post-Mortem of GATE 2016 Paper & Error Tagging", "b3": "Block 3 (45m): Rapid Short-Notes Revision of Weakest 2 Subjects from Paper", "air10Ext": "AIR <10 Dual-Block Extension (+4h): Solve Set-2 of GATE 2016 (if multi-session) or 40 Hard Gate Overflow Questions", "targetQ": "65 Past Paper PYQs", "pyqOnlyA": "GATE 2018 Full Mock Simulation (Part 1 - 2h): Timed 65 Questions (Start session)", "pyqOnlyB": "GATE 2018 Full Mock Simulation (Part 2 - 1h): Complete remaining paper under strict timer", "pyqOnlyC": "Immediate Score Check & Categorization (1h): Mark Silly Errors vs Concept Gaps", "focusSkill": "Real Exam Time Management & Question Selection"}, {"id": 76, "day": "Day 76", "date": "29-Dec-2026", "isoDate": "2026-12-29", "weekday": "Tuesday", "phase": "Phase 3: Full Past-Paper Sprints (2016–2026) + 3rd Revision Pass", "category": "phase3", "sylSubj": "", "b1": "Targeted Remediation (1h 45m): Deep Revision of Error-Log Topics + Computer Networks Short Notes + Subnetting/TCP Drills", "b2": "High-Yield PYQ Combination (1h 30m): Computer Networks + DBMS (25 Mixed PYQs", "b3": "Speed & Virtual Calculator Drill (45m): Engg Math - Probability & Statistics (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Full Mock from Test Series + 2h Error Register Re-solve", "targetQ": "45 Starred PYQs", "pyqOnlyA": "GATE 2018 Deep Post-Mortem (2h): Detailed re-solve of all wrong & unattempted questions", "pyqOnlyB": "Targeted PYQ Drill (1h15m): Solve 15 parallel PYQs from weak topics identified in GATE 2018", "pyqOnlyC": "Formula & Error Log Refresh (45m): Update personal short notes & error register", "focusSkill": "Root-Cause Correction & Weak Topic Remediation"}, {"id": 77, "day": "Day 77", "date": "30-Dec-2026", "isoDate": "2026-12-30", "weekday": "Wednesday", "phase": "Phase 3: Full Past-Paper Sprints (2016–2026) + 3rd Revision Pass", "category": "phase3", "sylSubj": "", "b1": "Block 1 (2h 30m): GATE 2017 CS Official Past Paper Timed Sprint (All 65 Qs)", "b2": "Block 2 (45m): Immediate Post-Mortem of GATE 2017 Paper & Error Tagging", "b3": "Block 3 (45m): Rapid Short-Notes Revision of Weakest 2 Subjects from Paper", "air10Ext": "AIR <10 Dual-Block Extension (+4h): Solve Set-2 of GATE 2017 (if multi-session) or 40 Hard Gate Overflow Questions", "targetQ": "65 Past Paper PYQs", "pyqOnlyA": "GATE 2019 Full Mock Simulation (Part 1 - 2h): Timed 65 Questions (Start session)", "pyqOnlyB": "GATE 2019 Full Mock Simulation (Part 2 - 1h): Complete remaining paper under strict timer", "pyqOnlyC": "Immediate Score Check & Categorization (1h): Mark Silly Errors vs Concept Gaps", "focusSkill": "Real Exam Time Management & Question Selection"}, {"id": 78, "day": "Day 78", "date": "31-Dec-2026", "isoDate": "2026-12-31", "weekday": "Thursday", "phase": "Phase 3: Full Past-Paper Sprints (2016–2026) + 3rd Revision Pass", "category": "phase3", "sylSubj": "", "b1": "Targeted Remediation (1h 45m): Deep Revision of Error-Log Topics + Programming, Data Structures & Algorithms Revision", "b2": "High-Yield PYQ Combination (1h 30m): DS + Algorithms (25 Mixed PYQs", "b3": "Speed & Virtual Calculator Drill (45m): Discrete Math - Combinatorics & Graph Theory (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Full Mock from Test Series + 2h Error Register Re-solve", "targetQ": "45 Starred PYQs", "pyqOnlyA": "GATE 2019 Deep Post-Mortem (2h): Detailed re-solve of all wrong & unattempted questions", "pyqOnlyB": "Targeted PYQ Drill (1h15m): Solve 15 parallel PYQs from weak topics identified in GATE 2019", "pyqOnlyC": "Formula & Error Log Refresh (45m): Update personal short notes & error register", "focusSkill": "Root-Cause Correction & Weak Topic Remediation"}, {"id": 79, "day": "Day 79", "date": "01-Jan-2027", "isoDate": "2027-01-01", "weekday": "Friday", "phase": "FESTIVAL / PUBLIC HOLIDAY (NO WORK)", "category": "holiday", "sylSubj": "", "b1": "HOLIDAY: New Year's Day Break (Zero Work Assigned)", "b2": "OFF — Enjoy Festival & Recharge Mentally", "b3": "OFF — Zero Study Assigned", "air10Ext": "OFF — Full Festival Rest", "targetQ": "0 Questions (Holiday)", "pyqOnlyA": "GATE 2020 Full Mock Simulation (Part 1 - 2h): Timed 65 Questions (Start session)", "pyqOnlyB": "GATE 2020 Full Mock Simulation (Part 2 - 1h): Complete remaining paper under strict timer", "pyqOnlyC": "Immediate Score Check & Categorization (1h): Mark Silly Errors vs Concept Gaps", "focusSkill": "Real Exam Time Management & Question Selection"}, {"id": 80, "day": "Day 80", "date": "02-Jan-2027", "isoDate": "2027-01-02", "weekday": "Saturday", "phase": "Phase 3: Full Past-Paper Sprints (2016–2026) + 3rd Revision Pass", "category": "phase3", "sylSubj": "", "b1": "Block 1 (2h 30m): GATE 2018 CS Official Past Paper Timed Sprint (All 65 Qs)", "b2": "Block 2 (45m): Immediate Post-Mortem of GATE 2018 Paper & Error Tagging", "b3": "Block 3 (45m): Rapid Short-Notes Revision of Weakest 2 Subjects from Paper", "air10Ext": "AIR <10 Dual-Block Extension (+4h): Solve Set-2 of GATE 2018 (if multi-session) or 40 Hard Gate Overflow Questions", "targetQ": "65 Past Paper PYQs", "pyqOnlyA": "GATE 2020 Deep Post-Mortem (2h): Detailed re-solve of all wrong & unattempted questions", "pyqOnlyB": "Targeted PYQ Drill (1h15m): Solve 15 parallel PYQs from weak topics identified in GATE 2020", "pyqOnlyC": "Formula & Error Log Refresh (45m): Update personal short notes & error register", "focusSkill": "Root-Cause Correction & Weak Topic Remediation"}, {"id": 81, "day": "Day 81", "date": "03-Jan-2027", "isoDate": "2027-01-03", "weekday": "Sunday", "phase": "WEEKLY MOCK TEST & POST-MORTEM", "category": "mock", "sylSubj": "", "b1": "Weekly Mock Test 12 (Hours 1–3, 2:00 PM–5:00 PM IST): Full 65-Question / 100-Mark Exam Simulation", "b2": "Hour 4 (60 mins): All-India Mock Test 12 + Full Error Log Audit", "b3": "Update 3-Category Error Register (Conceptual Gap / Calculation Slip / Misread)", "air10Ext": "Optional Evening (2h): Re-solve all unattempted & wrong Mock questions without timer", "targetQ": "65 Mock Questions", "pyqOnlyA": "GATE 2021 Full Mock Simulation (Part 1 - 2h): Timed 65 Questions (Start session)", "pyqOnlyB": "GATE 2021 Full Mock Simulation (Part 2 - 1h): Complete remaining paper under strict timer", "pyqOnlyC": "Immediate Score Check & Categorization (1h): Mark Silly Errors vs Concept Gaps", "focusSkill": "Real Exam Time Management & Question Selection"}, {"id": 82, "day": "Day 82", "date": "04-Jan-2027", "isoDate": "2027-01-04", "weekday": "Monday", "phase": "Phase 3: Full Past-Paper Sprints (2016–2026) + 3rd Revision Pass", "category": "phase3", "sylSubj": "", "b1": "Targeted Remediation (1h 45m): Deep Revision of Error-Log Topics + Digital Logic + COA Arithmetic & Counters Revision", "b2": "High-Yield PYQ Combination (1h 30m): Digital Logic + TOC (25 Mixed PYQs", "b3": "Speed & Virtual Calculator Drill (45m): General Aptitude - Verbal & Logical Reasoning (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Full Mock from Test Series + 2h Error Register Re-solve", "targetQ": "45 Starred PYQs", "pyqOnlyA": "GATE 2021 Deep Post-Mortem (2h): Detailed re-solve of all wrong & unattempted questions", "pyqOnlyB": "Targeted PYQ Drill (1h15m): Solve 15 parallel PYQs from weak topics identified in GATE 2021", "pyqOnlyC": "Formula & Error Log Refresh (45m): Update personal short notes & error register", "focusSkill": "Root-Cause Correction & Weak Topic Remediation"}, {"id": 83, "day": "Day 83", "date": "05-Jan-2027", "isoDate": "2027-01-05", "weekday": "Tuesday", "phase": "Phase 3: Full Past-Paper Sprints (2016–2026) + 3rd Revision Pass", "category": "phase3", "sylSubj": "", "b1": "Block 1 (2h 30m): GATE 2019 CS Official Past Paper Timed Sprint (All 65 Qs)", "b2": "Block 2 (45m): Immediate Post-Mortem of GATE 2019 Paper & Error Tagging", "b3": "Block 3 (45m): Rapid Short-Notes Revision of Weakest 2 Subjects from Paper", "air10Ext": "AIR <10 Dual-Block Extension (+4h): Solve Set-2 of GATE 2019 (if multi-session) or 40 Hard Gate Overflow Questions", "targetQ": "65 Past Paper PYQs", "pyqOnlyA": "GATE 2022 Full Mock Simulation (Part 1 - 2h): Timed 65 Questions (Start session)", "pyqOnlyB": "GATE 2022 Full Mock Simulation (Part 2 - 1h): Complete remaining paper under strict timer", "pyqOnlyC": "Immediate Score Check & Categorization (1h): Mark Silly Errors vs Concept Gaps", "focusSkill": "Real Exam Time Management & Question Selection"}, {"id": 84, "day": "Day 84", "date": "06-Jan-2027", "isoDate": "2027-01-06", "weekday": "Wednesday", "phase": "Phase 3: Full Past-Paper Sprints (2016–2026) + 3rd Revision Pass", "category": "phase3", "sylSubj": "", "b1": "Targeted Remediation (1h 45m): Deep Revision of Error-Log Topics + Computer Networks Short Notes + Subnetting/TCP Drills", "b2": "High-Yield PYQ Combination (1h 30m): Computer Networks + DBMS (25 Mixed PYQs", "b3": "Speed & Virtual Calculator Drill (45m): Engg Math - Probability & Statistics (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Full Mock from Test Series + 2h Error Register Re-solve", "targetQ": "45 Starred PYQs", "pyqOnlyA": "GATE 2022 Deep Post-Mortem (2h): Detailed re-solve of all wrong & unattempted questions", "pyqOnlyB": "Targeted PYQ Drill (1h15m): Solve 15 parallel PYQs from weak topics identified in GATE 2022", "pyqOnlyC": "Formula & Error Log Refresh (45m): Update personal short notes & error register", "focusSkill": "Root-Cause Correction & Weak Topic Remediation"}, {"id": 85, "day": "Day 85", "date": "07-Jan-2027", "isoDate": "2027-01-07", "weekday": "Thursday", "phase": "Phase 3: Full Past-Paper Sprints (2016–2026) + 3rd Revision Pass", "category": "phase3", "sylSubj": "", "b1": "Block 1 (2h 30m): GATE 2020 CS Official Past Paper Timed Sprint (All 65 Qs)", "b2": "Block 2 (45m): Immediate Post-Mortem of GATE 2020 Paper & Error Tagging", "b3": "Block 3 (45m): Rapid Short-Notes Revision of Weakest 2 Subjects from Paper", "air10Ext": "AIR <10 Dual-Block Extension (+4h): Solve Set-2 of GATE 2020 (if multi-session) or 40 Hard Gate Overflow Questions", "targetQ": "65 Past Paper PYQs", "pyqOnlyA": "GATE 2023 Full Mock Simulation (Part 1 - 2h): Timed 65 Questions (Start session)", "pyqOnlyB": "GATE 2023 Full Mock Simulation (Part 2 - 1h): Complete remaining paper under strict timer", "pyqOnlyC": "Immediate Score Check & Categorization (1h): Mark Silly Errors vs Concept Gaps", "focusSkill": "Real Exam Time Management & Question Selection"}, {"id": 86, "day": "Day 86", "date": "08-Jan-2027", "isoDate": "2027-01-08", "weekday": "Friday", "phase": "Phase 3: Full Past-Paper Sprints (2016–2026) + 3rd Revision Pass", "category": "phase3", "sylSubj": "", "b1": "Targeted Remediation (1h 45m): Deep Revision of Error-Log Topics + Programming, Data Structures & Algorithms Revision", "b2": "High-Yield PYQ Combination (1h 30m): DS + Algorithms (25 Mixed PYQs", "b3": "Speed & Virtual Calculator Drill (45m): Discrete Math - Combinatorics & Graph Theory (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Full Mock from Test Series + 2h Error Register Re-solve", "targetQ": "45 Starred PYQs", "pyqOnlyA": "GATE 2023 Deep Post-Mortem (2h): Detailed re-solve of all wrong & unattempted questions", "pyqOnlyB": "Targeted PYQ Drill (1h15m): Solve 15 parallel PYQs from weak topics identified in GATE 2023", "pyqOnlyC": "Formula & Error Log Refresh (45m): Update personal short notes & error register", "focusSkill": "Root-Cause Correction & Weak Topic Remediation"}, {"id": 87, "day": "Day 87", "date": "09-Jan-2027", "isoDate": "2027-01-09", "weekday": "Saturday", "phase": "Phase 3: Full Past-Paper Sprints (2016–2026) + 3rd Revision Pass", "category": "phase3", "sylSubj": "", "b1": "Block 1 (2h 30m): GATE 2021 CS Official Past Paper Timed Sprint (All 65 Qs)", "b2": "Block 2 (45m): Immediate Post-Mortem of GATE 2021 Paper & Error Tagging", "b3": "Block 3 (45m): Rapid Short-Notes Revision of Weakest 2 Subjects from Paper", "air10Ext": "AIR <10 Dual-Block Extension (+4h): Solve Set-2 of GATE 2021 (if multi-session) or 40 Hard Gate Overflow Questions", "targetQ": "65 Past Paper PYQs", "pyqOnlyA": "GATE 2024 Full Mock Simulation (Part 1 - 2h): Timed 65 Questions (Start session)", "pyqOnlyB": "GATE 2024 Full Mock Simulation (Part 2 - 1h): Complete remaining paper under strict timer", "pyqOnlyC": "Immediate Score Check & Categorization (1h): Mark Silly Errors vs Concept Gaps", "focusSkill": "Real Exam Time Management & Question Selection"}, {"id": 88, "day": "Day 88", "date": "10-Jan-2027", "isoDate": "2027-01-10", "weekday": "Sunday", "phase": "WEEKLY MOCK TEST & POST-MORTEM", "category": "mock", "sylSubj": "", "b1": "Weekly Mock Test 13 (Hours 1–3, 2:00 PM–5:00 PM IST): Full 65-Question / 100-Mark Exam Simulation", "b2": "Hour 4 (60 mins): All-India Mock Test 13 + 3-Round Attempt Strategy Drill", "b3": "Update 3-Category Error Register (Conceptual Gap / Calculation Slip / Misread)", "air10Ext": "Optional Evening (2h): Re-solve all unattempted & wrong Mock questions without timer", "targetQ": "65 Mock Questions", "pyqOnlyA": "GATE 2024 Deep Post-Mortem (2h): Detailed re-solve of all wrong & unattempted questions", "pyqOnlyB": "Targeted PYQ Drill (1h15m): Solve 15 parallel PYQs from weak topics identified in GATE 2024", "pyqOnlyC": "Formula & Error Log Refresh (45m): Update personal short notes & error register", "focusSkill": "Root-Cause Correction & Weak Topic Remediation"}, {"id": 89, "day": "Day 89", "date": "11-Jan-2027", "isoDate": "2027-01-11", "weekday": "Monday", "phase": "Phase 3: Full Past-Paper Sprints (2016–2026) + 3rd Revision Pass", "category": "phase3", "sylSubj": "", "b1": "Targeted Remediation (1h 45m): Deep Revision of Error-Log Topics + Digital Logic + COA Arithmetic & Counters Revision", "b2": "High-Yield PYQ Combination (1h 30m): Digital Logic + TOC (25 Mixed PYQs", "b3": "Speed & Virtual Calculator Drill (45m): General Aptitude - Verbal & Logical Reasoning (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Full Mock from Test Series + 2h Error Register Re-solve", "targetQ": "45 Starred PYQs", "pyqOnlyA": "GATE 2025 Full Mock Simulation (Part 1 - 2h): Timed 65 Questions (Start session)", "pyqOnlyB": "GATE 2025 Full Mock Simulation (Part 2 - 1h): Complete remaining paper under strict timer", "pyqOnlyC": "Immediate Score Check & Categorization (1h): Mark Silly Errors vs Concept Gaps", "focusSkill": "Real Exam Time Management & Question Selection"}, {"id": 90, "day": "Day 90", "date": "12-Jan-2027", "isoDate": "2027-01-12", "weekday": "Tuesday", "phase": "Phase 3: Full Past-Paper Sprints (2016–2026) + 3rd Revision Pass", "category": "phase3", "sylSubj": "", "b1": "Block 1 (2h 30m): GATE 2022 CS Official Past Paper Timed Sprint (All 65 Qs)", "b2": "Block 2 (45m): Immediate Post-Mortem of GATE 2022 Paper & Error Tagging", "b3": "Block 3 (45m): Rapid Short-Notes Revision of Weakest 2 Subjects from Paper", "air10Ext": "AIR <10 Dual-Block Extension (+4h): Solve Set-2 of GATE 2022 (if multi-session) or 40 Hard Gate Overflow Questions", "targetQ": "65 Past Paper PYQs", "pyqOnlyA": "GATE 2025 Deep Post-Mortem (2h): Detailed re-solve of all wrong & unattempted questions", "pyqOnlyB": "Targeted PYQ Drill (1h15m): Solve 15 parallel PYQs from weak topics identified in GATE 2025", "pyqOnlyC": "Formula & Error Log Refresh (45m): Update personal short notes & error register", "focusSkill": "Root-Cause Correction & Weak Topic Remediation"}, {"id": 91, "day": "Day 91", "date": "13-Jan-2027", "isoDate": "2027-01-13", "weekday": "Wednesday", "phase": "Phase 3: Full Past-Paper Sprints (2016–2026) + 3rd Revision Pass", "category": "phase3", "sylSubj": "", "b1": "Targeted Remediation (1h 45m): Deep Revision of Error-Log Topics + Computer Networks Short Notes + Subnetting/TCP Drills", "b2": "High-Yield PYQ Combination (1h 30m): Computer Networks + DBMS (25 Mixed PYQs", "b3": "Speed & Virtual Calculator Drill (45m): Engg Math - Probability & Statistics (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Full Mock from Test Series + 2h Error Register Re-solve", "targetQ": "45 Starred PYQs", "pyqOnlyA": "GATE 2026 Full Mock Simulation (Part 1 - 2h): Timed 65 Questions (Start session)", "pyqOnlyB": "GATE 2026 Full Mock Simulation (Part 2 - 1h): Complete remaining paper under strict timer", "pyqOnlyC": "Immediate Score Check & Categorization (1h): Mark Silly Errors vs Concept Gaps", "focusSkill": "Real Exam Time Management & Question Selection"}, {"id": 92, "day": "Day 92", "date": "14-Jan-2027", "isoDate": "2027-01-14", "weekday": "Thursday", "phase": "FESTIVAL / PUBLIC HOLIDAY (NO WORK)", "category": "holiday", "sylSubj": "", "b1": "HOLIDAY: Bhogi Festival - Sankranti Break (Zero Work Assigned)", "b2": "OFF — Enjoy Festival & Recharge Mentally", "b3": "OFF — Zero Study Assigned", "air10Ext": "OFF — Full Festival Rest", "targetQ": "0 Questions (Holiday)", "pyqOnlyA": "GATE 2026 Deep Post-Mortem (2h): Detailed re-solve of all wrong & unattempted questions", "pyqOnlyB": "Targeted PYQ Drill (1h15m): Solve 15 parallel PYQs from weak topics identified in GATE 2026", "pyqOnlyC": "Formula & Error Log Refresh (45m): Update personal short notes & error register", "focusSkill": "Root-Cause Correction & Weak Topic Remediation"}, {"id": 93, "day": "Day 93", "date": "15-Jan-2027", "isoDate": "2027-01-15", "weekday": "Friday", "phase": "FESTIVAL / PUBLIC HOLIDAY (NO WORK)", "category": "holiday", "sylSubj": "", "b1": "HOLIDAY: Makar Sankranti / Pedda Panduga (Zero Work Assigned)", "b2": "OFF — Enjoy Festival & Recharge Mentally", "b3": "OFF — Zero Study Assigned", "air10Ext": "OFF — Full Festival Rest", "targetQ": "0 Questions (Holiday)", "pyqOnlyA": "GATE 2026 Full Mock Simulation (Part 1 - 2h): Timed 65 Questions (Start session)", "pyqOnlyB": "GATE 2026 Full Mock Simulation (Part 2 - 1h): Complete remaining paper under strict timer", "pyqOnlyC": "Immediate Score Check & Categorization (1h): Mark Silly Errors vs Concept Gaps", "focusSkill": "Real Exam Time Management & Question Selection"}, {"id": 94, "day": "Day 94", "date": "16-Jan-2027", "isoDate": "2027-01-16", "weekday": "Saturday", "phase": "FESTIVAL / PUBLIC HOLIDAY (NO WORK)", "category": "holiday", "sylSubj": "", "b1": "HOLIDAY: Kanuma Festival - Sankranti Break (Zero Work Assigned)", "b2": "OFF — Enjoy Festival & Recharge Mentally", "b3": "OFF — Zero Study Assigned", "air10Ext": "OFF — Full Festival Rest", "targetQ": "0 Questions (Holiday)", "pyqOnlyA": "GATE 2026 Deep Post-Mortem (2h): Detailed re-solve of all wrong & unattempted questions", "pyqOnlyB": "Targeted PYQ Drill (1h15m): Solve 15 parallel PYQs from weak topics identified in GATE 2026", "pyqOnlyC": "Formula & Error Log Refresh (45m): Update personal short notes & error register", "focusSkill": "Root-Cause Correction & Weak Topic Remediation"}, {"id": 95, "day": "Day 95", "date": "17-Jan-2027", "isoDate": "2027-01-17", "weekday": "Sunday", "phase": "WEEKLY MOCK TEST & POST-MORTEM", "category": "mock", "sylSubj": "", "b1": "Weekly Mock Test 14 (Hours 1–3, 2:00 PM–5:00 PM IST): Full 65-Question / 100-Mark Exam Simulation", "b2": "Hour 4 (60 mins): All-India Mock Test 14 (Post-Sankranti Full Simulation) + Post-Mortem", "b3": "Update 3-Category Error Register (Conceptual Gap / Calculation Slip / Misread)", "air10Ext": "Optional Evening (2h): Re-solve all unattempted & wrong Mock questions without timer", "targetQ": "65 Mock Questions", "pyqOnlyA": "GATE 2026 Full Mock Simulation (Part 1 - 2h): Timed 65 Questions (Start session)", "pyqOnlyB": "GATE 2026 Full Mock Simulation (Part 2 - 1h): Complete remaining paper under strict timer", "pyqOnlyC": "Immediate Score Check & Categorization (1h): Mark Silly Errors vs Concept Gaps", "focusSkill": "Real Exam Time Management & Question Selection"}, {"id": 96, "day": "Day 96", "date": "18-Jan-2027", "isoDate": "2027-01-18", "weekday": "Monday", "phase": "Phase 3: Full Past-Paper Sprints (2016–2026) + 3rd Revision Pass", "category": "phase3", "sylSubj": "", "b1": "Block 1 (2h 30m): GATE 2023 CS Official Past Paper Timed Sprint (All 65 Qs)", "b2": "Block 2 (45m): Immediate Post-Mortem of GATE 2023 Paper & Error Tagging", "b3": "Block 3 (45m): Rapid Short-Notes Revision of Weakest 2 Subjects from Paper", "air10Ext": "AIR <10 Dual-Block Extension (+4h): Solve Set-2 of GATE 2023 (if multi-session) or 40 Hard Gate Overflow Questions", "targetQ": "65 Past Paper PYQs", "pyqOnlyA": "GATE 2026 Deep Post-Mortem (2h): Detailed re-solve of all wrong & unattempted questions", "pyqOnlyB": "Targeted PYQ Drill (1h15m): Solve 15 parallel PYQs from weak topics identified in GATE 2026", "pyqOnlyC": "Formula & Error Log Refresh (45m): Update personal short notes & error register", "focusSkill": "Root-Cause Correction & Weak Topic Remediation"}, {"id": 97, "day": "Day 97", "date": "19-Jan-2027", "isoDate": "2027-01-19", "weekday": "Tuesday", "phase": "Phase 3: Full Past-Paper Sprints (2016–2026) + 3rd Revision Pass", "category": "phase3", "sylSubj": "", "b1": "Targeted Remediation (1h 45m): Deep Revision of Error-Log Topics + Programming, Data Structures & Algorithms Revision", "b2": "High-Yield PYQ Combination (1h 30m): DS + Algorithms (25 Mixed PYQs", "b3": "Speed & Virtual Calculator Drill (45m): Discrete Math - Combinatorics & Graph Theory (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Full Mock from Test Series + 2h Error Register Re-solve", "targetQ": "45 Starred PYQs", "pyqOnlyA": "GATE 2026 Full Mock Simulation (Part 1 - 2h): Timed 65 Questions (Start session)", "pyqOnlyB": "GATE 2026 Full Mock Simulation (Part 2 - 1h): Complete remaining paper under strict timer", "pyqOnlyC": "Immediate Score Check & Categorization (1h): Mark Silly Errors vs Concept Gaps", "focusSkill": "Real Exam Time Management & Question Selection"}, {"id": 98, "day": "Day 98", "date": "20-Jan-2027", "isoDate": "2027-01-20", "weekday": "Wednesday", "phase": "Phase 3: Full Past-Paper Sprints (2016–2026) + 3rd Revision Pass", "category": "phase3", "sylSubj": "", "b1": "Block 1 (2h 30m): GATE 2024 CS Official Past Paper Timed Sprint (All 65 Qs)", "b2": "Block 2 (45m): Immediate Post-Mortem of GATE 2024 Paper & Error Tagging", "b3": "Block 3 (45m): Rapid Short-Notes Revision of Weakest 2 Subjects from Paper", "air10Ext": "AIR <10 Dual-Block Extension (+4h): Solve Set-2 of GATE 2024 (if multi-session) or 40 Hard Gate Overflow Questions", "targetQ": "65 Past Paper PYQs", "pyqOnlyA": "GATE 2026 Deep Post-Mortem (2h): Detailed re-solve of all wrong & unattempted questions", "pyqOnlyB": "Targeted PYQ Drill (1h15m): Solve 15 parallel PYQs from weak topics identified in GATE 2026", "pyqOnlyC": "Formula & Error Log Refresh (45m): Update personal short notes & error register", "focusSkill": "Root-Cause Correction & Weak Topic Remediation"}, {"id": 99, "day": "Day 99", "date": "21-Jan-2027", "isoDate": "2027-01-21", "weekday": "Thursday", "phase": "Phase 3: Full Past-Paper Sprints (2016–2026) + 3rd Revision Pass", "category": "phase3", "sylSubj": "", "b1": "Targeted Remediation (1h 45m): Deep Revision of Error-Log Topics + Digital Logic + COA Arithmetic & Counters Revision", "b2": "High-Yield PYQ Combination (1h 30m): Digital Logic + TOC (25 Mixed PYQs", "b3": "Speed & Virtual Calculator Drill (45m): General Aptitude - Verbal & Logical Reasoning (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Full Mock from Test Series + 2h Error Register Re-solve", "targetQ": "45 Starred PYQs", "pyqOnlyA": "GATE 2026 Full Mock Simulation (Part 1 - 2h): Timed 65 Questions (Start session)", "pyqOnlyB": "GATE 2026 Full Mock Simulation (Part 2 - 1h): Complete remaining paper under strict timer", "pyqOnlyC": "Immediate Score Check & Categorization (1h): Mark Silly Errors vs Concept Gaps", "focusSkill": "Real Exam Time Management & Question Selection"}, {"id": 100, "day": "Day 100", "date": "22-Jan-2027", "isoDate": "2027-01-22", "weekday": "Friday", "phase": "Phase 3: Full Past-Paper Sprints (2016–2026) + 3rd Revision Pass", "category": "phase3", "sylSubj": "", "b1": "Block 1 (2h 30m): GATE 2025 CS Official Past Paper Timed Sprint (All 65 Qs)", "b2": "Block 2 (45m): Immediate Post-Mortem of GATE 2025 Paper & Error Tagging", "b3": "Block 3 (45m): Rapid Short-Notes Revision of Weakest 2 Subjects from Paper", "air10Ext": "AIR <10 Dual-Block Extension (+4h): Solve Set-2 of GATE 2025 (if multi-session) or 40 Hard Gate Overflow Questions", "targetQ": "65 Past Paper PYQs", "pyqOnlyA": "GATE 2026 Deep Post-Mortem (2h): Detailed re-solve of all wrong & unattempted questions", "pyqOnlyB": "Targeted PYQ Drill (1h15m): Solve 15 parallel PYQs from weak topics identified in GATE 2026", "pyqOnlyC": "Formula & Error Log Refresh (45m): Update personal short notes & error register", "focusSkill": "Root-Cause Correction & Weak Topic Remediation"}, {"id": 101, "day": "Day 101", "date": "23-Jan-2027", "isoDate": "2027-01-23", "weekday": "Saturday", "phase": "Phase 3: Full Past-Paper Sprints (2016–2026) + 3rd Revision Pass", "category": "phase3", "sylSubj": "", "b1": "Targeted Remediation (1h 45m): Deep Revision of Error-Log Topics + Computer Networks Short Notes + Subnetting/TCP Drills", "b2": "High-Yield PYQ Combination (1h 30m): Computer Networks + DBMS (25 Mixed PYQs", "b3": "Speed & Virtual Calculator Drill (45m): Engg Math - Probability & Statistics (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): 2h Full Mock from Test Series + 2h Error Register Re-solve", "targetQ": "45 Starred PYQs", "pyqOnlyA": "GATE 2026 Full Mock Simulation (Part 1 - 2h): Timed 65 Questions (Start session)", "pyqOnlyB": "GATE 2026 Full Mock Simulation (Part 2 - 1h): Complete remaining paper under strict timer", "pyqOnlyC": "Immediate Score Check & Categorization (1h): Mark Silly Errors vs Concept Gaps", "focusSkill": "Real Exam Time Management & Question Selection"}, {"id": 102, "day": "Day 102", "date": "24-Jan-2027", "isoDate": "2027-01-24", "weekday": "Sunday", "phase": "WEEKLY MOCK TEST & POST-MORTEM", "category": "mock", "sylSubj": "", "b1": "Weekly Mock Test 15 (Hours 1–3, 2:00 PM–5:00 PM IST): Full 65-Question / 100-Mark Exam Simulation", "b2": "Hour 4 (60 mins): All-India Mock Test 15 + Final Weak-Spot Remediation", "b3": "Update 3-Category Error Register (Conceptual Gap / Calculation Slip / Misread)", "air10Ext": "Optional Evening (2h): Re-solve all unattempted & wrong Mock questions without timer", "targetQ": "65 Mock Questions", "pyqOnlyA": "GATE 2026 Deep Post-Mortem (2h): Detailed re-solve of all wrong & unattempted questions", "pyqOnlyB": "Targeted PYQ Drill (1h15m): Solve 15 parallel PYQs from weak topics identified in GATE 2026", "pyqOnlyC": "Formula & Error Log Refresh (45m): Update personal short notes & error register", "focusSkill": "Root-Cause Correction & Weak Topic Remediation"}, {"id": 103, "day": "Day 103", "date": "25-Jan-2027", "isoDate": "2027-01-25", "weekday": "Monday", "phase": "Phase 4: Final AIR <10 Consolidation, Starred PYQs & Formula Polish", "category": "phase4", "sylSubj": "", "b1": "Starred Error-Log Re-Attempt (1h 45m): Operating Systems + COA Memory Hierarchy Revision", "b2": "3-Subject Rapid Short-Notes Revision (1h 30m): OS + COA (25 Mixed PYQs", "b3": "Virtual Calculator & Formula Flashcards (45m): Discrete Math - Logic & Set Theory (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): Re-solve Top 50 Bookmark Questions across TOC, CN, CD, OS, Algo, COA", "targetQ": "40 Bookmarked PYQs", "pyqOnlyA": "Starred PYQ Sprint (2h): High-Yield Discrete Math & Algorithms tricky questions", "pyqOnlyB": "Rapid Formula Review (1h15m): Linear Algebra & Calculus cheat sheets", "pyqOnlyC": "Virtual Calculator Drill (45m): NAT precision speed test", "focusSkill": "Confidence Building & Accuracy Calibration"}, {"id": 104, "day": "Day 104", "date": "26-Jan-2027", "isoDate": "2027-01-26", "weekday": "Tuesday", "phase": "FESTIVAL / PUBLIC HOLIDAY (NO WORK)", "category": "holiday", "sylSubj": "", "b1": "HOLIDAY: Republic Day Break (Zero Work Assigned)", "b2": "OFF — Enjoy Festival & Recharge Mentally", "b3": "OFF — Zero Study Assigned", "air10Ext": "OFF — Full Festival Rest", "targetQ": "0 Questions (Holiday)", "pyqOnlyA": "Starred PYQ Sprint (2h): High-Yield TOC & Compiler Design tricky questions", "pyqOnlyB": "Rapid Formula Review (1h15m): Digital Logic & COA cheat sheets", "pyqOnlyC": "General Aptitude Drill (45m): Top 10 repeated patterns", "focusSkill": "Confidence Building & Accuracy Calibration"}, {"id": 105, "day": "Day 105", "date": "27-Jan-2027", "isoDate": "2027-01-27", "weekday": "Wednesday", "phase": "Phase 4: Final AIR <10 Consolidation, Starred PYQs & Formula Polish", "category": "phase4", "sylSubj": "", "b1": "Starred Error-Log Re-Attempt (1h 45m): Programming, Data Structures & Algorithms Revision", "b2": "3-Subject Rapid Short-Notes Revision (1h 30m): DS + Algorithms (25 Mixed PYQs", "b3": "Virtual Calculator & Formula Flashcards (45m): Discrete Math - Combinatorics & Graph Theory (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): Re-solve Top 50 Bookmark Questions across TOC, CN, CD, OS, Algo, COA", "targetQ": "40 Bookmarked PYQs", "pyqOnlyA": "Starred PYQ Sprint (2h): High-Yield Operating Systems tricky semaphores & paging", "pyqOnlyB": "Rapid Formula Review (1h15m): DBMS Normalization & Indexing cheat sheets", "pyqOnlyC": "Virtual Calculator Drill (45m): Numerical integration & powers", "focusSkill": "Confidence Building & Accuracy Calibration"}, {"id": 106, "day": "Day 106", "date": "28-Jan-2027", "isoDate": "2027-01-28", "weekday": "Thursday", "phase": "Phase 4: Final AIR <10 Consolidation, Starred PYQs & Formula Polish", "category": "phase4", "sylSubj": "", "b1": "Starred Error-Log Re-Attempt (1h 45m): DBMS Normalization, Concurrency & B+ Tree Revision", "b2": "3-Subject Rapid Short-Notes Revision (1h 30m): DBMS + OS (25 Mixed PYQs", "b3": "Virtual Calculator & Formula Flashcards (45m): General Aptitude - Quantitative & Spatial (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): Re-solve Top 50 Bookmark Questions across TOC, CN, CD, OS, Algo, COA", "targetQ": "40 Bookmarked PYQs", "pyqOnlyA": "Starred PYQ Sprint (2h): High-Yield Computer Networks CIDR & TCP questions", "pyqOnlyB": "Rapid Formula Review (1h15m): Network Protocols & Formulas", "pyqOnlyC": "General Aptitude Drill (45m): Speed solving 15 marks in 15 mins", "focusSkill": "Confidence Building & Accuracy Calibration"}, {"id": 107, "day": "Day 107", "date": "29-Jan-2027", "isoDate": "2027-01-29", "weekday": "Friday", "phase": "Phase 4: Final AIR <10 Consolidation, Starred PYQs & Formula Polish", "category": "phase4", "sylSubj": "", "b1": "Starred Error-Log Re-Attempt (1h 45m): Digital Logic + COA Arithmetic & Counters Revision", "b2": "3-Subject Rapid Short-Notes Revision (1h 30m): Digital Logic + TOC (25 Mixed PYQs", "b3": "Virtual Calculator & Formula Flashcards (45m): General Aptitude - Verbal & Logical Reasoning (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): Re-solve Top 50 Bookmark Questions across TOC, CN, CD, OS, Algo, COA", "targetQ": "40 Bookmarked PYQs", "pyqOnlyA": "Personal Error Log Marathon (2h): Re-attempt all questions logged in error register from Phase 1-3", "pyqOnlyB": "Short Notes Walkthrough (1h15m): Rapid revision of entire GATE CSE syllabus", "pyqOnlyC": "Exam Strategy Simulation (45m): Finalizing 3-round exam attempt strategy", "focusSkill": "Confidence Building & Accuracy Calibration"}, {"id": 108, "day": "Day 108", "date": "30-Jan-2027", "isoDate": "2027-01-30", "weekday": "Saturday", "phase": "Phase 4: Final AIR <10 Consolidation, Starred PYQs & Formula Polish", "category": "phase4", "sylSubj": "", "b1": "Starred Error-Log Re-Attempt (1h 45m): TOC & Compiler Design Short Notes + GO/ACE Hard Qs", "b2": "3-Subject Rapid Short-Notes Revision (1h 30m): TOC + Compiler Design (25 Mixed PYQs", "b3": "Virtual Calculator & Formula Flashcards (45m): Engg Math - Linear Algebra & Calculus (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): Re-solve Top 50 Bookmark Questions across TOC, CN, CD, OS, Algo, COA", "targetQ": "40 Bookmarked PYQs", "pyqOnlyA": "Final High-Yield Quick Check (2h): Re-look at GATE 2025 & 2026 top tricky questions", "pyqOnlyB": "Relaxed Formula Scan (1h15m): Read GATE FARREY / formula summary", "pyqOnlyC": "Mental Preparation & Rest (45m): Exam kit preparation & sleep schedule alignment", "focusSkill": "Confidence Building & Accuracy Calibration"}, {"id": 109, "day": "Day 109", "date": "31-Jan-2027", "isoDate": "2027-01-31", "weekday": "Sunday", "phase": "WEEKLY MOCK TEST & POST-MORTEM", "category": "mock", "sylSubj": "", "b1": "Weekly Mock Test 16 (Final Pre-GATE Dress Rehearsal) (Hours 1–3, 2:00 PM–5:00 PM IST): Full 65-Question / 100-Mark Exam Simulation", "b2": "Hour 4 (60 mins): Final Full-Length Dress Rehearsal Mock + Confidence Review", "b3": "Update 3-Category Error Register (Conceptual Gap / Calculation Slip / Misread)", "air10Ext": "Optional Evening (2h): Re-solve all unattempted & wrong Mock questions without timer", "targetQ": "65 Mock Questions", "pyqOnlyA": "LIGHT REVISION ONLY (1.5h): Skim formulas & high-level notes", "pyqOnlyB": "Rest & Relaxation (2.5h): Zero new questions, hydrate, calm mindset", "pyqOnlyC": "Pre-Exam Routine: Admit card printout, ID proof check, early sleep", "focusSkill": "Confidence Building & Accuracy Calibration"}, {"id": 110, "day": "Day 110", "date": "01-Feb-2027", "isoDate": "2027-02-01", "weekday": "Monday", "phase": "Phase 4: Final AIR <10 Consolidation, Starred PYQs & Formula Polish", "category": "phase4", "sylSubj": "", "b1": "Starred Error-Log Re-Attempt (1h 45m): Computer Networks Short Notes + Subnetting/TCP Drills", "b2": "3-Subject Rapid Short-Notes Revision (1h 30m): Computer Networks + DBMS (25 Mixed PYQs", "b3": "Virtual Calculator & Formula Flashcards (45m): Engg Math - Probability & Statistics (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): Re-solve Top 50 Bookmark Questions across TOC, CN, CD, OS, Algo, COA", "targetQ": "40 Bookmarked PYQs", "pyqOnlyA": "LIGHT REVISION ONLY (1.5h): Skim formulas & high-level notes", "pyqOnlyB": "Rest & Relaxation (2.5h): Zero new questions, hydrate, calm mindset", "pyqOnlyC": "Pre-Exam Routine: Admit card printout, ID proof check, early sleep", "focusSkill": "Confidence Building & Accuracy Calibration"}, {"id": 111, "day": "Day 111", "date": "02-Feb-2027", "isoDate": "2027-02-02", "weekday": "Tuesday", "phase": "Phase 4: Final AIR <10 Consolidation, Starred PYQs & Formula Polish", "category": "phase4", "sylSubj": "", "b1": "Starred Error-Log Re-Attempt (1h 45m): Operating Systems + COA Memory Hierarchy Revision", "b2": "3-Subject Rapid Short-Notes Revision (1h 30m): OS + COA (25 Mixed PYQs", "b3": "Virtual Calculator & Formula Flashcards (45m): Discrete Math - Logic & Set Theory (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): Re-solve Top 50 Bookmark Questions across TOC, CN, CD, OS, Algo, COA", "targetQ": "40 Bookmarked PYQs", "pyqOnlyA": "LIGHT REVISION ONLY (1.5h): Skim formulas & high-level notes", "pyqOnlyB": "Rest & Relaxation (2.5h): Zero new questions, hydrate, calm mindset", "pyqOnlyC": "Pre-Exam Routine: Admit card printout, ID proof check, early sleep", "focusSkill": "Confidence Building & Accuracy Calibration"}, {"id": 112, "day": "Day 112", "date": "03-Feb-2027", "isoDate": "2027-02-03", "weekday": "Wednesday", "phase": "Phase 4: Final AIR <10 Consolidation, Starred PYQs & Formula Polish", "category": "phase4", "sylSubj": "", "b1": "Starred Error-Log Re-Attempt (1h 45m): Programming, Data Structures & Algorithms Revision", "b2": "3-Subject Rapid Short-Notes Revision (1h 30m): DS + Algorithms (25 Mixed PYQs", "b3": "Virtual Calculator & Formula Flashcards (45m): Discrete Math - Combinatorics & Graph Theory (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): Re-solve Top 50 Bookmark Questions across TOC, CN, CD, OS, Algo, COA", "targetQ": "40 Bookmarked PYQs", "pyqOnlyA": "LIGHT REVISION ONLY (1.5h): Skim formulas & high-level notes", "pyqOnlyB": "Rest & Relaxation (2.5h): Zero new questions, hydrate, calm mindset", "pyqOnlyC": "Pre-Exam Routine: Admit card printout, ID proof check, early sleep", "focusSkill": "Confidence Building & Accuracy Calibration"}, {"id": 113, "day": "Day 113", "date": "04-Feb-2027", "isoDate": "2027-02-04", "weekday": "Thursday", "phase": "Phase 4: Final AIR <10 Consolidation, Starred PYQs & Formula Polish", "category": "phase4", "sylSubj": "", "b1": "Starred Error-Log Re-Attempt (1h 45m): DBMS Normalization, Concurrency & B+ Tree Revision", "b2": "3-Subject Rapid Short-Notes Revision (1h 30m): DBMS + OS (25 Mixed PYQs", "b3": "Virtual Calculator & Formula Flashcards (45m): General Aptitude - Quantitative & Spatial (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): Re-solve Top 50 Bookmark Questions across TOC, CN, CD, OS, Algo, COA", "targetQ": "40 Bookmarked PYQs", "pyqOnlyA": "LIGHT REVISION ONLY (1.5h): Skim formulas & high-level notes", "pyqOnlyB": "Rest & Relaxation (2.5h): Zero new questions, hydrate, calm mindset", "pyqOnlyC": "Pre-Exam Routine: Admit card printout, ID proof check, early sleep", "focusSkill": "Confidence Building & Accuracy Calibration"}, {"id": 114, "day": "Day 114", "date": "05-Feb-2027", "isoDate": "2027-02-05", "weekday": "Friday", "phase": "Phase 4: Final AIR <10 Consolidation, Starred PYQs & Formula Polish", "category": "phase4", "sylSubj": "", "b1": "Starred Error-Log Re-Attempt (1h 45m): Digital Logic + COA Arithmetic & Counters Revision", "b2": "3-Subject Rapid Short-Notes Revision (1h 30m): Digital Logic + TOC (25 Mixed PYQs", "b3": "Virtual Calculator & Formula Flashcards (45m): General Aptitude - Verbal & Logical Reasoning (12 PYQs)", "air10Ext": "AIR <10 Dual-Block Extension (+4h): Re-solve Top 50 Bookmark Questions across TOC, CN, CD, OS, Algo, COA", "targetQ": "40 Bookmarked PYQs", "pyqOnlyA": "LIGHT REVISION ONLY (1.5h): Skim formulas & high-level notes", "pyqOnlyB": "Rest & Relaxation (2.5h): Zero new questions, hydrate, calm mindset", "pyqOnlyC": "Pre-Exam Routine: Admit card printout, ID proof check, early sleep", "focusSkill": "Confidence Building & Accuracy Calibration"}, {"id": 115, "day": "Day 115", "date": "06-Feb-2027", "isoDate": "2027-02-06", "weekday": "Saturday", "phase": "Phase 4: Final AIR <10 Consolidation, Starred PYQs & Formula Polish", "category": "phase4", "sylSubj": "", "b1": "Light Formula & Short-Notes Skim (1h 30m): Read GATE FARREY & Personal 10-Page Summary", "b2": "Mental Calm & Exam Readiness (1h 30m): Verify Admit Card, ID, Travel Route & Sleep Early", "b3": "Rest & Relaxation (1h): Zero New Questions", "air10Ext": "Rest completely to peak on Exam Day", "targetQ": "Light Review Only", "pyqOnlyA": "LIGHT REVISION ONLY (1.5h): Skim formulas & high-level notes", "pyqOnlyB": "Rest & Relaxation (2.5h): Zero new questions, hydrate, calm mindset", "pyqOnlyC": "Pre-Exam Routine: Admit card printout, ID proof check, early sleep", "focusSkill": "Confidence Building & Accuracy Calibration"}, {"id": 116, "day": "Day 116", "date": "07-Feb-2027", "isoDate": "2027-02-07", "weekday": "Sunday", "phase": "Phase 4: Final AIR <10 Consolidation, Starred PYQs & Formula Polish", "category": "phase4", "sylSubj": "", "b1": "Light Formula & Short-Notes Skim (1h 30m): Read GATE FARREY & Personal 10-Page Summary", "b2": "Mental Calm & Exam Readiness (1h 30m): Verify Admit Card, ID, Travel Route & Sleep Early", "b3": "Rest & Relaxation (1h): Zero New Questions", "air10Ext": "Rest completely to peak on Exam Day", "targetQ": "Light Review Only", "pyqOnlyA": "LIGHT REVISION ONLY (1.5h): Skim formulas & high-level notes", "pyqOnlyB": "Rest & Relaxation (2.5h): Zero new questions, hydrate, calm mindset", "pyqOnlyC": "Pre-Exam Routine: Admit card printout, ID proof check, early sleep", "focusSkill": "Confidence Building & Accuracy Calibration"}];
+    const STORAGE_KEY = "gate_2027_cse_air10_tracker_v1";
+
+    // State structure persisted in localStorage
+    let userState = {
+      activeDayId: 1,
+      planMode: "master", // "master" or "pyqOnly"
+      theme: "dark",
+      days: {} // dayId -> { b1: bool, b2: bool, b3: bool, ext: bool, done: bool, starred: bool, pyqs: number, mockScore: string, note: string }
+    };
+
+    let currentFilter = "all";
+    let timerInterval = null;
+    let timerSeconds = 6300;
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          userState = { ...userState, ...parsed, days: parsed.days || {} };
+        } else {
+          autoDetectInitialDay();
+        }
+      } catch (e) {
+        console.error("Failed to read localStorage", e);
+      }
+      document.documentElement.setAttribute("data-theme", userState.theme || "dark");
+      document.getElementById("themeBtn").textContent = userState.theme === "light" ? "Dark Mode" : "Light Mode";
+      updateModeButtonText();
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(userState));
+      } catch (e) {
+        console.error("Failed to save localStorage", e);
+      }
+      updateDashboardStats();
+    }
+
+    function getDayState(id) {
+      if (!userState.days[id]) {
+        const item = SCHEDULE_DATA.find(d => d.id === id);
+        const isHol = item && item.category === "holiday";
+        userState.days[id] = {
+          b1: isHol,
+          b2: isHol,
+          b3: isHol,
+          ext: false,
+          done: isHol,
+          starred: false,
+          pyqs: "",
+          mockScore: "",
+          note: ""
+        };
+      }
+      return userState.days[id];
+    }
+
+    function autoDetectInitialDay() {
+      const todayISO = new Date().toISOString().slice(0, 10);
+      const match = SCHEDULE_DATA.find(d => d.isoDate === todayISO);
+      if (match) {
+        userState.activeDayId = match.id;
+      } else {
+        // Find first non-holiday incomplete day
+        const firstPending = SCHEDULE_DATA.find(d => d.category !== "holiday" && !getDayState(d.id).done);
+        userState.activeDayId = firstPending ? firstPending.id : 1;
+      }
+    }
+
+    function jumpToRealToday() {
+      const todayISO = new Date().toISOString().slice(0, 10);
+      const match = SCHEDULE_DATA.find(d => d.isoDate === todayISO);
+      if (match) {
+        userState.activeDayId = match.id;
+      } else {
+        jumpToFirstIncomplete();
+        return;
+      }
+      saveState();
+      renderAll();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function jumpToFirstIncomplete() {
+      const next = SCHEDULE_DATA.find(d => d.category !== "holiday" && !getDayState(d.id).done);
+      if (next) {
+        userState.activeDayId = next.id;
+        saveState();
+        renderAll();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    }
+
+    function stepDay(delta) {
+      const nextId = Math.min(SCHEDULE_DATA.length, Math.max(1, userState.activeDayId + delta));
+      userState.activeDayId = nextId;
+      saveState();
+      renderAll();
+    }
+
+    function selectDayFromDropdown(val) {
+      userState.activeDayId = parseInt(val, 10);
+      saveState();
+      renderAll();
+    }
+
+    function setActiveDay(id) {
+      userState.activeDayId = id;
+      saveState();
+      renderAll();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function toggleBlock(id, blockKey) {
+      const st = getDayState(id);
+      st[blockKey] = !st[blockKey];
+      st.done = Boolean(st.b1 && st.b2 && st.b3);
+      saveState();
+      renderAll();
+    }
+
+    function toggleWholeDay(id) {
+      const st = getDayState(id);
+      const nextVal = !st.done;
+      st.done = nextVal;
+      st.b1 = nextVal;
+      st.b2 = nextVal;
+      st.b3 = nextVal;
+      saveState();
+      renderAll();
+    }
+
+    function toggleStar(id) {
+      const st = getDayState(id);
+      st.starred = !st.starred;
+      saveState();
+      renderAll();
+    }
+
+    function saveCurrentDayMetrics() {
+      const st = getDayState(userState.activeDayId);
+      st.pyqs = document.getElementById("inputPYQs").value;
+      st.mockScore = document.getElementById("inputMockScore").value;
+      st.note = document.getElementById("inputNote").value;
+      saveState();
+      renderTable();
+    }
+
+    function togglePlanMode() {
+      userState.planMode = userState.planMode === "master" ? "pyqOnly" : "master";
+      updateModeButtonText();
+      saveState();
+      renderAll();
+    }
+
+    function updateModeButtonText() {
+      const btn = document.getElementById("modeToggleBtn");
+      btn.textContent = userState.planMode === "master"
+        ? "View: Unified AIR <10 Plan"
+        : "View: Pure 4h PYQ Combinations";
+    }
+
+    function toggleTheme() {
+      userState.theme = userState.theme === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", userState.theme);
+      document.getElementById("themeBtn").textContent = userState.theme === "light" ? "Dark Mode" : "Light Mode";
+      saveState();
+    }
+
+    function populateDropdown() {
+      const sel = document.getElementById("daySelector");
+      sel.innerHTML = SCHEDULE_DATA.map(d => {
+        const st = getDayState(d.id);
+        const mark = d.category === "holiday" ? "🎉" : (st.done ? "✅" : "⏳");
+        return `<option value="${d.id}" ${d.id === userState.activeDayId ? "selected" : ""}>${mark} ${d.day} — ${d.date} (${d.weekday.slice(0,3)})</option>`;
+      }).join("");
+    }
+
+    function renderTodayHero() {
+      const d = SCHEDULE_DATA.find(item => item.id === userState.activeDayId) || SCHEDULE_DATA[0];
+      const st = getDayState(d.id);
+
+      document.getElementById("todayTitle").textContent = `${d.day}: ${d.date} (${d.weekday}) — Target: ${d.targetQ}`;
+      document.getElementById("todayPhase").textContent = d.phase;
+
+      const badgeEl = document.getElementById("todayStatusBadge");
+      if (d.category === "holiday") {
+        badgeEl.innerHTML = `<span class="badge badge-holiday">FESTIVAL HOLIDAY — ZERO WORK</span>`;
+      } else if (st.done) {
+        badgeEl.innerHTML = `<span class="badge badge-phase2">COMPLETED ✓</span>`;
+      } else {
+        badgeEl.innerHTML = `<span class="badge badge-phase1">IN PROGRESS</span>`;
+      }
+
+      const b1Text = userState.planMode === "master" ? d.b1 : d.pyqOnlyA;
+      const b2Text = userState.planMode === "master" ? d.b2 : d.pyqOnlyB;
+      const b3Text = userState.planMode === "master" ? d.b3 : d.pyqOnlyC;
+
+      const container = document.getElementById("todayBlocksContainer");
+      container.innerHTML = `
+        <div class="task-box ${st.b1 ? 'done' : ''}">
+          <div class="task-box-header">
+            <input type="checkbox" ${st.b1 ? 'checked' : ''} onchange="toggleBlock(${d.id}, 'b1')" />
+            <div>
+              <span class="task-box-tag tag-b1">${userState.planMode === 'master' ? 'Block 1 • 1h 45m' : 'Session A • 2h'}</span>
+              <div class="task-desc">${b1Text}</div>
+            </div>
+          </div>
+          <div class="task-sub">Alt Mode Reference: ${userState.planMode === 'master' ? d.pyqOnlyA : d.b1}</div>
+        </div>
+
+        <div class="task-box ${st.b2 ? 'done' : ''}">
+          <div class="task-box-header">
+            <input type="checkbox" ${st.b2 ? 'checked' : ''} onchange="toggleBlock(${d.id}, 'b2')" />
+            <div>
+              <span class="task-box-tag tag-b2">${userState.planMode === 'master' ? 'Block 2 • 1h 30m' : 'Session B • 1h 15m'}</span>
+              <div class="task-desc">${b2Text}</div>
+            </div>
+          </div>
+          <div class="task-sub">Focus Skill: ${d.focusSkill || 'Timed Problem Solving'}</div>
+        </div>
+
+        <div class="task-box ${st.b3 ? 'done' : ''}">
+          <div class="task-box-header">
+            <input type="checkbox" ${st.b3 ? 'checked' : ''} onchange="toggleBlock(${d.id}, 'b3')" />
+            <div>
+              <span class="task-box-tag tag-b3">${userState.planMode === 'master' ? 'Block 3 • 45m' : 'Session C • 45m'}</span>
+              <div class="task-desc">${b3Text}</div>
+            </div>
+          </div>
+          <div class="task-sub">Daily Formula &amp; Error Register Check</div>
+        </div>
+
+        <div class="task-box ${st.ext ? 'done' : ''}">
+          <div class="task-box-header">
+            <input type="checkbox" ${st.ext ? 'checked' : ''} onchange="toggleBlock(${d.id}, 'ext')" />
+            <div>
+              <span class="task-box-tag tag-ext">AIR &lt; 10 Dual-Block Extension (+4h)</span>
+              <div class="task-desc">${d.air10Ext}</div>
+            </div>
+          </div>
+          <div class="task-sub">Optional 2nd 4-hour block for Top-10 Rank Sprint</div>
+        </div>
+      `;
+
+      document.getElementById("inputPYQs").value = st.pyqs || "";
+      document.getElementById("inputMockScore").value = st.mockScore || "";
+      document.getElementById("inputNote").value = st.note || "";
+    }
+
+    function updateDashboardStats() {
+      const activeStudyDays = SCHEDULE_DATA.filter(d => d.category !== "holiday");
+      const doneStudyDays = activeStudyDays.filter(d => getDayState(d.id).done);
+      const pct = Math.round((doneStudyDays.length / activeStudyDays.length) * 100);
+
+      document.getElementById("statDaysDone").textContent = `${doneStudyDays.length} / ${activeStudyDays.length}`;
+      document.getElementById("statPct").textContent = `${pct}%`;
+      document.getElementById("barOverall").style.width = `${pct}%`;
+
+      // Syllabus completion stats (TOC: 25% -> 100% across 10 days, CD: 0% -> 100% across 10 days, CN: 25% -> 100% across 12 days)
+      const tocDays = SCHEDULE_DATA.filter(d => d.sylSubj === "TOC");
+      const tocDone = tocDays.filter(d => getDayState(d.id).b1).length;
+      const tocPct = Math.min(100, Math.round(25 + (tocDone / Math.max(1, tocDays.length)) * 75));
+      document.getElementById("statTOC").textContent = `${tocPct}%`;
+      document.getElementById("barTOC").style.width = `${tocPct}%`;
+      document.getElementById("subTOC").textContent = `${tocDone} / ${tocDays.length} remaining modules done`;
+
+      const cdDays = SCHEDULE_DATA.filter(d => d.sylSubj === "CD");
+      const cdDone = cdDays.filter(d => getDayState(d.id).b1).length;
+      const cdPct = Math.min(100, Math.round((cdDone / Math.max(1, cdDays.length)) * 100));
+      document.getElementById("statCD").textContent = `${cdPct}%`;
+      document.getElementById("barCD").style.width = `${cdPct}%`;
+      document.getElementById("subCD").textContent = `${cdDone} / ${cdDays.length} modules done`;
+
+      const cnDays = SCHEDULE_DATA.filter(d => d.sylSubj === "CN");
+      const cnDone = cnDays.filter(d => getDayState(d.id).b1).length;
+      const cnPct = Math.min(100, Math.round(25 + (cnDone / Math.max(1, cnDays.length)) * 75));
+      document.getElementById("statCN").textContent = `${cnPct}%`;
+      document.getElementById("barCN").style.width = `${cnPct}%`;
+      document.getElementById("subCN").textContent = `${cnDone} / ${cnDays.length} remaining modules done`;
+
+      // Mocks & Total PYQs
+      const mockDays = SCHEDULE_DATA.filter(d => d.category === "mock");
+      const mocksDone = mockDays.filter(d => getDayState(d.id).done).length;
+      const mockPct = Math.round((mocksDone / mockDays.length) * 100);
+      document.getElementById("statMocks").textContent = `${mocksDone} / ${mockDays.length} Mocks`;
+      document.getElementById("barMocks").style.width = `${mockPct}%`;
+
+      let totalPYQs = 0;
+      let mockScores = [];
+      SCHEDULE_DATA.forEach(d => {
+        const st = getDayState(d.id);
+        const q = parseInt(st.pyqs, 10);
+        if (!isNaN(q) && q > 0) totalPYQs += q;
+        const sc = parseFloat(st.mockScore);
+        if (!isNaN(sc) && sc > 0) mockScores.push(sc);
+      });
+
+      document.getElementById("statTotalPYQs").textContent = `${totalPYQs} PYQs`;
+      if (mockScores.length > 0) {
+        const avg = (mockScores.reduce((a, b) => a + b, 0) / mockScores.length).toFixed(1);
+        document.getElementById("statAvgMock").textContent = `Avg Mock Score: ${avg} / 100 (Goal: 85+)`;
+      } else {
+        document.getElementById("statAvgMock").textContent = `Avg Mock Score: -- / 100 (Goal: 85+)`;
+      }
+    }
+
+    function setFilter(f) {
+      currentFilter = f;
+      document.querySelectorAll(".pill").forEach(btn => {
+        btn.classList.toggle("active", btn.getAttribute("data-filter") === f);
+      });
+      renderTable();
+    }
+
+    function renderTable() {
+      const q = (document.getElementById("searchInput").value || "").toLowerCase().trim();
+      const sortPendingFirst = document.getElementById("sortPendingTop").checked;
+
+      let filtered = SCHEDULE_DATA.filter(d => {
+        const st = getDayState(d.id);
+        if (currentFilter === "pending" && (st.done || d.category === "holiday")) return false;
+        if (currentFilter === "completed" && !st.done) return false;
+        if (currentFilter === "phase1" && d.category !== "phase1") return false;
+        if (currentFilter === "phase2" && d.category !== "phase2") return false;
+        if (currentFilter === "phase3" && d.category !== "phase3") return false;
+        if (currentFilter === "phase4" && d.category !== "phase4") return false;
+        if (currentFilter === "mock" && d.category !== "mock") return false;
+        if (currentFilter === "holiday" && d.category !== "holiday") return false;
+        if (currentFilter === "starred" && !st.starred) return false;
+
+        if (q) {
+          const hay = `${d.day} ${d.date} ${d.weekday} ${d.phase} ${d.b1} ${d.b2} ${d.b3} ${d.pyqOnlyA} ${d.pyqOnlyB} ${st.note || ""}`.toLowerCase();
+          if (!hay.includes(q)) return false;
+        }
+        return true;
+      });
+
+      if (sortPendingFirst) {
+        filtered.sort((a, b) => {
+          if (a.id === userState.activeDayId) return -1;
+          if (b.id === userState.activeDayId) return 1;
+          const stA = getDayState(a.id).done ? 1 : 0;
+          const stB = getDayState(b.id).done ? 1 : 0;
+          if (stA !== stB) return stA - stB;
+          return a.id - b.id;
+        });
+      }
+
+      const tbody = document.getElementById("scheduleTableBody");
+      tbody.innerHTML = filtered.map(d => {
+        const st = getDayState(d.id);
+        const isToday = d.id === userState.activeDayId;
+        let rowClass = "";
+        if (isToday) rowClass = "row-today";
+        else if (d.category === "holiday") rowClass = "row-holiday";
+        else if (st.done) rowClass = "row-completed";
+        else if (d.category === "mock") rowClass = "row-mock";
+
+        const badgeClass = `badge-${d.category}`;
+        const c1 = userState.planMode === "master" ? d.b1 : d.pyqOnlyA;
+        const c2 = userState.planMode === "master" ? d.b2 : d.pyqOnlyB;
+        const c3 = userState.planMode === "master" ? d.b3 : d.pyqOnlyC;
+
+        return `
+          <tr class="${rowClass}">
+            <td style="text-align:center;">
+              <input type="checkbox" style="width:18px;height:18px;cursor:pointer;accent-color:var(--success);" ${st.done ? "checked" : ""} onchange="toggleWholeDay(${d.id})" />
+              <div style="margin-top:0.35rem;">
+                <button class="star-btn ${st.starred ? 'starred' : ''}" onclick="toggleStar(${d.id})" title="Bookmark Day">★</button>
+              </div>
+            </td>
+            <td>
+              <div style="font-weight:800;cursor:pointer;color:var(--accent);" onclick="setActiveDay(${d.id})">
+                ${d.day} ${isToday ? '📌' : ''}
+              </div>
+              <div style="font-weight:600;font-size:0.8rem;">${d.date}</div>
+              <div style="font-size:0.74rem;color:var(--text-secondary);">${d.weekday}</div>
+              <span class="badge ${badgeClass}" style="margin-top:0.3rem;">${d.category.toUpperCase()}</span>
+            </td>
+            <td>
+              <div style="font-weight:600;">${c1}</div>
+              <div class="mini-checks">
+                <span class="mini-check-pill ${st.b1 ? 'checked' : ''}" onclick="toggleBlock(${d.id}, 'b1')">✓ Block 1</span>
+                <span class="mini-check-pill ${st.ext ? 'checked' : ''}" onclick="toggleBlock(${d.id}, 'ext')">+4h AIR&lt;10</span>
+              </div>
+            </td>
+            <td>
+              <div>${c2}</div>
+              <div class="mini-checks">
+                <span class="mini-check-pill ${st.b2 ? 'checked' : ''}" onclick="toggleBlock(${d.id}, 'b2')">✓ Block 2</span>
+              </div>
+            </td>
+            <td>
+              <div>${c3}</div>
+              <div class="mini-checks">
+                <span class="mini-check-pill ${st.b3 ? 'checked' : ''}" onclick="toggleBlock(${d.id}, 'b3')">✓ Block 3</span>
+              </div>
+            </td>
+            <td>
+              <div style="font-size:0.76rem;color:var(--text-secondary);font-weight:700;">Target: ${d.targetQ}</div>
+              ${st.pyqs ? `<div style="color:var(--success);font-weight:700;font-size:0.8rem;">Solved: ${st.pyqs} PYQs</div>` : ''}
+              ${st.mockScore ? `<div style="color:var(--purple);font-weight:700;font-size:0.8rem;">Mock: ${st.mockScore}/100</div>` : ''}
+              ${st.note ? `<div style="font-size:0.76rem;margin-top:0.25rem;padding:0.25rem 0.4rem;background:var(--bg-main);border-radius:4px;">📝 ${st.note}</div>` : ''}
+              <button class="btn" style="margin-top:0.4rem;padding:0.2rem 0.5rem;font-size:0.72rem;" onclick="setActiveDay(${d.id})">Pin to Top</button>
+            </td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    // Timer Logic
+    function formatTime(sec) {
+      const h = Math.floor(sec / 3600);
+      const m = Math.floor((sec % 3600) / 60);
+      const s = sec % 60;
+      return [h, m, s].map(v => String(v).padStart(2, "0")).join(":");
+    }
+
+    function changeTimerPreset(val) {
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+        document.getElementById("timerStartBtn").textContent = "Start";
+      }
+      timerSeconds = parseInt(val, 10);
+      document.getElementById("timerDisplay").textContent = formatTime(timerSeconds);
+    }
+
+    function toggleTimer() {
+      const btn = document.getElementById("timerStartBtn");
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+        btn.textContent = "Resume";
+      } else {
+        btn.textContent = "Pause";
+        timerInterval = setInterval(() => {
+          if (timerSeconds > 0) {
+            timerSeconds--;
+            document.getElementById("timerDisplay").textContent = formatTime(timerSeconds);
+          } else {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            btn.textContent = "Done!";
+          }
+        }, 1000);
+      }
+    }
+
+    function resetTimer() {
+      changeTimerPreset(document.getElementById("timerPreset").value);
+    }
+
+    // Export & Import JSON / CSV for GitHub Pages Multi-Device Sync
+    function exportProgressJSON() {
+      const blob = new Blob([JSON.stringify(userState, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `gate2027_air10_progress_${new Date().toISOString().slice(0,10)}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function importProgressJSON(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const imported = JSON.parse(e.target.result);
+          if (imported && imported.days) {
+            userState = { ...userState, ...imported };
+            saveState();
+            renderAll();
+            alert("Progress restored successfully!");
+          }
+        } catch (err) {
+          alert("Invalid JSON backup file.");
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function exportUpdatedCSV() {
+      const headers = ["Day", "Date", "Weekday", "Phase", "Block_1", "Block_2", "Block_3", "Target_Questions", "Completed", "PYQs_Solved", "Mock_Score", "Notes"];
+      const csvRows = [headers.join(",")];
+      SCHEDULE_DATA.forEach(d => {
+        const st = getDayState(d.id);
+        const row = [
+          d.day,
+          d.date,
+          d.weekday,
+          `"${d.phase.replace(/"/g, '""')}"`,
+          `"${d.b1.replace(/"/g, '""')}"`,
+          `"${d.b2.replace(/"/g, '""')}"`,
+          `"${d.b3.replace(/"/g, '""')}"`,
+          `"${d.targetQ.replace(/"/g, '""')}"`,
+          st.done ? "Completed" : (d.category === "holiday" ? "Holiday" : "Pending"),
+          st.pyqs || "",
+          st.mockScore || "",
+          `"${(st.note || "").replace(/"/g, '""')}"`
+        ];
+        csvRows.push(row.join(","));
+      });
+      const blob = new Blob([csvRows.join("\n")], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "GATE_2027_CSE_AIR10_Tracked_Progress.csv";
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function renderAll() {
+      populateDropdown();
+      renderTodayHero();
+      updateDashboardStats();
+      renderTable();
+    }
+
+    loadState();
+    renderAll();
+  </script>
+</body>
+</html>
