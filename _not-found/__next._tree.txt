@@ -1,4 +1,4 @@
 :HL["/gate-tracker-/_next/static/chunks/27v0w3z-uvbqp.css","style"]
 2:[["children",{"s":"__PAGE__","h":160}]]
 1:[["children",{"s":"/_not-found","h":96,"c":"$Q2"}]]
-0:{"b":"uwY8b3RIFMiLeceF6N3vH","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"b":"BsFDgbSZyOiAvVeBRAeMp","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
