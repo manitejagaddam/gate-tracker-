@@ -1060,6 +1060,8 @@ export const PinnedHeroDay: React.FC<PinnedHeroDayProps> = ({
           display: flex;
           flex-direction: column;
           gap: 0.45rem;
+          min-width: 0;
+          box-sizing: border-box;
         }
 
         .input-card:focus-within {
@@ -1117,6 +1119,11 @@ export const PinnedHeroDay: React.FC<PinnedHeroDayProps> = ({
           font-size: 0.94rem;
           font-weight: 600;
           transition: all 0.15s ease;
+          width: 100%;
+          min-width: 0;
+          max-width: 100%;
+          box-sizing: border-box;
+          outline: none;
         }
 
         /* Non-straining focus state - gentle amber outline instead of piercing cyan */
@@ -1127,7 +1134,7 @@ export const PinnedHeroDay: React.FC<PinnedHeroDayProps> = ({
         }
 
         .note-card {
-          min-width: 240px;
+          min-width: 0;
         }
 
         .note-field {

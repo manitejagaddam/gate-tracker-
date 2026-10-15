@@ -371,6 +371,10 @@ export const MockHolidayView: React.FC<MockHolidayViewProps> = ({ data }) => {
           flex-direction: column;
           gap: 0.85rem;
           box-shadow: var(--glass-shadow);
+          overflow: hidden;
+          min-width: 0;
+          box-sizing: border-box;
+          width: 100%;
         }
 
         .mock-card-top {
@@ -466,24 +470,32 @@ export const MockHolidayView: React.FC<MockHolidayViewProps> = ({ data }) => {
           flex-shrink: 0;
         }
 
-        /* Mini Inputs */
+        /* Mini Inputs - strictly contained with minmax(0, 1fr) */
         .mock-inputs-grid {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
+          grid-template-columns: repeat(3, minmax(0, 1fr));
           gap: 0.5rem;
           border-top: 1px solid var(--glass-border);
           padding-top: 0.75rem;
           margin-top: auto;
+          width: 100%;
+          min-width: 0;
+          box-sizing: border-box;
         }
 
         .input-span-3 {
-          grid-column: span 3;
+          grid-column: 1 / -1;
+          width: 100%;
+          min-width: 0;
         }
 
         .input-field-wrap {
           display: flex;
           flex-direction: column;
           gap: 0.25rem;
+          min-width: 0;
+          width: 100%;
+          box-sizing: border-box;
         }
 
         .input-mini-label {
@@ -491,6 +503,9 @@ export const MockHolidayView: React.FC<MockHolidayViewProps> = ({ data }) => {
           font-weight: 700;
           color: var(--text-muted);
           text-transform: uppercase;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
 
         .mock-mini-input {
@@ -499,12 +514,19 @@ export const MockHolidayView: React.FC<MockHolidayViewProps> = ({ data }) => {
           border-radius: var(--radius-xs);
           color: var(--text-primary);
           font-size: 0.8rem;
-          padding: 0.35rem 0.55rem;
+          padding: 0.4rem 0.55rem;
           font-weight: 600;
+          width: 100%;
+          min-width: 0;
+          max-width: 100%;
+          box-sizing: border-box;
+          outline: none;
+          transition: all 0.15s ease;
         }
 
         .mock-mini-input:focus {
           border-color: #f59e0b;
+          box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2);
         }
 
         /* Holidays Section */
@@ -552,6 +574,10 @@ export const MockHolidayView: React.FC<MockHolidayViewProps> = ({ data }) => {
           flex-direction: column;
           gap: 0.65rem;
           box-shadow: var(--glass-shadow);
+          overflow: hidden;
+          min-width: 0;
+          box-sizing: border-box;
+          width: 100%;
         }
 
         .holiday-card-top {
