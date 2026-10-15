@@ -1,18 +1,28 @@
 "use client";
 
 import React, { useState, useMemo, useRef } from "react";
-import { SCHEDULE_DATA } from "@/data/schedule";
+import {
+  SCHEDULE_DATA,
+  DASHBOARD_DATA,
+  CHECKLIST_DATA,
+  MOCK_HOLIDAY_DATA,
+} from "@/data/schedule";
 import { useTrackerState } from "@/hooks/useTrackerState";
 import { FilterCategory } from "@/types/tracker";
 import { Navbar } from "@/components/Navbar";
 import { ResourceBar } from "@/components/ResourceBar";
+import { SheetTabs, SheetTabId } from "@/components/SheetTabs";
 import { DashboardStats } from "@/components/DashboardStats";
 import { PinnedHeroDay } from "@/components/PinnedHeroDay";
 import { ControlsBar } from "@/components/ControlsBar";
 import { ScheduleView } from "@/components/ScheduleView";
+import { ExecutiveDashboardView } from "@/components/ExecutiveDashboardView";
+import { HighYieldChecklistView } from "@/components/HighYieldChecklistView";
+import { MockHolidayView } from "@/components/MockHolidayView";
 import { MobileBottomNav } from "@/components/MobileBottomNav";
 import { FocusTimerModal } from "@/components/FocusTimerModal";
 import { Toast } from "@/components/Toast";
+import { sounds } from "@/utils/sound";
 
 export default function TrackerHome() {
   const {
@@ -36,11 +46,19 @@ export default function TrackerHome() {
     resetAllProgress,
   } = useTrackerState();
 
+  // Master Workbook Sheet Selector state (Sheets 1 to 4)
+  const [activeSheet, setActiveSheet] = useState<SheetTabId>("schedule");
+
   // Filter & Search states
   const [currentFilter, setCurrentFilter] = useState<FilterCategory>("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [sortPendingFirst, setSortPendingFirst] = useState(true);
   const [cardDensity, setCardDensity] = useState<"detailed" | "compact">("detailed");
+
+  // Completed study days count for SheetTabs
+  const completedDaysCount = useMemo(() => {
+    return SCHEDULE_DATA.filter((d) => getDayState(d.id).done).length;
+  }, [getDayState]);
 
   // Focus Timer Modal state
   const [focusModalOpen, setFocusModalOpen] = useState(false);
@@ -183,80 +201,140 @@ export default function TrackerHome() {
         {/* Workspace Quick Drive Links */}
         <ResourceBar />
 
-        {/* Live KPI Statistics Dashboard */}
-        <div ref={statsRef}>
-          <DashboardStats
-            schedule={SCHEDULE_DATA}
-            getDayState={getDayState}
-          />
-        </div>
+        {/* Master Workbook Sheet Selector Tabs (Sheets 1 to 4) */}
+        <SheetTabs
+          activeSheet={activeSheet}
+          onSelectSheet={(sheet) => {
+            setActiveSheet(sheet);
+            if (state.soundEnabled) sounds.playClick();
+          }}
+          completedDaysCount={completedDaysCount}
+          totalDaysCount={SCHEDULE_DATA.length}
+          totalChecklistCount={CHECKLIST_DATA.length}
+        />
 
-        {/* Pinned Active Day Mission */}
-        <div ref={heroRef}>
-          <PinnedHeroDay
-            day={activeDay}
-            allDays={SCHEDULE_DATA}
-            dayState={activeDayState}
-            planMode={state.planMode}
-            soundEnabled={state.soundEnabled}
-            onSelectDay={setActiveDay}
-            onToggleBlock={toggleBlock}
-            onToggleWholeDay={toggleWholeDay}
-            onToggleStar={toggleStar}
-            onUpdateMetrics={updateDayMetrics}
-            onJumpNextIncomplete={handleJumpNextIncompleteWithScroll}
-            onOpenFocusTimer={handleOpenFocusTimer}
-          />
-        </div>
+        {/* Sheet 2: 116-Day Granular Detailed Master Schedule */}
+        {activeSheet === "schedule" && (
+          <div className="sheet-view-wrapper animate-fade-in">
+            {/* Live KPI Statistics Dashboard */}
+            <div ref={statsRef}>
+              <DashboardStats
+                schedule={SCHEDULE_DATA}
+                getDayState={getDayState}
+              />
+            </div>
 
-        {/* Filter and Search Controls */}
-        <div ref={controlsRef}>
-          <ControlsBar
-            currentFilter={currentFilter}
-            onFilterChange={setCurrentFilter}
-            viewLayout={state.viewLayout}
-            onViewLayoutChange={setViewLayout}
-            searchQuery={searchQuery}
-            onSearchChange={setSearchQuery}
-            sortPendingFirst={sortPendingFirst}
-            onSortPendingFirstChange={setSortPendingFirst}
-            filterCounts={filterCounts}
-            cardDensity={cardDensity}
-            onCardDensityChange={setCardDensity}
-          />
-        </div>
+            {/* Pinned Active Day Mission */}
+            <div ref={heroRef}>
+              <PinnedHeroDay
+                day={activeDay}
+                allDays={SCHEDULE_DATA}
+                dayState={activeDayState}
+                planMode={state.planMode}
+                soundEnabled={state.soundEnabled}
+                onSelectDay={setActiveDay}
+                onToggleBlock={toggleBlock}
+                onToggleWholeDay={toggleWholeDay}
+                onToggleStar={toggleStar}
+                onUpdateMetrics={updateDayMetrics}
+                onJumpNextIncomplete={handleJumpNextIncompleteWithScroll}
+                onOpenFocusTimer={handleOpenFocusTimer}
+              />
+            </div>
 
-        {/* Schedule Cards / Master Table View */}
-        <div ref={scheduleRef}>
-          <ScheduleView
-            days={displayedDays}
-            activeDayId={state.activeDayId}
-            planMode={state.planMode}
-            viewLayout={state.viewLayout}
-            cardDensity={cardDensity}
-            getDayState={getDayState}
-            onSelectDay={(id) => {
-              setActiveDay(id);
-              heroRef.current?.scrollIntoView({ behavior: "smooth" });
-            }}
-            onToggleBlock={toggleBlock}
-            onToggleWholeDay={toggleWholeDay}
-            onToggleStar={toggleStar}
-            onOpenFocusTimer={handleOpenFocusTimer}
-            onResetFilters={() => {
-              setCurrentFilter("all");
-              setSearchQuery("");
-            }}
-          />
-        </div>
+            {/* Filter and Search Controls */}
+            <div ref={controlsRef}>
+              <ControlsBar
+                currentFilter={currentFilter}
+                onFilterChange={setCurrentFilter}
+                viewLayout={state.viewLayout}
+                onViewLayoutChange={setViewLayout}
+                searchQuery={searchQuery}
+                onSearchChange={setSearchQuery}
+                sortPendingFirst={sortPendingFirst}
+                onSortPendingFirstChange={setSortPendingFirst}
+                filterCounts={filterCounts}
+                cardDensity={cardDensity}
+                onCardDensityChange={setCardDensity}
+              />
+            </div>
+
+            {/* Schedule Cards / Master Table View */}
+            <div ref={scheduleRef}>
+              <ScheduleView
+                days={displayedDays}
+                activeDayId={state.activeDayId}
+                planMode={state.planMode}
+                viewLayout={state.viewLayout}
+                cardDensity={cardDensity}
+                getDayState={getDayState}
+                onSelectDay={(id) => {
+                  setActiveDay(id);
+                  heroRef.current?.scrollIntoView({ behavior: "smooth" });
+                }}
+                onToggleBlock={toggleBlock}
+                onToggleWholeDay={toggleWholeDay}
+                onToggleStar={toggleStar}
+                onOpenFocusTimer={handleOpenFocusTimer}
+                onResetFilters={() => {
+                  setCurrentFilter("all");
+                  setSearchQuery("");
+                }}
+              />
+            </div>
+          </div>
+        )}
+
+        {/* Sheet 1: Executive Dashboard & Weightages */}
+        {activeSheet === "dashboard" && (
+          <div className="sheet-view-wrapper animate-fade-in">
+            <ExecutiveDashboardView data={DASHBOARD_DATA} />
+          </div>
+        )}
+
+        {/* Sheet 3: High-Yield Topic & PYQ Trap Master Checklist */}
+        {activeSheet === "checklist" && (
+          <div className="sheet-view-wrapper animate-fade-in">
+            <HighYieldChecklistView
+              items={CHECKLIST_DATA}
+              onSelectDay={(dayId) => {
+                setActiveDay(dayId);
+                setActiveSheet("schedule");
+                setToastMsg(`Jumped to Day ${dayId} for high-yield topic drill 🎯`);
+                setTimeout(() => {
+                  heroRef.current?.scrollIntoView({ behavior: "smooth" });
+                }, 100);
+              }}
+            />
+          </div>
+        )}
+
+        {/* Sheet 4: 16 Weekly CBT Mocks & 12 Telugu Festival Holidays */}
+        {activeSheet === "mocks" && (
+          <div className="sheet-view-wrapper animate-fade-in">
+            <MockHolidayView data={MOCK_HOLIDAY_DATA} />
+          </div>
+        )}
       </main>
 
       {/* Mobile Sticky Bottom Navigation */}
       <MobileBottomNav
-        onScrollToHero={() => heroRef.current?.scrollIntoView({ behavior: "smooth" })}
-        onScrollToStats={() => statsRef.current?.scrollIntoView({ behavior: "smooth" })}
-        onScrollToSchedule={() => scheduleRef.current?.scrollIntoView({ behavior: "smooth" })}
-        onScrollToFilters={() => controlsRef.current?.scrollIntoView({ behavior: "smooth" })}
+        onScrollToHero={() => {
+          if (activeSheet !== "schedule") setActiveSheet("schedule");
+          setTimeout(() => heroRef.current?.scrollIntoView({ behavior: "smooth" }), 50);
+        }}
+        onScrollToStats={() => {
+          if (activeSheet !== "schedule") setActiveSheet("schedule");
+          setTimeout(() => statsRef.current?.scrollIntoView({ behavior: "smooth" }), 50);
+        }}
+        onScrollToSchedule={() => {
+          if (activeSheet !== "schedule") setActiveSheet("schedule");
+          setTimeout(() => scheduleRef.current?.scrollIntoView({ behavior: "smooth" }), 50);
+        }}
+        onScrollToFilters={() => {
+          if (activeSheet !== "schedule") setActiveSheet("schedule");
+          setTimeout(() => controlsRef.current?.scrollIntoView({ behavior: "smooth" }), 50);
+        }}
         onOpenFocusTimer={() => handleOpenFocusTimer(10800, `${activeDay.day} Focus`)}
       />
 

@@ -1,0 +1,29 @@
+GATE 2027 CSE (IIT Madras) — AIR < 10 Master Strategy & High-Frequency Topic Analytics,,,,,,,,
+"6.5–7.0 Hr/Day Plan | Starts Oct 15, 2026 | Full Syllabus Done by Nov 13, 2026 | 16 Weekly Mocks | 12 Telugu Holidays Off | Grounded in 2023–2025 GATE Papers",,,,,,,,
+,,,,,,,,
+TOTAL PREP WINDOW,,SYLLABUS COMPLETION,,TOTAL QUESTION TARGET,,AIR < 10 SCORE BENCHMARK,,
+116 Days,,"Nov 13, 2026",,"8,793",,85.0+ / 100,,
+104 Study Days + 12 Festival Holidays,,"21 Active Days (TOC 75%, CD 100%, CN 75%)",,Timed Topic PYQs + 16 Mocks + 15 Past Papers,,GA: 14.5+ | Math: 12+ | Core CS: 58.5+,,
+,,,,,,,,
+"Table 1: Subject-Wise Official GATE Marks (2023–2025), Current Completion Status & Most Frequent PYQ Topics",,,,,,,,
+Subject / Section,Current Syllabus Done,GATE 2023 Marks,GATE 2024 Marks,GATE 2025 Marks,3-Yr Avg Marks [Auto],AIR <10 Target Marks,Dominant Q-Types,Top Most-Frequent / Guaranteed PYQ Topics (2020–2025 Official Trend)
+General Aptitude (GA),100%,15,15,15,15.0,14.5,MCQ (10 Qs),"Ratios/Percentages, Time & Work, Permutations/Probability, Syllogisms, Data Interpretation, 2D/3D Spatial Folding, Critical Reasoning"
+Engineering & Discrete Mathematics,100%,10,13,12,11.7,11.0,MCQ + MSQ + NAT,"Graph Connectivity/Coloring/Planarity, Propositional & 1st-Order Logic, Generating Functions & Recurrences, Eigenvalues/Rank, Bayes' Theorem, Distributions, Maxima/Minima"
+Programming & Data Structures (P&DS),100%,11,8,10,9.7,9.0,NAT + MCQ,"C Pointers & 2D Array Arithmetic, Static/Global Recursion Stack Tracing, Binary Trees, BST, AVL Rotations, Binary Heaps, Hashing Collision Resolution, Graph Traversals"
+Computer Organization & Arch. (COA),100%,12,9,8,9.7,8.5,NAT + MSQ,"Cache Mapping (Direct, Set-Associative, Fully), Effective Memory Access Time (TLB+Cache+Paging), Pipeline Hazards (RAW/WAR/WAW, Stalls, Speedup), Addressing Modes, DMA/Interrupts, IEEE 754"
+Operating Systems (OS),100%,7,10,8,8.3,7.5,MSQ + NAT,"Process Synchronization (Semaphores, Mutex, Producer-Consumer, Readers-Writers), CPU Scheduling (SRTF, SJF, RR Turnaround/Waiting), Banker's Deadlock Algorithm, Multi-Level Paging & TLB, LRU/Optimal Page Replacement, Disk Inodes"
+Computer Networks (CN) [Pending 75%],25%,8,9,8,8.3,7.5,NAT + MSQ,"Classless Addressing (CIDR), Subnetting/Supernetting, IPv4 Fragmentation (MTU/Offsets), Distance Vector (Count-to-Infinity) & OSPF Routing, TCP Flow & Congestion Control (Slow Start/AIMD), Go-Back-N & Selective Repeat, CSMA/CD, DNS/HTTP"
+Theory of Computation (TOC) [Pending 75%],25%,9,7,9,8.3,7.5,MSQ + MCQ,"DFA Construction & Minimization (Myhill-Nerode), NFA-to-DFA, Regular Expressions, Closure Properties Matrix (Reg/DCFL/CFL/Rec/RE), CFG & PDA (DPDA vs NPDA), Pumping Lemma, Turing Machines, Halting Problem, Reductions & Rice's Theorem"
+Algorithms,100%,6,8,8,7.3,7.0,NAT + MCQ + MSQ,"Asymptotic Notation & Master Theorem Recurrences, Dijkstra's & Bellman-Ford Shortest Paths, Prim's & Kruskal's MST, Dynamic Programming (LCS, Matrix Chain, 0/1 Knapsack), Greedy (Huffman Coding), Quick/Merge/Heap Sort"
+Database Management Systems (DBMS),100%,5,8,8,7.0,6.5,MSQ + NAT + MCQ,"Functional Dependencies, Candidate Keys & Normal Forms (1NF–BCNF, Lossless Join), SQL Nested/Correlated Queries & Joins, Relational Algebra & TRC, Conflict/View Serializability, 2PL Concurrency, B & B+ Tree Node Splitting/Order"
+Compiler Design (CD) [Pending 100%],0%,5,8,5,6.0,5.5,NAT + MSQ + MCQ,"FIRST & FOLLOW Sets, LL(1) Parse Table, LR(0)/SLR(1)/CLR(1)/LALR(1) Item Sets & Conflict Counts, Syntax-Directed Translation (S/L-Attributed Evaluation), 3-Address Code & SSA, Basic Blocks, DAG & Liveness Data-Flow Analysis"
+Digital Logic (DL),100%,6,5,6,5.7,5.5,NAT + MCQ,"K-Map Minimization (Prime/Essential Implicants, Don't Care), MUX/Decoder Circuit Realization, Synchronous & Ripple Counters (Mod-N, Propagation Delay, Max Clock Frequency), Setup/Hold Time, Booth's & 2's Complement"
+Total / Portfolio Average,77.3%,94,100,97,97.0,90.0,65 Questions,Source: GO Classes (2023–2025 Official GATE CSE Papers) & Made Easy 2027 Analysis
+,,,,,,,,
+,,,,,,,,
+Table 2: Official GATE CSE Question-Type Shift (2023–2025) & Daily Practice Allocation,,,,,,,,
+Exam Year / Metric,MCQs (Negative Marking),"MSQs (Zero Negative, All-or-None)","NATs (Zero Negative, Precision)",Total Questions [Auto],Strategic Implication for AIR < 10,,,
+GATE 2023 Official Paper,34,15,16,65,"Balanced baseline; strong NAT emphasis in COA, OS & P&DS",,,
+GATE 2024 Official Paper,19,20,16,55,"Sharp MSQ surge (20 Qs); rewards deep theoretical mastery in TOC, OS, DBMS & CN",,,
+GATE 2025 Official Paper,33,18,14,65,High MSQ retention (18 Qs); zero partial credit makes MSQ accuracy the #1 rank separator,,,
+3-Year Average Question Mix,28.7,17.7,15.3,61.7,Daily PYQ Target Mix: ~45% MCQ + ~30% MSQ + ~25% NAT across all study blocks,,,

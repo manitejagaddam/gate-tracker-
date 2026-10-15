@@ -1,0 +1,261 @@
+{
+  "totalPrepWindow": "116 Days (104 Study Days + 12 Telugu Festival Holidays)",
+  "syllabusCompletion": "Nov 13, 2026 (21 Active Days: TOC 75%, CD 100%, CN 75%)",
+  "totalQuestionTarget": "8,793 Questions (Timed Topic PYQs + 16 Mocks + 15 Past Papers)",
+  "targetScoreBenchmark": "85.0+ / 100 (GA: 14.5+ | Math: 12.0+ | Core CS: 58.5+)",
+  "subjectWeightages": [
+    {
+      "subject": "General Aptitude (GA)",
+      "completion": "100%",
+      "m2023": 15.0,
+      "m2024": 15.0,
+      "m2025": 15.0,
+      "avgMarks": 15.0,
+      "targetMarks": 14.5,
+      "dominantTypes": "MCQ (10 Qs)",
+      "frequentTopics": "Ratios/Percentages, Time & Work, Permutations/Probability, Syllogisms, Data Interpretation, 2D/3D Spatial Folding, Critical Reasoning",
+      "frequentPoints": [
+        "Ratios/Percentages",
+        "Time & Work",
+        "Permutations/Probability",
+        "Syllogisms",
+        "Data Interpretation",
+        "2D/3D Spatial Folding",
+        "Critical Reasoning"
+      ]
+    },
+    {
+      "subject": "Engineering & Discrete Mathematics",
+      "completion": "100%",
+      "m2023": 10.0,
+      "m2024": 13.0,
+      "m2025": 12.0,
+      "avgMarks": 11.7,
+      "targetMarks": 11.0,
+      "dominantTypes": "MCQ + MSQ + NAT",
+      "frequentTopics": "Graph Connectivity/Coloring/Planarity, Propositional & 1st-Order Logic, Generating Functions & Recurrences, Eigenvalues/Rank, Bayes' Theorem, Distributions, Maxima/Minima",
+      "frequentPoints": [
+        "Graph Connectivity/Coloring/Planarity",
+        "Propositional & 1st-Order Logic",
+        "Generating Functions & Recurrences",
+        "Eigenvalues/Rank",
+        "Bayes' Theorem",
+        "Distributions",
+        "Maxima/Minima"
+      ]
+    },
+    {
+      "subject": "Programming & Data Structures (P&DS)",
+      "completion": "100%",
+      "m2023": 11.0,
+      "m2024": 8.0,
+      "m2025": 10.0,
+      "avgMarks": 9.7,
+      "targetMarks": 9.0,
+      "dominantTypes": "NAT + MCQ",
+      "frequentTopics": "C Pointers & 2D Array Arithmetic, Static/Global Recursion Stack Tracing, Binary Trees, BST, AVL Rotations, Binary Heaps, Hashing Collision Resolution, Graph Traversals",
+      "frequentPoints": [
+        "C Pointers & 2D Array Arithmetic",
+        "Static/Global Recursion Stack Tracing",
+        "Binary Trees",
+        "BST",
+        "AVL Rotations",
+        "Binary Heaps",
+        "Hashing Collision Resolution",
+        "Graph Traversals"
+      ]
+    },
+    {
+      "subject": "Computer Organization & Arch. (COA)",
+      "completion": "100%",
+      "m2023": 12.0,
+      "m2024": 9.0,
+      "m2025": 8.0,
+      "avgMarks": 9.7,
+      "targetMarks": 8.5,
+      "dominantTypes": "NAT + MSQ",
+      "frequentTopics": "Cache Mapping (Direct, Set-Associative, Fully), Effective Memory Access Time (TLB+Cache+Paging), Pipeline Hazards (RAW/WAR/WAW, Stalls, Speedup), Addressing Modes, DMA/Interrupts, IEEE 754",
+      "frequentPoints": [
+        "Cache Mapping (Direct, Set-Associative, Fully)",
+        "Effective Memory Access Time (TLB+Cache+Paging)",
+        "Pipeline Hazards (RAW/WAR/WAW, Stalls, Speedup)",
+        "Addressing Modes",
+        "DMA/Interrupts",
+        "IEEE 754"
+      ]
+    },
+    {
+      "subject": "Operating Systems (OS)",
+      "completion": "100%",
+      "m2023": 7.0,
+      "m2024": 10.0,
+      "m2025": 8.0,
+      "avgMarks": 8.3,
+      "targetMarks": 7.5,
+      "dominantTypes": "MSQ + NAT",
+      "frequentTopics": "Process Synchronization (Semaphores, Mutex, Producer-Consumer, Readers-Writers), CPU Scheduling (SRTF, SJF, RR Turnaround/Waiting), Banker's Deadlock Algorithm, Multi-Level Paging & TLB, LRU/Optimal Page Replacement, Disk Inodes",
+      "frequentPoints": [
+        "Process Synchronization (Semaphores, Mutex, Producer-Consumer, Readers-Writers)",
+        "CPU Scheduling (SRTF, SJF, RR Turnaround/Waiting)",
+        "Banker's Deadlock Algorithm",
+        "Multi-Level Paging & TLB",
+        "LRU/Optimal Page Replacement",
+        "Disk Inodes"
+      ]
+    },
+    {
+      "subject": "Computer Networks (CN) [Pending 75%]",
+      "completion": "25%",
+      "m2023": 8.0,
+      "m2024": 9.0,
+      "m2025": 8.0,
+      "avgMarks": 8.3,
+      "targetMarks": 7.5,
+      "dominantTypes": "NAT + MSQ",
+      "frequentTopics": "Classless Addressing (CIDR), Subnetting/Supernetting, IPv4 Fragmentation (MTU/Offsets), Distance Vector (Count-to-Infinity) & OSPF Routing, TCP Flow & Congestion Control (Slow Start/AIMD), Go-Back-N & Selective Repeat, CSMA/CD, DNS/HTTP",
+      "frequentPoints": [
+        "Classless Addressing (CIDR)",
+        "Subnetting/Supernetting",
+        "IPv4 Fragmentation (MTU/Offsets)",
+        "Distance Vector (Count-to-Infinity) & OSPF Routing",
+        "TCP Flow & Congestion Control (Slow Start/AIMD)",
+        "Go-Back-N & Selective Repeat",
+        "CSMA/CD",
+        "DNS/HTTP"
+      ]
+    },
+    {
+      "subject": "Theory of Computation (TOC) [Pending 75%]",
+      "completion": "25%",
+      "m2023": 9.0,
+      "m2024": 7.0,
+      "m2025": 9.0,
+      "avgMarks": 8.3,
+      "targetMarks": 7.5,
+      "dominantTypes": "MSQ + MCQ",
+      "frequentTopics": "DFA Construction & Minimization (Myhill-Nerode), NFA-to-DFA, Regular Expressions, Closure Properties Matrix (Reg/DCFL/CFL/Rec/RE), CFG & PDA (DPDA vs NPDA), Pumping Lemma, Turing Machines, Halting Problem, Reductions & Rice's Theorem",
+      "frequentPoints": [
+        "DFA Construction & Minimization (Myhill-Nerode)",
+        "NFA-to-DFA",
+        "Regular Expressions",
+        "Closure Properties Matrix (Reg/DCFL/CFL/Rec/RE)",
+        "CFG & PDA (DPDA vs NPDA)",
+        "Pumping Lemma",
+        "Turing Machines",
+        "Halting Problem",
+        "Reductions & Rice's Theorem"
+      ]
+    },
+    {
+      "subject": "Algorithms",
+      "completion": "100%",
+      "m2023": 6.0,
+      "m2024": 8.0,
+      "m2025": 8.0,
+      "avgMarks": 7.3,
+      "targetMarks": 7.0,
+      "dominantTypes": "NAT + MCQ + MSQ",
+      "frequentTopics": "Asymptotic Notation & Master Theorem Recurrences, Dijkstra's & Bellman-Ford Shortest Paths, Prim's & Kruskal's MST, Dynamic Programming (LCS, Matrix Chain, 0/1 Knapsack), Greedy (Huffman Coding), Quick/Merge/Heap Sort",
+      "frequentPoints": [
+        "Asymptotic Notation & Master Theorem Recurrences",
+        "Dijkstra's & Bellman-Ford Shortest Paths",
+        "Prim's & Kruskal's MST",
+        "Dynamic Programming (LCS, Matrix Chain, 0/1 Knapsack)",
+        "Greedy (Huffman Coding)",
+        "Quick/Merge/Heap Sort"
+      ]
+    },
+    {
+      "subject": "Database Management Systems (DBMS)",
+      "completion": "100%",
+      "m2023": 5.0,
+      "m2024": 8.0,
+      "m2025": 8.0,
+      "avgMarks": 7.0,
+      "targetMarks": 6.5,
+      "dominantTypes": "MSQ + NAT + MCQ",
+      "frequentTopics": "Functional Dependencies, Candidate Keys & Normal Forms (1NF–BCNF, Lossless Join), SQL Nested/Correlated Queries & Joins, Relational Algebra & TRC, Conflict/View Serializability, 2PL Concurrency, B & B+ Tree Node Splitting/Order",
+      "frequentPoints": [
+        "Functional Dependencies",
+        "Candidate Keys & Normal Forms (1NF–BCNF, Lossless Join)",
+        "SQL Nested/Correlated Queries & Joins",
+        "Relational Algebra & TRC",
+        "Conflict/View Serializability",
+        "2PL Concurrency",
+        "B & B+ Tree Node Splitting/Order"
+      ]
+    },
+    {
+      "subject": "Compiler Design (CD) [Pending 100%]",
+      "completion": "0%",
+      "m2023": 5.0,
+      "m2024": 8.0,
+      "m2025": 5.0,
+      "avgMarks": 6.0,
+      "targetMarks": 5.5,
+      "dominantTypes": "NAT + MSQ + MCQ",
+      "frequentTopics": "FIRST & FOLLOW Sets, LL(1) Parse Table, LR(0)/SLR(1)/CLR(1)/LALR(1) Item Sets & Conflict Counts, Syntax-Directed Translation (S/L-Attributed Evaluation), 3-Address Code & SSA, Basic Blocks, DAG & Liveness Data-Flow Analysis",
+      "frequentPoints": [
+        "FIRST & FOLLOW Sets",
+        "LL(1) Parse Table",
+        "LR(0)/SLR(1)/CLR(1)/LALR(1) Item Sets & Conflict Counts",
+        "Syntax-Directed Translation (S/L-Attributed Evaluation)",
+        "3-Address Code & SSA",
+        "Basic Blocks",
+        "DAG & Liveness Data-Flow Analysis"
+      ]
+    },
+    {
+      "subject": "Digital Logic (DL)",
+      "completion": "100%",
+      "m2023": 6.0,
+      "m2024": 5.0,
+      "m2025": 6.0,
+      "avgMarks": 5.7,
+      "targetMarks": 5.5,
+      "dominantTypes": "NAT + MCQ",
+      "frequentTopics": "K-Map Minimization (Prime/Essential Implicants, Don't Care), MUX/Decoder Circuit Realization, Synchronous & Ripple Counters (Mod-N, Propagation Delay, Max Clock Frequency), Setup/Hold Time, Booth's & 2's Complement",
+      "frequentPoints": [
+        "K-Map Minimization (Prime/Essential Implicants, Don't Care)",
+        "MUX/Decoder Circuit Realization",
+        "Synchronous & Ripple Counters (Mod-N, Propagation Delay, Max Clock Frequency)",
+        "Setup/Hold Time",
+        "Booth's & 2's Complement"
+      ]
+    }
+  ],
+  "questionShifts": [
+    {
+      "year": "GATE 2023 Official Paper",
+      "mcq": 34.0,
+      "msq": 15.0,
+      "nat": 16.0,
+      "total": 65.0,
+      "implication": "Balanced baseline; strong NAT emphasis in COA, OS & P&DS"
+    },
+    {
+      "year": "GATE 2024 Official Paper",
+      "mcq": 19.0,
+      "msq": 20.0,
+      "nat": 16.0,
+      "total": 55.0,
+      "implication": "Sharp MSQ surge (20 Qs); rewards deep theoretical mastery in TOC, OS, DBMS & CN"
+    },
+    {
+      "year": "GATE 2025 Official Paper",
+      "mcq": 33.0,
+      "msq": 18.0,
+      "nat": 14.0,
+      "total": 65.0,
+      "implication": "High MSQ retention (18 Qs); zero partial credit makes MSQ accuracy the #1 rank separator"
+    },
+    {
+      "year": "3-Year Average Question Mix",
+      "mcq": 28.7,
+      "msq": 17.7,
+      "nat": 15.3,
+      "total": 61.7,
+      "implication": "Daily PYQ Target Mix: ~45% MCQ + ~30% MSQ + ~25% NAT across all study blocks"
+    }
+  ]
+}

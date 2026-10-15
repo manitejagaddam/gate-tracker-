@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import { DaySchedule, DayUserState, PlanMode } from "@/types/tracker";
 import { sounds } from "@/utils/sound";
+import { PointWiseList } from "@/components/PointWiseList";
 
 interface PinnedHeroDayProps {
   day: DaySchedule;
@@ -295,14 +296,31 @@ export const PinnedHeroDay: React.FC<PinnedHeroDayProps> = ({
               <div className="badge-row">
                 <span className="block-tag tag-b1">
                   {planMode === "master"
-                    ? "Block 1 • 3h 00m (New Syllabus / Mock)"
+                    ? "Block 1 • 3h 00m (New Syllabus & Topic Drills)"
                     : "4h Fallback • Block 1 (1h 45m)"}
                 </span>
                 {day.sylSubj && (
                   <span className="subject-badge">{day.sylSubj}</span>
                 )}
               </div>
-              <p className="task-primary-desc">{b1Text}</p>
+              <PointWiseList
+                points={planMode === "master" ? day.b1Points : undefined}
+                fallbackText={b1Text}
+                subject={day.b1Subject}
+                bulletColor="amber"
+                variant="hero"
+              />
+              {planMode === "master" && day.b1PyqPoints && day.b1PyqPoints.length > 0 && (
+                <div className="hero-pyq-callout">
+                  <span className="hero-pyq-tag">🎯 Daily Topic PYQ Target</span>
+                  <PointWiseList
+                    points={day.b1PyqPoints}
+                    bulletColor="cyan"
+                    variant="hero"
+                    showSubjectBadge={false}
+                  />
+                </div>
+              )}
             </div>
           </div>
           <div className="block-card-footer">
@@ -334,7 +352,13 @@ export const PinnedHeroDay: React.FC<PinnedHeroDayProps> = ({
                   <span className="focus-skill-badge">{day.focusSkill}</span>
                 )}
               </div>
-              <p className="task-primary-desc">{b2Text}</p>
+              <PointWiseList
+                points={planMode === "master" ? day.b2Points : undefined}
+                fallbackText={b2Text}
+                subject={day.b2Subject}
+                bulletColor="iris"
+                variant="hero"
+              />
             </div>
           </div>
           <div className="block-card-footer">
@@ -363,7 +387,13 @@ export const PinnedHeroDay: React.FC<PinnedHeroDayProps> = ({
                     : "4h Fallback • Block 3 (45m)"}
                 </span>
               </div>
-              <p className="task-primary-desc">{b3Text}</p>
+              <PointWiseList
+                points={planMode === "master" ? day.b3Points : undefined}
+                fallbackText={b3Text}
+                subject={day.b3Subject}
+                bulletColor="emerald"
+                variant="hero"
+              />
             </div>
           </div>
           <div className="block-card-footer">
@@ -390,7 +420,12 @@ export const PinnedHeroDay: React.FC<PinnedHeroDayProps> = ({
                   4-Hour Compact Busy-Day Fallback
                 </span>
               </div>
-              <p className="task-primary-desc">{day.air10Ext}</p>
+              <PointWiseList
+                fallbackText={day.air10Ext}
+                bulletColor="slate"
+                variant="hero"
+                showSubjectBadge={false}
+              />
             </div>
           </div>
           <div className="block-card-footer">
@@ -1152,6 +1187,24 @@ export const PinnedHeroDay: React.FC<PinnedHeroDayProps> = ({
           background: var(--success-bg);
           border-color: var(--success);
           color: var(--success);
+        }
+
+        .hero-pyq-callout {
+          margin-top: 0.65rem;
+          padding: 0.55rem 0.8rem;
+          border-radius: var(--radius-md);
+          background: rgba(56, 189, 248, 0.08);
+          border: 1px dashed rgba(56, 189, 248, 0.3);
+          display: flex;
+          flex-direction: column;
+          gap: 0.35rem;
+        }
+
+        .hero-pyq-tag {
+          font-size: 0.72rem;
+          font-weight: 700;
+          color: var(--accent-cyan);
+          letter-spacing: 0.02em;
         }
 
         @media (max-width: 900px) {

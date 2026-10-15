@@ -17,6 +17,7 @@ import {
   Check,
 } from "lucide-react";
 import { DaySchedule, DayUserState, PlanMode, ViewLayout } from "@/types/tracker";
+import { PointWiseList } from "@/components/PointWiseList";
 
 interface ScheduleViewProps {
   days: DaySchedule[];
@@ -346,7 +347,24 @@ export const ScheduleView: React.FC<ScheduleViewProps> = ({
                       {st.b1 ? "Completed" : "Mark Done"}
                     </button>
                   </div>
-                  <p className="study-block-desc">{b1}</p>
+                  <PointWiseList
+                    points={d.b1Points}
+                    fallbackText={b1}
+                    subject={d.b1Subject}
+                    bulletColor="amber"
+                    variant="card"
+                  />
+                  {d.b1PyqPoints && d.b1PyqPoints.length > 0 && (
+                    <div className="pyq-drill-callout">
+                      <span className="pyq-drill-tag">Topic PYQ Drill</span>
+                      <PointWiseList
+                        points={d.b1PyqPoints}
+                        bulletColor="cyan"
+                        variant="card"
+                        showSubjectBadge={false}
+                      />
+                    </div>
+                  )}
                 </div>
 
                 {/* Block 2 */}
@@ -363,7 +381,13 @@ export const ScheduleView: React.FC<ScheduleViewProps> = ({
                       {st.b2 ? "Completed" : "Mark Done"}
                     </button>
                   </div>
-                  <p className="study-block-desc">{b2}</p>
+                  <PointWiseList
+                    points={d.b2Points}
+                    fallbackText={b2}
+                    subject={d.b2Subject}
+                    bulletColor="iris"
+                    variant="card"
+                  />
                 </div>
 
                 {/* Block 3 */}
@@ -380,7 +404,13 @@ export const ScheduleView: React.FC<ScheduleViewProps> = ({
                       {st.b3 ? "Completed" : "Mark Done"}
                     </button>
                   </div>
-                  <p className="study-block-desc">{b3}</p>
+                  <PointWiseList
+                    points={d.b3Points}
+                    fallbackText={b3}
+                    subject={d.b3Subject}
+                    bulletColor="emerald"
+                    variant="card"
+                  />
                 </div>
 
                 {/* 4h Fallback Callout */}
@@ -396,17 +426,26 @@ export const ScheduleView: React.FC<ScheduleViewProps> = ({
                         {st.ext ? "Completed" : "Mark Done"}
                       </button>
                     </div>
-                    <p className="fallback-desc">{d.air10Ext}</p>
+                    <PointWiseList
+                      fallbackText={d.air10Ext}
+                      bulletColor="slate"
+                      variant="card"
+                      showSubjectBadge={false}
+                    />
                   </div>
                 )}
               </div>
             ) : (
               /* Compact Preview Mode */
               <div className="card-compact-preview">
-                <div className="content-line">
-                  <span className="dot-bullet bullet-b1" />
-                  <p className="line-text text-b1">{b1}</p>
-                </div>
+                <PointWiseList
+                  points={d.b1Points}
+                  fallbackText={b1}
+                  subject={d.b1Subject}
+                  bulletColor="amber"
+                  variant="compact"
+                  maxItems={2}
+                />
               </div>
             )}
 
@@ -540,7 +579,23 @@ export const ScheduleView: React.FC<ScheduleViewProps> = ({
                 </td>
 
                 <td>
-                  <div className="table-block-text">{b1}</div>
+                  <PointWiseList
+                    points={d.b1Points}
+                    fallbackText={b1}
+                    subject={d.b1Subject}
+                    bulletColor="amber"
+                    variant="table"
+                  />
+                  {d.b1PyqPoints && d.b1PyqPoints.length > 0 && (
+                    <div style={{ marginTop: "0.35rem" }}>
+                      <PointWiseList
+                        points={d.b1PyqPoints}
+                        bulletColor="cyan"
+                        variant="table"
+                        showSubjectBadge={false}
+                      />
+                    </div>
+                  )}
                   <div className="table-mini-checks">
                     <button
                       onClick={() => onToggleBlock(d.id, "b1")}
@@ -560,7 +615,13 @@ export const ScheduleView: React.FC<ScheduleViewProps> = ({
                 </td>
 
                 <td>
-                  <div className="table-block-text">{b2}</div>
+                  <PointWiseList
+                    points={d.b2Points}
+                    fallbackText={b2}
+                    subject={d.b2Subject}
+                    bulletColor="iris"
+                    variant="table"
+                  />
                   <div className="table-mini-checks">
                     <button
                       onClick={() => onToggleBlock(d.id, "b2")}
@@ -572,7 +633,13 @@ export const ScheduleView: React.FC<ScheduleViewProps> = ({
                 </td>
 
                 <td>
-                  <div className="table-block-text">{b3}</div>
+                  <PointWiseList
+                    points={d.b3Points}
+                    fallbackText={b3}
+                    subject={d.b3Subject}
+                    bulletColor="emerald"
+                    variant="table"
+                  />
                   <div className="table-mini-checks">
                     <button
                       onClick={() => onToggleBlock(d.id, "b3")}
@@ -1240,6 +1307,25 @@ export const ScheduleView: React.FC<ScheduleViewProps> = ({
         .table-pin-btn:hover {
           color: #f59e0b;
           border-color: #f59e0b;
+        }
+
+        .pyq-drill-callout {
+          margin-top: 0.5rem;
+          padding: 0.45rem 0.65rem;
+          border-radius: var(--radius-md);
+          background: rgba(56, 189, 248, 0.06);
+          border: 1px dashed rgba(56, 189, 248, 0.25);
+          display: flex;
+          flex-direction: column;
+          gap: 0.3rem;
+        }
+
+        .pyq-drill-tag {
+          font-size: 0.68rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          color: var(--accent-cyan);
         }
 
         @media (max-width: 768px) {

@@ -1,0 +1,910 @@
+[
+  {
+    "id": 1,
+    "subject": "Programming & DS",
+    "topic": "C Pointers, 2D Arrays & Strings",
+    "tier": "Tier 1: Every Year Guaranteed",
+    "typicalMarks": 2.0,
+    "format": "NAT",
+    "recurringTrap": "Tracing output of `*(a+i)+j`, array of pointers, pointer aliasing, and string literal modification/length",
+    "trapPoints": [
+      "Tracing output of `*(a+i)+j`",
+      "array of pointers",
+      "pointer aliasing",
+      "and string literal modification/length"
+    ],
+    "scheduledDays": "Day 1, Day 35, Day 43",
+    "pass1": "Completed",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 2,
+    "subject": "Programming & DS",
+    "topic": "Recursion & Static/Global Variables",
+    "tier": "Tier 1: Every Year Guaranteed",
+    "typicalMarks": 2.0,
+    "format": "NAT",
+    "recurringTrap": "Counting total function calls or printed value when `static` variable persists across recursive stack frames",
+    "trapPoints": [
+      "Counting total function calls or printed value when `static` variable persists across recursive stack frames"
+    ],
+    "scheduledDays": "Day 1, Day 35, Day 50",
+    "pass1": "Completed",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 3,
+    "subject": "Programming & DS",
+    "topic": "Linked Lists, Stacks & Queues",
+    "tier": "Tier 2: High Frequency (4/5 yrs)",
+    "typicalMarks": 1.5,
+    "format": "MCQ + NAT",
+    "recurringTrap": "C pointer manipulation on singly/doubly list (detecting whether code reverses/deletes node), infix-to-postfix stack max size",
+    "trapPoints": [
+      "C pointer manipulation on singly/doubly list (detecting whether code reverses/deletes node)",
+      "infix-to-postfix stack max size"
+    ],
+    "scheduledDays": "Day 2, Day 35, Day 57",
+    "pass1": "Completed",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 4,
+    "subject": "Programming & DS",
+    "topic": "Binary Trees, BST & AVL Rotations",
+    "tier": "Tier 1: Every Year Guaranteed",
+    "typicalMarks": 2.5,
+    "format": "NAT + MSQ",
+    "recurringTrap": "Reconstructing tree from Pre+In or Post+In traversal, min/max nodes in AVL tree of height h, BST successor/predecessor",
+    "trapPoints": [
+      "Reconstructing tree from Pre+In or Post+In traversal",
+      "min/max nodes in AVL tree of height h",
+      "BST successor/predecessor"
+    ],
+    "scheduledDays": "Day 8, Day 35, Day 64",
+    "pass1": "Completed",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 5,
+    "subject": "Programming & DS",
+    "topic": "Binary Heaps & Hashing Collisions",
+    "tier": "Tier 1: Every Year Guaranteed",
+    "typicalMarks": 2.0,
+    "format": "NAT + MCQ",
+    "recurringTrap": "`O(n)` Build-Heap swaps, k-th smallest in min-heap, Linear/Quadratic probing insertion sequence & collision count",
+    "trapPoints": [
+      "`O(n)` Build-Heap swaps",
+      "k-th smallest in min-heap",
+      "Linear/Quadratic probing insertion sequence & collision count"
+    ],
+    "scheduledDays": "Day 8, Day 43, Day 71",
+    "pass1": "Completed",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 6,
+    "subject": "Algorithms",
+    "topic": "Asymptotic Analysis & Master Theorem",
+    "tier": "Tier 1: Every Year Guaranteed",
+    "typicalMarks": 2.0,
+    "format": "MCQ + MSQ",
+    "recurringTrap": "Ordering tricky functions (`n^log n`, `(log n)!`, `2^(√log n)`), solving recurrences via Master Theorem & substitution",
+    "trapPoints": [
+      "Ordering tricky functions (`n^log n`, `(log n)!`, `2^(√log n)`)",
+      "solving recurrences via Master Theorem & substitution"
+    ],
+    "scheduledDays": "Day 9, Day 36, Day 44",
+    "pass1": "Completed",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 7,
+    "subject": "Algorithms",
+    "topic": "Sorting, Searching & Divide-and-Conquer",
+    "tier": "Tier 2: High Frequency (4/5 yrs)",
+    "typicalMarks": 1.5,
+    "format": "MCQ + NAT",
+    "recurringTrap": "QuickSort worst/best pivot comparisons, MergeSort inversion count, stability & in-place properties of sorting algorithms",
+    "trapPoints": [
+      "QuickSort worst/best pivot comparisons",
+      "MergeSort inversion count",
+      "stability & in-place properties of sorting algorithms"
+    ],
+    "scheduledDays": "Day 9, Day 10, Day 36",
+    "pass1": "Completed",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 8,
+    "subject": "Algorithms",
+    "topic": "Greedy Algorithms (Huffman, MST, Knapsack)",
+    "tier": "Tier 1: Every Year Guaranteed",
+    "typicalMarks": 2.0,
+    "format": "NAT + MSQ",
+    "recurringTrap": "Huffman average bits per char, Prim's/Kruskal's distinct MST count when edge weights repeat, Greedy choice counterexamples",
+    "trapPoints": [
+      "Huffman average bits per char",
+      "Prim's/Kruskal's distinct MST count when edge weights repeat",
+      "Greedy choice counterexamples"
+    ],
+    "scheduledDays": "Day 10, Day 36, Day 51",
+    "pass1": "Completed",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 9,
+    "subject": "Algorithms",
+    "topic": "Dynamic Programming (LCS, MCM, Knapsack)",
+    "tier": "Tier 1: Every Year Guaranteed",
+    "typicalMarks": 2.0,
+    "format": "NAT + MCQ",
+    "recurringTrap": "Filling DP table for LCS or Matrix Chain Multiplication, time complexity of pseudo-polynomial 0/1 Knapsack",
+    "trapPoints": [
+      "Filling DP table for LCS or Matrix Chain Multiplication",
+      "time complexity of pseudo-polynomial 0/1 Knapsack"
+    ],
+    "scheduledDays": "Day 12, Day 36, Day 58",
+    "pass1": "Completed",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 10,
+    "subject": "Algorithms",
+    "topic": "Graph Shortest Paths & Traversals (BFS/DFS)",
+    "tier": "Tier 1: Every Year Guaranteed",
+    "typicalMarks": 2.0,
+    "format": "MSQ + NAT",
+    "recurringTrap": "DFS tree/back/cross edge conditions, Topological sort count, Dijkstra failure on negative edges, Bellman-Ford iterations",
+    "trapPoints": [
+      "DFS tree/back/cross edge conditions",
+      "Topological sort count",
+      "Dijkstra failure on negative edges",
+      "Bellman-Ford iterations"
+    ],
+    "scheduledDays": "Day 12, Day 36, Day 65",
+    "pass1": "Completed",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 11,
+    "subject": "Theory of Computation",
+    "topic": "DFA/NFA Construction & Minimization",
+    "tier": "Tier 1: Every Year Guaranteed",
+    "typicalMarks": 2.5,
+    "format": "NAT + MCQ",
+    "recurringTrap": "Finding exact minimum number of states in DFA for divisibility/modulo or substring patterns using Myhill-Nerode",
+    "trapPoints": [
+      "Finding exact minimum number of states in DFA for divisibility/modulo or substring patterns using Myhill-Nerode"
+    ],
+    "scheduledDays": "Day 1, Day 12, Day 31",
+    "pass1": "Pending (25% Done)",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 12,
+    "subject": "Theory of Computation",
+    "topic": "Regular Expressions & Pumping Lemma",
+    "tier": "Tier 2: High Frequency (4/5 yrs)",
+    "typicalMarks": 1.5,
+    "format": "MCQ + MSQ",
+    "recurringTrap": "Equivalence of two complex regular expressions, identifying non-regular language via Pumping Lemma contrapositive",
+    "trapPoints": [
+      "Equivalence of two complex regular expressions",
+      "identifying non-regular language via Pumping Lemma contrapositive"
+    ],
+    "scheduledDays": "Day 1, Day 12, Day 38",
+    "pass1": "Pending",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 13,
+    "subject": "Theory of Computation",
+    "topic": "CFG, Ambiguity, PDA (DPDA vs NPDA)",
+    "tier": "Tier 1: Every Year Guaranteed",
+    "typicalMarks": 2.0,
+    "format": "MSQ + MCQ",
+    "recurringTrap": "Matching CFG to exact set-builder language, distinguishing DCFL (`wcw^R`, `a^n b^n`) from non-deterministic CFL (`ww^R`)",
+    "trapPoints": [
+      "Matching CFG to exact set-builder language",
+      "distinguishing DCFL (`wcw^R`, `a^n b^n`) from non-deterministic CFL (`ww^R`)"
+    ],
+    "scheduledDays": "Day 2, Day 8, Day 47",
+    "pass1": "Pending",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 14,
+    "subject": "Theory of Computation",
+    "topic": "Closure Properties Matrix (Reg to RE)",
+    "tier": "Tier 1: Every Year Guaranteed",
+    "typicalMarks": 1.5,
+    "format": "MSQ",
+    "recurringTrap": "Multi-select questions testing closure of Regular, DCFL, CFL, Recursive, and RE under Union, Intersection, Complement, Homomorphism",
+    "trapPoints": [
+      "Multi-select questions testing closure of Regular",
+      "DCFL",
+      "CFL",
+      "Recursive",
+      "and RE under Union",
+      "Intersection",
+      "Complement",
+      "Homomorphism"
+    ],
+    "scheduledDays": "Day 1, Day 8, Day 9, Day 12",
+    "pass1": "Pending",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 15,
+    "subject": "Theory of Computation",
+    "topic": "Turing Machines, Halting, Reductions & Rice's Theorem",
+    "tier": "Tier 1: Every Year Guaranteed",
+    "typicalMarks": 2.0,
+    "format": "MSQ",
+    "recurringTrap": "Decidability of emptiness/finiteness/equivalence/ambiguity; applying Rice's Theorem to non-trivial semantic properties of RE",
+    "trapPoints": [
+      "Decidability of emptiness/finiteness/equivalence/ambiguity; applying Rice's Theorem to non-trivial semantic properties of RE"
+    ],
+    "scheduledDays": "Day 9, Day 10, Day 12, Day 54",
+    "pass1": "Pending",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 16,
+    "subject": "Compiler Design",
+    "topic": "Lexical Analysis & Regex-to-DFA",
+    "tier": "Tier 2: High Frequency (3/5 yrs)",
+    "typicalMarks": 1.0,
+    "format": "NAT",
+    "recurringTrap": "Counting exact number of tokens read by a C lexical analyzer using Maximal Munch rule",
+    "trapPoints": [
+      "Counting exact number of tokens read by a C lexical analyzer using Maximal Munch rule"
+    ],
+    "scheduledDays": "Day 13, Day 20, Day 31",
+    "pass1": "Pending",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 17,
+    "subject": "Compiler Design",
+    "topic": "FIRST & FOLLOW Sets, LL(1) Parsing",
+    "tier": "Tier 1: Every Year Guaranteed",
+    "typicalMarks": 2.0,
+    "format": "NAT + MSQ",
+    "recurringTrap": "Computing `FIRST` and `FOLLOW` sets with nullable non-terminals, checking if grammar is `LL(1)` after left-factoring",
+    "trapPoints": [
+      "Computing `FIRST` and `FOLLOW` sets with nullable non-terminals",
+      "checking if grammar is `LL(1)` after left-factoring"
+    ],
+    "scheduledDays": "Day 14, Day 15, Day 20",
+    "pass1": "Pending",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 18,
+    "subject": "Compiler Design",
+    "topic": "LR(0), SLR(1), CLR(1) & LALR(1) Parsing",
+    "tier": "Tier 1: Every Year Guaranteed",
+    "typicalMarks": 2.0,
+    "format": "NAT + MSQ",
+    "recurringTrap": "Counting canonical `LR(0)` states, identifying Shift-Reduce vs Reduce-Reduce conflicts across SLR/LALR/CLR hierarchy",
+    "trapPoints": [
+      "Counting canonical `LR(0)` states",
+      "identifying Shift-Reduce vs Reduce-Reduce conflicts across SLR/LALR/CLR hierarchy"
+    ],
+    "scheduledDays": "Day 16, Day 17, Day 20",
+    "pass1": "Pending",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 19,
+    "subject": "Compiler Design",
+    "topic": "Syntax-Directed Translation (SDT)",
+    "tier": "Tier 1: Every Year Guaranteed",
+    "typicalMarks": 1.5,
+    "format": "NAT",
+    "recurringTrap": "Tracing bottom-up or top-down parse tree evaluation to compute the exact numeric value printed at the root",
+    "trapPoints": [
+      "Tracing bottom-up or top-down parse tree evaluation to compute the exact numeric value printed at the root"
+    ],
+    "scheduledDays": "Day 19, Day 20, Day 38",
+    "pass1": "Pending",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 20,
+    "subject": "Compiler Design",
+    "topic": "3-Address Code, Basic Blocks, DAG & Liveness",
+    "tier": "Tier 2: High Frequency (4/5 yrs)",
+    "typicalMarks": 1.5,
+    "format": "NAT + MCQ",
+    "recurringTrap": "Counting leaders/basic blocks, minimum registers needed via Liveness Analysis `IN/OUT` sets & SSA variable renaming",
+    "trapPoints": [
+      "Counting leaders/basic blocks",
+      "minimum registers needed via Liveness Analysis `IN/OUT` sets & SSA variable renaming"
+    ],
+    "scheduledDays": "Day 19, Day 20, Day 47",
+    "pass1": "Pending",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 21,
+    "subject": "Computer Networks",
+    "topic": "Stop-and-Wait, Go-Back-N & Selective Repeat",
+    "tier": "Tier 1: Every Year Guaranteed",
+    "typicalMarks": 2.0,
+    "format": "NAT",
+    "recurringTrap": "Calculating link utilization `1/(1+2a)`, minimum sequence number bits (`N+1` vs `2N`), and throughput with packet drops",
+    "trapPoints": [
+      "Calculating link utilization `1/(1+2a)`",
+      "minimum sequence number bits (`N+1` vs `2N`)",
+      "and throughput with packet drops"
+    ],
+    "scheduledDays": "Day 21, Day 30, Day 33",
+    "pass1": "Pending (25% Done)",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 22,
+    "subject": "Computer Networks",
+    "topic": "MAC Layer: ALOHA, CSMA/CD & Backoff",
+    "tier": "Tier 2: High Frequency (4/5 yrs)",
+    "typicalMarks": 1.5,
+    "format": "NAT + MCQ",
+    "recurringTrap": "Minimum frame size `L = 2 * Tp * B` in CSMA/CD, Binary Exponential Backoff contention window probability",
+    "trapPoints": [
+      "Minimum frame size `L = 2 * Tp * B` in CSMA/CD",
+      "Binary Exponential Backoff contention window probability"
+    ],
+    "scheduledDays": "Day 22, Day 33, Day 40",
+    "pass1": "Pending",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 23,
+    "subject": "Computer Networks",
+    "topic": "IPv4 Subnetting, VLSM, CIDR & LPM Routing",
+    "tier": "Tier 1: Every Year Guaranteed",
+    "typicalMarks": 2.5,
+    "format": "NAT + MCQ",
+    "recurringTrap": "Longest Prefix Match forwarding table lookup, CIDR route aggregation, and usable host/broadcast calculation",
+    "trapPoints": [
+      "Longest Prefix Match forwarding table lookup",
+      "CIDR route aggregation",
+      "and usable host/broadcast calculation"
+    ],
+    "scheduledDays": "Day 23, Day 26, Day 33",
+    "pass1": "Pending",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 24,
+    "subject": "Computer Networks",
+    "topic": "IPv4 Fragmentation & Routing (DV / OSPF)",
+    "tier": "Tier 2: High Frequency (4/5 yrs)",
+    "typicalMarks": 1.5,
+    "format": "NAT + MSQ",
+    "recurringTrap": "Calculating fragment offset (multiples of 8 bytes) & MF flag across multi-MTU links; Count-to-Infinity in Distance Vector",
+    "trapPoints": [
+      "Calculating fragment offset (multiples of 8 bytes) & MF flag across multi-MTU links; Count-to-Infinity in Distance Vector"
+    ],
+    "scheduledDays": "Day 27, Day 28, Day 48",
+    "pass1": "Pending",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 25,
+    "subject": "Computer Networks",
+    "topic": "TCP Header, Flow & Congestion Control (AIMD)",
+    "tier": "Tier 1: Every Year Guaranteed",
+    "typicalMarks": 2.0,
+    "format": "NAT + MSQ",
+    "recurringTrap": "Tracking `cwnd` and `ssthresh` across Slow Start, Congestion Avoidance, 3-Dup-ACKs & Timeout; Sequence wrap-around time",
+    "trapPoints": [
+      "Tracking `cwnd` and `ssthresh` across Slow Start",
+      "Congestion Avoidance",
+      "3-Dup-ACKs & Timeout; Sequence wrap-around time"
+    ],
+    "scheduledDays": "Day 28, Day 29, Day 55",
+    "pass1": "Pending",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 26,
+    "subject": "Computer Networks",
+    "topic": "Token Bucket, DNS, HTTP, SMTP & RSA",
+    "tier": "Tier 2: High Frequency (3/5 yrs)",
+    "typicalMarks": 1.0,
+    "format": "NAT + MCQ",
+    "recurringTrap": "Token bucket max burst time, HTTP persistent/non-persistent RTT count, DNS iterative/recursive queries & RSA keys",
+    "trapPoints": [
+      "Token bucket max burst time",
+      "HTTP persistent/non-persistent RTT count",
+      "DNS iterative/recursive queries & RSA keys"
+    ],
+    "scheduledDays": "Day 30, Day 40, Day 62",
+    "pass1": "Pending",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 27,
+    "subject": "Operating Systems",
+    "topic": "Processes, `fork()` & CPU Scheduling",
+    "tier": "Tier 1: Every Year Guaranteed",
+    "typicalMarks": 2.5,
+    "format": "NAT",
+    "recurringTrap": "Counting child processes created by `fork()` loops/logical AND/OR; SRTF & Round Robin turnaround/waiting time",
+    "trapPoints": [
+      "Counting child processes created by `fork()` loops/logical AND/OR; SRTF & Round Robin turnaround/waiting time"
+    ],
+    "scheduledDays": "Day 21, Day 34, Day 42",
+    "pass1": "Completed",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 28,
+    "subject": "Operating Systems",
+    "topic": "Process Synchronization & Semaphores",
+    "tier": "Tier 1: Every Year Guaranteed",
+    "typicalMarks": 2.5,
+    "format": "MSQ + NAT",
+    "recurringTrap": "Tracing semaphore `P(S)` and `V(S)` across concurrent processes to check mutual exclusion, deadlock, or max processes in CS",
+    "trapPoints": [
+      "Tracing semaphore `P(S)` and `V(S)` across concurrent processes to check mutual exclusion",
+      "deadlock",
+      "or max processes in CS"
+    ],
+    "scheduledDays": "Day 22, Day 34, Day 49",
+    "pass1": "Completed",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 29,
+    "subject": "Operating Systems",
+    "topic": "Deadlocks & Banker's Algorithm",
+    "tier": "Tier 2: High Frequency (4/5 yrs)",
+    "typicalMarks": 1.5,
+    "format": "NAT + MSQ",
+    "recurringTrap": "Finding minimum resources to guarantee deadlock-free execution (`R >= P*(N-1) + 1`) and safe sequences in Banker's",
+    "trapPoints": [
+      "Finding minimum resources to guarantee deadlock-free execution (`R >= P*(N-1) + 1`) and safe sequences in Banker's"
+    ],
+    "scheduledDays": "Day 23, Day 34, Day 56",
+    "pass1": "Completed",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 30,
+    "subject": "Operating Systems",
+    "topic": "Virtual Memory, Multi-Level Paging & TLB",
+    "tier": "Tier 1: Every Year Guaranteed",
+    "typicalMarks": 2.5,
+    "format": "NAT",
+    "recurringTrap": "Calculating page table size, multi-level page walk memory accesses, TLB + Page Fault Effective Memory Access Time",
+    "trapPoints": [
+      "Calculating page table size",
+      "multi-level page walk memory accesses",
+      "TLB + Page Fault Effective Memory Access Time"
+    ],
+    "scheduledDays": "Day 26, Day 34, Day 63",
+    "pass1": "Completed",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 31,
+    "subject": "Operating Systems",
+    "topic": "Page Replacement (LRU/FIFO/Opt) & Disk Inodes",
+    "tier": "Tier 1: Every Year Guaranteed",
+    "typicalMarks": 1.5,
+    "format": "NAT",
+    "recurringTrap": "Counting page faults for a reference string under LRU/FIFO/Optimal; Unix Inode max file size with single/double/triple indirect blocks",
+    "trapPoints": [
+      "Counting page faults for a reference string under LRU/FIFO/Optimal; Unix Inode max file size with single/double/triple indirect blocks"
+    ],
+    "scheduledDays": "Day 27, Day 42, Day 56",
+    "pass1": "Completed",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 32,
+    "subject": "Databases (DBMS)",
+    "topic": "ER Mapping, Relational Algebra & TRC",
+    "tier": "Tier 2: High Frequency (4/5 yrs)",
+    "typicalMarks": 1.5,
+    "format": "MCQ + MSQ",
+    "recurringTrap": "Minimum tables to represent an ER diagram; translating Relational Algebra division `R ÷ S` and TRC quantifiers",
+    "trapPoints": [
+      "Minimum tables to represent an ER diagram; translating Relational Algebra division `R ÷ S` and TRC quantifiers"
+    ],
+    "scheduledDays": "Day 28, Day 37, Day 45",
+    "pass1": "Completed",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 33,
+    "subject": "Databases (DBMS)",
+    "topic": "SQL Queries (Correlated, Joins, Group By)",
+    "tier": "Tier 1: Every Year Guaranteed",
+    "typicalMarks": 2.0,
+    "format": "NAT + MCQ",
+    "recurringTrap": "Predicting exact number of rows returned by nested SQL queries with `NOT EXISTS`, `GROUP BY`, `HAVING`, and `NULL` values",
+    "trapPoints": [
+      "Predicting exact number of rows returned by nested SQL queries with `NOT EXISTS`",
+      "`GROUP BY`",
+      "`HAVING`",
+      "and `NULL` values"
+    ],
+    "scheduledDays": "Day 28, Day 33, Day 50",
+    "pass1": "Completed",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 34,
+    "subject": "Databases (DBMS)",
+    "topic": "Functional Dependencies & Normalization (1NF–BCNF)",
+    "tier": "Tier 1: Every Year Guaranteed",
+    "typicalMarks": 2.0,
+    "format": "MSQ + NAT",
+    "recurringTrap": "Finding all candidate keys from FD set, identifying highest normal form (3NF vs BCNF), and checking lossless join",
+    "trapPoints": [
+      "Finding all candidate keys from FD set",
+      "identifying highest normal form (3NF vs BCNF)",
+      "and checking lossless join"
+    ],
+    "scheduledDays": "Day 29, Day 37, Day 52",
+    "pass1": "Completed",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 35,
+    "subject": "Databases (DBMS)",
+    "topic": "Transactions, Serializability & 2PL",
+    "tier": "Tier 1: Every Year Guaranteed",
+    "typicalMarks": 1.5,
+    "format": "MSQ + NAT",
+    "recurringTrap": "Constructing precedence graph to test conflict serializability; checking view serializability, recoverability & 2PL",
+    "trapPoints": [
+      "Constructing precedence graph to test conflict serializability; checking view serializability",
+      "recoverability & 2PL"
+    ],
+    "scheduledDays": "Day 30, Day 45, Day 59",
+    "pass1": "Completed",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 36,
+    "subject": "Databases (DBMS)",
+    "topic": "B-Trees & B+ Trees Indexing",
+    "tier": "Tier 1: Every Year Guaranteed",
+    "typicalMarks": 1.5,
+    "format": "NAT",
+    "recurringTrap": "Calculating order `p` of internal and leaf nodes given block size, key size, record pointer & block pointer sizes",
+    "trapPoints": [
+      "Calculating order `p` of internal and leaf nodes given block size",
+      "key size",
+      "record pointer & block pointer sizes"
+    ],
+    "scheduledDays": "Day 30, Day 33, Day 66",
+    "pass1": "Completed",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 37,
+    "subject": "COA",
+    "topic": "Addressing Modes & Machine Instructions",
+    "tier": "Tier 2: High Frequency (4/5 yrs)",
+    "typicalMarks": 1.5,
+    "format": "NAT + MCQ",
+    "recurringTrap": "Expanding instruction opcodes (2-address vs 1-address vs 0-address) and computing effective address in indexed/PC-relative modes",
+    "trapPoints": [
+      "Expanding instruction opcodes (2-address vs 1-address vs 0-address) and computing effective address in indexed/PC-relative modes"
+    ],
+    "scheduledDays": "Day 16, Day 37, Day 45",
+    "pass1": "Completed",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 38,
+    "subject": "COA",
+    "topic": "5-Stage Instruction Pipelining & Hazards",
+    "tier": "Tier 1: Every Year Guaranteed",
+    "typicalMarks": 2.5,
+    "format": "NAT",
+    "recurringTrap": "Counting stall cycles due to RAW data hazards (with and without operand forwarding) and branch penalty; computing CPI & speedup",
+    "trapPoints": [
+      "Counting stall cycles due to RAW data hazards (with and without operand forwarding) and branch penalty; computing CPI & speedup"
+    ],
+    "scheduledDays": "Day 17, Day 34, Day 52",
+    "pass1": "Completed",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 39,
+    "subject": "COA",
+    "topic": "Cache Mapping (Direct/Set-Assoc) & EMAT",
+    "tier": "Tier 1: Every Year Guaranteed",
+    "typicalMarks": 3.0,
+    "format": "NAT + MSQ",
+    "recurringTrap": "Calculating Tag, Set Index, and Byte Offset bits, Tag Directory size, and L1/L2 Write-Through vs Write-Back EMAT",
+    "trapPoints": [
+      "Calculating Tag",
+      "Set Index",
+      "and Byte Offset bits",
+      "Tag Directory size",
+      "and L1/L2 Write-Through vs Write-Back EMAT"
+    ],
+    "scheduledDays": "Day 19, Day 26, Day 34",
+    "pass1": "Completed",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 40,
+    "subject": "COA",
+    "topic": "I/O Interfacing (DMA/Interrupts) & IEEE 754",
+    "tier": "Tier 2: High Frequency (4/5 yrs)",
+    "typicalMarks": 1.5,
+    "format": "NAT",
+    "recurringTrap": "DMA cycle-stealing CPU slowdown percentage; converting 32-bit IEEE 754 hex pattern to decimal value",
+    "trapPoints": [
+      "DMA cycle-stealing CPU slowdown percentage; converting 32-bit IEEE 754 hex pattern to decimal value"
+    ],
+    "scheduledDays": "Day 13, Day 20, Day 59",
+    "pass1": "Completed",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 41,
+    "subject": "Digital Logic",
+    "topic": "Boolean Algebra, K-Maps & Implicants",
+    "tier": "Tier 1: Every Year Guaranteed",
+    "typicalMarks": 2.0,
+    "format": "NAT + MCQ",
+    "recurringTrap": "Counting Prime Implicants (PI) and Essential Prime Implicants (EPI) in 4-variable K-Map with Don't Cares",
+    "trapPoints": [
+      "Counting Prime Implicants (PI) and Essential Prime Implicants (EPI) in 4-variable K-Map with Don't Cares"
+    ],
+    "scheduledDays": "Day 14, Day 31, Day 38",
+    "pass1": "Completed",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 42,
+    "subject": "Digital Logic",
+    "topic": "Combinational Circuits (MUX, Decoders, Adders)",
+    "tier": "Tier 1: Every Year Guaranteed",
+    "typicalMarks": 1.5,
+    "format": "MCQ + NAT",
+    "recurringTrap": "Finding Boolean expression implemented by cascaded `4:1` or `2:1` Multiplexers and active-low Decoders",
+    "trapPoints": [
+      "Finding Boolean expression implemented by cascaded `4:1` or `2:1` Multiplexers and active-low Decoders"
+    ],
+    "scheduledDays": "Day 14, Day 45, Day 52",
+    "pass1": "Completed",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 43,
+    "subject": "Digital Logic",
+    "topic": "Sequential Circuits (Counters & Timing)",
+    "tier": "Tier 1: Every Year Guaranteed",
+    "typicalMarks": 2.0,
+    "format": "NAT",
+    "recurringTrap": "Finding modulus `Mod-N` of feedback counter, output frequency division, and max clock frequency from flip-flop setup/propagation delay",
+    "trapPoints": [
+      "Finding modulus `Mod-N` of feedback counter",
+      "output frequency division",
+      "and max clock frequency from flip-flop setup/propagation delay"
+    ],
+    "scheduledDays": "Day 15, Day 31, Day 66",
+    "pass1": "Completed",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 44,
+    "subject": "Discrete & Engg Math",
+    "topic": "Propositional & First-Order Predicate Logic",
+    "tier": "Tier 1: Every Year Guaranteed",
+    "typicalMarks": 2.0,
+    "format": "MSQ + MCQ",
+    "recurringTrap": "Translating English sentences into nested quantifiers `∀x∃y`, finding logical equivalence & valid inference rules",
+    "trapPoints": [
+      "Translating English sentences into nested quantifiers `∀x∃y`",
+      "finding logical equivalence & valid inference rules"
+    ],
+    "scheduledDays": "Day 8, Day 9, Day 35",
+    "pass1": "Completed",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 45,
+    "subject": "Discrete & Engg Math",
+    "topic": "Sets, Relations, Posets, Lattices & Groups",
+    "tier": "Tier 1: Every Year Guaranteed",
+    "typicalMarks": 2.0,
+    "format": "NAT + MSQ",
+    "recurringTrap": "Counting equivalence/partial-order relations, Hasse diagram LUB/GLB, and subgroup orders via Lagrange's Theorem",
+    "trapPoints": [
+      "Counting equivalence/partial-order relations",
+      "Hasse diagram LUB/GLB",
+      "and subgroup orders via Lagrange's Theorem"
+    ],
+    "scheduledDays": "Day 10, Day 21, Day 43",
+    "pass1": "Completed",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 46,
+    "subject": "Discrete & Engg Math",
+    "topic": "Combinatorics, Recurrences & Generating Functions",
+    "tier": "Tier 1: Every Year Guaranteed",
+    "typicalMarks": 2.0,
+    "format": "NAT",
+    "recurringTrap": "Coefficient extraction in generating functions, Inclusion-Exclusion, Derangements & Pigeonhole minimum guarantees",
+    "trapPoints": [
+      "Coefficient extraction in generating functions",
+      "Inclusion-Exclusion",
+      "Derangements & Pigeonhole minimum guarantees"
+    ],
+    "scheduledDays": "Day 12, Day 27, Day 50",
+    "pass1": "Completed",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 47,
+    "subject": "Discrete & Engg Math",
+    "topic": "Graph Theory (Connectivity, Coloring, Planarity)",
+    "tier": "Tier 1: Every Year Guaranteed",
+    "typicalMarks": 3.0,
+    "format": "NAT + MSQ",
+    "recurringTrap": "Euler's planar formula `v - e + f = 2`, Chromatic number, Havel-Hakimi degree sequence, and vertex/edge connectivity",
+    "trapPoints": [
+      "Euler's planar formula `v - e + f = 2`",
+      "Chromatic number",
+      "Havel-Hakimi degree sequence",
+      "and vertex/edge connectivity"
+    ],
+    "scheduledDays": "Day 13, Day 27, Day 36",
+    "pass1": "Completed",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 48,
+    "subject": "Discrete & Engg Math",
+    "topic": "Linear Algebra (Rank, Eigenvalues, Systems)",
+    "tier": "Tier 1: Every Year Guaranteed",
+    "typicalMarks": 3.0,
+    "format": "NAT + MSQ",
+    "recurringTrap": "Using Trace = sum of eigenvalues and Det = product of eigenvalues; rank-nullity & system consistency conditions (`rank(A) = rank(A|b)`)",
+    "trapPoints": [
+      "Using Trace = sum of eigenvalues and Det = product of eigenvalues; rank-nullity & system consistency conditions (`rank(A) = rank(A|b)`)"
+    ],
+    "scheduledDays": "Day 1, Day 2, Day 22, Day 29",
+    "pass1": "Completed",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 49,
+    "subject": "Discrete & Engg Math",
+    "topic": "Probability & Distributions (Bayes, Poisson, Normal)",
+    "tier": "Tier 1: Every Year Guaranteed",
+    "typicalMarks": 3.0,
+    "format": "NAT",
+    "recurringTrap": "Bayes' theorem posterior probability, Expectation of indicator random variables, Poisson/Exponential probability numericals",
+    "trapPoints": [
+      "Bayes' theorem posterior probability",
+      "Expectation of indicator random variables",
+      "Poisson/Exponential probability numericals"
+    ],
+    "scheduledDays": "Day 17, Day 19, Day 26, Day 29",
+    "pass1": "Completed",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 50,
+    "subject": "Discrete & Engg Math",
+    "topic": "Calculus (Limits, Maxima/Minima, Integrals)",
+    "tier": "Tier 1: Every Year Guaranteed",
+    "typicalMarks": 2.0,
+    "format": "NAT + MCQ",
+    "recurringTrap": "L'Hospital limits, local maxima/minima via 2nd derivative & Hessian, and definite integral properties",
+    "trapPoints": [
+      "L'Hospital limits",
+      "local maxima/minima via 2nd derivative & Hessian",
+      "and definite integral properties"
+    ],
+    "scheduledDays": "Day 14, Day 15, Day 29",
+    "pass1": "Completed",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 51,
+    "subject": "General Aptitude",
+    "topic": "Quantitative & Analytical Reasoning",
+    "tier": "Tier 1: Every Year Guaranteed",
+    "typicalMarks": 9.0,
+    "format": "MCQ + NAT",
+    "recurringTrap": "Ratios, Time/Work, Permutations/Probability, Geometry/Mensuration, Syllogisms, Data Interpretation charts",
+    "trapPoints": [
+      "Ratios",
+      "Time/Work",
+      "Permutations/Probability",
+      "Geometry/Mensuration",
+      "Syllogisms",
+      "Data Interpretation charts"
+    ],
+    "scheduledDays": "Daily Block 3 + Day 30",
+    "pass1": "Completed",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  },
+  {
+    "id": 52,
+    "subject": "General Aptitude",
+    "topic": "Verbal & Spatial Aptitude (Folding/Rotations)",
+    "tier": "Tier 1: Every Year Guaranteed",
+    "typicalMarks": 6.0,
+    "format": "MCQ",
+    "recurringTrap": "Paper folding/cutting symmetry, 2D/3D shape rotations, Sentence completion, Critical reasoning inference",
+    "trapPoints": [
+      "Paper folding/cutting symmetry",
+      "2D/3D shape rotations",
+      "Sentence completion",
+      "Critical reasoning inference"
+    ],
+    "scheduledDays": "Daily Block 3 + Day 23",
+    "pass1": "Completed",
+    "pass2": "Pending",
+    "pass3": "Pending"
+  }
+]
