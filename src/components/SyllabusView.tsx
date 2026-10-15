@@ -577,7 +577,7 @@ export const SyllabusView: React.FC<SyllabusViewProps> = ({ data }) => {
 
         .highest-topics-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+          grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr));
           gap: 0.75rem;
         }
 
@@ -591,6 +591,9 @@ export const SyllabusView: React.FC<SyllabusViewProps> = ({ data }) => {
           gap: 0.35rem;
           cursor: pointer;
           transition: all 0.2s ease;
+          min-width: 0;
+          box-sizing: border-box;
+          overflow: hidden;
         }
 
         .highest-chip:hover {
@@ -665,8 +668,8 @@ export const SyllabusView: React.FC<SyllabusViewProps> = ({ data }) => {
           border: 1px solid #2d384e;
           border-radius: var(--radius-sm);
           padding: 0.5rem 0.85rem;
-          flex: 1;
-          min-width: 280px;
+          flex: 1 1 240px;
+          min-width: 0;
         }
 
         .search-box:focus-within {
@@ -1040,12 +1043,14 @@ export const SyllabusView: React.FC<SyllabusViewProps> = ({ data }) => {
         /* 3-Year Strip */
         .three-year-marks-strip {
           display: grid;
-          grid-template-columns: repeat(4, 1fr);
+          grid-template-columns: repeat(4, minmax(0, 1fr));
           background: var(--bg-elevated);
           border: 1px solid #232b3c;
           border-radius: var(--radius-xs);
-          padding: 0.45rem 0.6rem;
+          padding: 0.45rem 0.5rem;
           text-align: center;
+          box-sizing: border-box;
+          width: 100%;
         }
 
         .strip-item {
@@ -1053,6 +1058,8 @@ export const SyllabusView: React.FC<SyllabusViewProps> = ({ data }) => {
           flex-direction: column;
           gap: 0.15rem;
           border-right: 1px solid var(--glass-border);
+          min-width: 0;
+          overflow: hidden;
         }
 
         .strip-item:last-child {
@@ -1060,9 +1067,12 @@ export const SyllabusView: React.FC<SyllabusViewProps> = ({ data }) => {
         }
 
         .strip-label {
-          font-size: 0.65rem;
+          font-size: 0.63rem;
           color: var(--text-muted);
           text-transform: uppercase;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
 
         .strip-val {
@@ -1145,10 +1155,22 @@ export const SyllabusView: React.FC<SyllabusViewProps> = ({ data }) => {
         /* Table View */
         .table-responsive-wrapper {
           overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+          border-radius: var(--radius-sm);
+        }
+
+        .table-responsive-wrapper::-webkit-scrollbar {
+          height: 6px;
+        }
+
+        .table-responsive-wrapper::-webkit-scrollbar-thumb {
+          background: rgba(255, 255, 255, 0.15);
+          border-radius: 4px;
         }
 
         .syllabus-master-table {
           width: 100%;
+          min-width: 680px;
           border-collapse: collapse;
           font-size: 0.84rem;
           text-align: left;
@@ -1223,12 +1245,33 @@ export const SyllabusView: React.FC<SyllabusViewProps> = ({ data }) => {
           .syllabus-header-card {
             flex-direction: column;
             align-items: flex-start;
+            padding: 1.25rem 1.15rem;
           }
           .topics-cards-grid {
             grid-template-columns: 1fr;
           }
           .highest-topics-grid {
             grid-template-columns: 1fr;
+          }
+          .subject-content-body {
+            padding: 0.95rem;
+          }
+          .topic-card {
+            padding: 1rem;
+          }
+        }
+
+        @media (max-width: 600px) {
+          .subject-banner {
+            padding: 0.85rem 1rem;
+          }
+          .banner-right {
+            width: 100%;
+            justify-content: space-between;
+          }
+          .callout-header {
+            flex-direction: column;
+            align-items: flex-start;
           }
         }
       `}</style>

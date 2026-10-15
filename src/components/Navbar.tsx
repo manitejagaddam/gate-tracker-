@@ -616,13 +616,13 @@ export const Navbar: React.FC<NavbarProps> = ({
           border-color: rgba(239, 68, 68, 0.3);
         }
 
-        @media (max-width: 980px) {
+        @media (max-width: 1160px) {
           .fluid-cloud-capsule {
             display: none;
           }
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 1024px) {
           .navbar-desktop-actions {
             display: none;
           }

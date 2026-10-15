@@ -26,43 +26,49 @@ export const SheetTabs: React.FC<SheetTabsProps> = ({
     id: SheetTabId;
     label: string;
     sublabel: string;
-    badge: string;
+    badgeShort: string;
+    badgeFull: string;
     icon: React.ReactNode;
   }[] = [
     {
       id: "schedule",
       label: "116-Day Master Plan",
       sublabel: "Sheet 2: Granular Daily Drills",
-      badge: `${completedDaysCount}/${totalDaysCount} Days`,
-      icon: <Calendar size={16} />,
+      badgeShort: `${completedDaysCount}/${totalDaysCount} D`,
+      badgeFull: `${completedDaysCount}/${totalDaysCount} Days`,
+      icon: <Calendar size={15} />,
     },
     {
       id: "dashboard",
       label: "Executive Dashboard",
       sublabel: "Sheet 1: Weightages & Shifts",
-      badge: "11 Subjects • 8,793 Qs",
-      icon: <BarChart3 size={16} />,
+      badgeShort: "8.8k Qs",
+      badgeFull: "11 Subj • 8.8k Qs",
+      icon: <BarChart3 size={15} />,
     },
     {
       id: "checklist",
       label: "High-Yield Checklist",
       sublabel: "Sheet 3: Traps & 3-Pass Tracking",
-      badge: `${checklistCheckedCount}/${totalChecklistCount} Traps`,
-      icon: <CheckSquare size={16} />,
+      badgeShort: `${checklistCheckedCount}/${totalChecklistCount}`,
+      badgeFull: `${checklistCheckedCount}/${totalChecklistCount} Traps`,
+      icon: <CheckSquare size={15} />,
     },
     {
       id: "mocks",
       label: "16 Mocks & 12 Holidays",
       sublabel: "Sheet 4: CBT Mocks & Telugu Festivals",
-      badge: "16 CBTs • 12 Holidays",
-      icon: <Award size={16} />,
+      badgeShort: "16 CBTs",
+      badgeFull: "16 CBTs • 12 H",
+      icon: <Award size={15} />,
     },
     {
       id: "syllabus",
       label: "Official Syllabus",
       sublabel: "Topic Weightages & Top Yield",
-      badge: "11 Subjects • 3-Yr Trend",
-      icon: <BookOpen size={16} />,
+      badgeShort: "11 Subj",
+      badgeFull: "11 Subj • 3-Yr Avg",
+      icon: <BookOpen size={15} />,
     },
   ];
 
@@ -79,13 +85,16 @@ export const SheetTabs: React.FC<SheetTabsProps> = ({
               role="tab"
               aria-selected={isActive}
             >
-              <div className="tab-icon-wrap">{tab.icon}</div>
-              <div className="tab-text-group">
-                <span className="tab-label">{tab.label}</span>
-                <span className="tab-sublabel">{tab.sublabel}</span>
+              <div className="tab-main-group">
+                <div className="tab-icon-wrap">{tab.icon}</div>
+                <div className="tab-text-group">
+                  <span className="tab-label">{tab.label}</span>
+                  <span className="tab-sublabel">{tab.sublabel}</span>
+                </div>
               </div>
               <span className={`tab-badge ${isActive ? "badge-active" : ""}`}>
-                {tab.badge}
+                <span className="badge-short">{tab.badgeShort}</span>
+                <span className="badge-full">{tab.badgeFull}</span>
               </span>
             </button>
           );
@@ -95,29 +104,36 @@ export const SheetTabs: React.FC<SheetTabsProps> = ({
       <style jsx>{`
         .sheet-tabs-container {
           width: 100%;
+          max-width: 100%;
           margin: 0.5rem 0 1.25rem 0;
           position: sticky;
           top: 60px;
           z-index: 40;
-          background: rgba(14, 18, 27, 0.75);
-          backdrop-filter: blur(16px);
-          -webkit-backdrop-filter: blur(16px);
-          padding: 0.4rem 0.2rem;
+          background: rgba(14, 18, 27, 0.82);
+          backdrop-filter: blur(24px) saturate(180%);
+          -webkit-backdrop-filter: blur(24px) saturate(180%);
+          padding: 0.35rem;
           border-radius: var(--radius-xl);
           border: 1px solid var(--glass-border);
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+          overflow: hidden;
+          box-sizing: border-box;
         }
 
         .sheet-tabs-pill-bar {
           display: grid;
-          grid-template-columns: repeat(5, 1fr);
-          gap: 0.4rem;
+          grid-template-columns: repeat(5, minmax(0, 1fr));
+          gap: 0.35rem;
+          width: 100%;
+          box-sizing: border-box;
         }
 
         .sheet-tab-btn {
           display: flex;
           align-items: center;
-          gap: 0.65rem;
-          padding: 0.6rem 0.9rem;
+          justify-content: space-between;
+          gap: 0.45rem;
+          padding: 0.55rem 0.65rem;
           border-radius: var(--radius-lg);
           background: rgba(255, 255, 255, 0.02);
           border: 1px solid transparent;
@@ -125,31 +141,44 @@ export const SheetTabs: React.FC<SheetTabsProps> = ({
           cursor: pointer;
           transition: all var(--duration-normal) var(--ease-spring);
           text-align: left;
+          min-width: 0;
+          overflow: hidden;
+          box-sizing: border-box;
+          width: 100%;
         }
 
         .sheet-tab-btn:hover {
-          background: rgba(255, 255, 255, 0.05);
+          background: rgba(255, 255, 255, 0.06);
           color: var(--text-secondary);
+          border-color: rgba(255, 255, 255, 0.08);
         }
 
         .sheet-tab-btn.tab-active {
           background: linear-gradient(
             135deg,
-            rgba(245, 158, 11, 0.16) 0%,
-            rgba(129, 140, 248, 0.12) 100%
+            rgba(245, 158, 11, 0.18) 0%,
+            rgba(217, 119, 6, 0.1) 100%
           );
-          border: 1px solid rgba(245, 158, 11, 0.4);
+          border: 1px solid rgba(245, 158, 11, 0.45);
           color: var(--text-primary);
-          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+          box-shadow: 0 4px 18px rgba(245, 158, 11, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+        }
+
+        .tab-main-group {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          min-width: 0;
+          flex: 1;
         }
 
         .tab-icon-wrap {
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 32px;
-          height: 32px;
-          border-radius: var(--radius-md);
+          width: 28px;
+          height: 28px;
+          border-radius: var(--radius-sm);
           background: rgba(255, 255, 255, 0.04);
           color: var(--text-muted);
           flex-shrink: 0;
@@ -157,8 +186,8 @@ export const SheetTabs: React.FC<SheetTabsProps> = ({
         }
 
         .tab-active .tab-icon-wrap {
-          background: rgba(245, 158, 11, 0.2);
-          color: var(--accent-amber);
+          background: rgba(245, 158, 11, 0.22);
+          color: #f59e0b;
         }
 
         .tab-text-group {
@@ -169,15 +198,15 @@ export const SheetTabs: React.FC<SheetTabsProps> = ({
         }
 
         .tab-label {
-          font-size: 0.86rem;
-          font-weight: 600;
+          font-size: 0.81rem;
+          font-weight: 700;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
         }
 
         .tab-sublabel {
-          font-size: 0.7rem;
+          font-size: 0.67rem;
           color: var(--text-muted);
           white-space: nowrap;
           overflow: hidden;
@@ -189,42 +218,75 @@ export const SheetTabs: React.FC<SheetTabsProps> = ({
         }
 
         .tab-badge {
-          font-size: 0.68rem;
-          font-weight: 600;
-          padding: 0.15rem 0.5rem;
+          font-size: 0.66rem;
+          font-weight: 700;
+          padding: 0.15rem 0.45rem;
           border-radius: var(--radius-full);
           background: rgba(255, 255, 255, 0.06);
           color: var(--text-muted);
           white-space: nowrap;
           flex-shrink: 0;
+          transition: all var(--duration-fast);
         }
 
         .tab-badge.badge-active {
-          background: rgba(245, 158, 11, 0.25);
-          color: var(--accent-amber);
+          background: rgba(245, 158, 11, 0.22);
+          color: #f59e0b;
           border: 1px solid rgba(245, 158, 11, 0.4);
         }
 
-        @media (max-width: 1280px) {
-          .sheet-tabs-pill-bar {
-            grid-template-columns: repeat(3, 1fr);
+        .badge-full {
+          display: none;
+        }
+        .badge-short {
+          display: inline;
+        }
+
+        @media (min-width: 1440px) {
+          .badge-short {
+            display: none;
+          }
+          .badge-full {
+            display: inline;
           }
         }
 
-        @media (max-width: 900px) {
-          .sheet-tabs-pill-bar {
-            grid-template-columns: repeat(2, 1fr);
-          }
+        @media (max-width: 1100px) {
           .sheet-tabs-container {
+            padding: 0.3rem;
             position: relative;
             top: 0;
+          }
+          .sheet-tabs-pill-bar {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            gap: 0.45rem;
+            padding: 0.1rem;
+          }
+          .sheet-tabs-pill-bar::-webkit-scrollbar {
+            display: none;
+          }
+          .sheet-tab-btn {
+            flex: 0 0 auto;
+            width: auto;
+            min-width: 200px;
+            scroll-snap-align: start;
+          }
+          .badge-short {
+            display: none;
+          }
+          .badge-full {
+            display: inline;
           }
         }
 
         @media (max-width: 640px) {
-          .sheet-tabs-pill-bar {
-            grid-template-columns: 1fr;
-            gap: 0.35rem;
+          .sheet-tab-btn {
+            min-width: 180px;
+            padding: 0.45rem 0.6rem;
           }
           .tab-sublabel {
             display: none;
