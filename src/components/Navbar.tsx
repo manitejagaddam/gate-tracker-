@@ -16,6 +16,7 @@ import {
   Sparkles,
   Layers,
   Compass,
+  BookOpen,
 } from "lucide-react";
 import { PlanMode, ThemeMode } from "@/types/tracker";
 
@@ -24,6 +25,8 @@ interface NavbarProps {
   theme: ThemeMode;
   soundEnabled: boolean;
   activeDayLabel?: string;
+  isSyllabusActive?: boolean;
+  onOpenSyllabus?: () => void;
   onTogglePlanMode: () => void;
   onToggleTheme: () => void;
   onToggleSound: () => void;
@@ -40,6 +43,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   theme,
   soundEnabled,
   activeDayLabel = "Day 1",
+  isSyllabusActive = false,
+  onOpenSyllabus,
   onTogglePlanMode,
   onToggleTheme,
   onToggleSound,
@@ -159,6 +164,18 @@ export const Navbar: React.FC<NavbarProps> = ({
             <span>CSV</span>
           </button>
 
+          {/* Syllabus Master Page Button (Right Beside Theme Toggle Button) */}
+          <button
+            onClick={onOpenSyllabus}
+            className={`action-btn syllabus-nav-btn spring-tap ${
+              isSyllabusActive ? "btn-active-syllabus" : ""
+            }`}
+            title="GATE CSE Detailed Syllabus & Topic Weightages"
+          >
+            <BookOpen size={14} className="text-amber" />
+            <span>Syllabus</span>
+          </button>
+
           <button
             onClick={onToggleTheme}
             className="icon-btn theme-toggle-btn spring-tap"
@@ -170,6 +187,17 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Mobile Action Controls */}
         <div className="navbar-mobile-controls">
+          <button
+            onClick={onOpenSyllabus}
+            className={`icon-btn syllabus-mobile-btn spring-tap ${
+              isSyllabusActive ? "btn-active-syllabus" : ""
+            }`}
+            aria-label="GATE CSE Syllabus"
+            title="Syllabus"
+          >
+            <BookOpen size={15} className="text-amber" />
+          </button>
+
           <button
             onClick={onToggleTheme}
             className="icon-btn spring-tap"
@@ -191,6 +219,22 @@ export const Navbar: React.FC<NavbarProps> = ({
       {/* Mobile Drawer Menu with Liquid Frosted Acrylic */}
       {mobileMenuOpen && (
         <div className="mobile-drawer animate-fade-in">
+          {/* Syllabus Quick Access Button */}
+          <div className="drawer-section">
+            <button
+              onClick={() => {
+                onOpenSyllabus?.();
+                setMobileMenuOpen(false);
+              }}
+              className={`drawer-action-btn spring-tap syllabus-drawer-btn ${
+                isSyllabusActive ? "btn-active-syllabus" : ""
+              }`}
+            >
+              <BookOpen size={16} className="text-amber" />
+              <span>GATE Official Syllabus &amp; Weightages 👑</span>
+            </button>
+          </div>
+
           <div className="drawer-section">
             <span className="drawer-label">Plan Execution Mode</span>
             <button
@@ -480,6 +524,35 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         .file-upload-label {
           cursor: pointer;
+        }
+
+        .syllabus-nav-btn {
+          background: rgba(245, 158, 11, 0.08);
+          border-color: rgba(245, 158, 11, 0.3);
+          color: var(--text-primary);
+        }
+
+        .syllabus-nav-btn:hover {
+          background: rgba(245, 158, 11, 0.16);
+          border-color: rgba(245, 158, 11, 0.55);
+          box-shadow: 0 0 12px rgba(245, 158, 11, 0.22);
+        }
+
+        .btn-active-syllabus {
+          background: linear-gradient(135deg, rgba(245, 158, 11, 0.22), rgba(217, 119, 6, 0.16)) !important;
+          border-color: #f59e0b !important;
+          color: #f59e0b !important;
+          box-shadow: 0 0 14px rgba(245, 158, 11, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.2) !important;
+          font-weight: 800 !important;
+        }
+
+        .syllabus-mobile-btn {
+          border-color: rgba(245, 158, 11, 0.35);
+        }
+
+        .syllabus-drawer-btn {
+          background: rgba(245, 158, 11, 0.1);
+          border-color: rgba(245, 158, 11, 0.3);
         }
 
         .navbar-mobile-controls {

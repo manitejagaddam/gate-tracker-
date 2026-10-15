@@ -152,3 +152,37 @@ export interface MockHolidayData {
   mocks: MockTestItem[];
   holidays: HolidayItem[];
 }
+
+// Syllabus & Topic-Wise Weightage Master Types
+export interface SyllabusTopic {
+  id: string;
+  name: string;
+  syllabusDetails: string[];
+  historicalWeightage: string;
+  historicalWeightageNum: number;
+  marks2023: number;
+  marks2024: number;
+  marks2025: number;
+  threeYearAvg: number;
+  isHighestInSubject: boolean;
+  subjectRank: number;
+  importanceTier: "Tier 1: Guaranteed" | "Tier 2: High Frequency" | "Tier 3: Moderate";
+  dominantFormat: string;
+  frequentTrap: string;
+  pyqCountRecommendation: number;
+}
+
+export interface SyllabusSubject {
+  id: string;
+  name: string;
+  code: string;
+  badgeClass: string;
+  overallWeightagePct: string;
+  averageMarks: number;
+  marks2023: number;
+  marks2024: number;
+  marks2025: number;
+  highestWeightageTopic: string;
+  highestTopicYield: string;
+  topics: SyllabusTopic[];
+}

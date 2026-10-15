@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import { Calendar, BarChart3, CheckSquare, Award } from "lucide-react";
+import { Calendar, BarChart3, CheckSquare, Award, BookOpen } from "lucide-react";
 
-export type SheetTabId = "schedule" | "dashboard" | "checklist" | "mocks";
+export type SheetTabId = "schedule" | "dashboard" | "checklist" | "mocks" | "syllabus";
 
 interface SheetTabsProps {
   activeSheet: SheetTabId;
@@ -57,6 +57,13 @@ export const SheetTabs: React.FC<SheetTabsProps> = ({
       badge: "16 CBTs • 12 Holidays",
       icon: <Award size={16} />,
     },
+    {
+      id: "syllabus",
+      label: "Official Syllabus",
+      sublabel: "Topic Weightages & Top Yield",
+      badge: "11 Subjects • 3-Yr Trend",
+      icon: <BookOpen size={16} />,
+    },
   ];
 
   return (
@@ -102,7 +109,7 @@ export const SheetTabs: React.FC<SheetTabsProps> = ({
 
         .sheet-tabs-pill-bar {
           display: grid;
-          grid-template-columns: repeat(4, 1fr);
+          grid-template-columns: repeat(5, 1fr);
           gap: 0.4rem;
         }
 
@@ -198,7 +205,13 @@ export const SheetTabs: React.FC<SheetTabsProps> = ({
           border: 1px solid rgba(245, 158, 11, 0.4);
         }
 
-        @media (max-width: 1024px) {
+        @media (max-width: 1280px) {
+          .sheet-tabs-pill-bar {
+            grid-template-columns: repeat(3, 1fr);
+          }
+        }
+
+        @media (max-width: 900px) {
           .sheet-tabs-pill-bar {
             grid-template-columns: repeat(2, 1fr);
           }

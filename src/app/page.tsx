@@ -6,6 +6,7 @@ import {
   DASHBOARD_DATA,
   CHECKLIST_DATA,
   MOCK_HOLIDAY_DATA,
+  SYLLABUS_DATA,
 } from "@/data/schedule";
 import { useTrackerState } from "@/hooks/useTrackerState";
 import { FilterCategory } from "@/types/tracker";
@@ -19,6 +20,7 @@ import { ScheduleView } from "@/components/ScheduleView";
 import { ExecutiveDashboardView } from "@/components/ExecutiveDashboardView";
 import { HighYieldChecklistView } from "@/components/HighYieldChecklistView";
 import { MockHolidayView } from "@/components/MockHolidayView";
+import { SyllabusView } from "@/components/SyllabusView";
 import { MobileBottomNav } from "@/components/MobileBottomNav";
 import { FocusTimerModal } from "@/components/FocusTimerModal";
 import { Toast } from "@/components/Toast";
@@ -185,6 +187,12 @@ export default function TrackerHome() {
         theme={state.theme}
         soundEnabled={state.soundEnabled}
         activeDayLabel={`${activeDay.day} • ${activeDay.date.slice(0, 6)}`}
+        isSyllabusActive={activeSheet === "syllabus"}
+        onOpenSyllabus={() => {
+          setActiveSheet("syllabus");
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          if (state.soundEnabled) sounds.playClick();
+        }}
         onTogglePlanMode={togglePlanMode}
         onToggleTheme={toggleTheme}
         onToggleSound={toggleSound}
@@ -313,6 +321,13 @@ export default function TrackerHome() {
         {activeSheet === "mocks" && (
           <div className="sheet-view-wrapper animate-fade-in">
             <MockHolidayView data={MOCK_HOLIDAY_DATA} />
+          </div>
+        )}
+
+        {/* Sheet 5: Official GATE CSE Syllabus & Topic Weightages */}
+        {activeSheet === "syllabus" && (
+          <div className="sheet-view-wrapper animate-fade-in">
+            <SyllabusView data={SYLLABUS_DATA} />
           </div>
         )}
       </main>
