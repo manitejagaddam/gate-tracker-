@@ -3,326 +3,391 @@
     {
       "id": 1,
       "mockNumber": "Mock 1",
-      "date": "2026-10-17",
+      "date": "Oct 17, 2026",
       "weekday": "Saturday",
-      "scope": "Weekly Mock Test 1 (Shifted from Sun due to Bathukamma) — Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): Baseline check on completed subjects + 25% TOC/CN",
+      "scope": "Weekly Mock Test 1 (Shifted from Sun due to Bathukamma)",
       "scopePoints": [
-        "Weekly Mock Test 1 (Shifted from Sun due to Bathukamma) — Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): Baseline check on completed subjects + 25% TOC/CN"
+        "Weekly Mock Test 1 (Shifted from Sun due to Bathukamma)",
+        "Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): Baseline check on completed subjects + 25% TOC/CN/COA"
       ],
-      "targetScore": 55.0
+      "targetScore": 52
     },
     {
       "id": 2,
       "mockNumber": "Mock 2",
-      "date": "2026-10-25",
+      "date": "Oct 25, 2026",
       "weekday": "Sunday",
-      "scope": "Weekly Mock Test 2 (NPTEL / GO Classes Slot) — Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): Includes Regular Languages, CFG, PDA & Turing Machines",
+      "scope": "Weekly Mock Test 2 (NPTEL / GO Classes Slot)",
       "scopePoints": [
-        "Weekly Mock Test 2 (NPTEL / GO Classes Slot) — Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): Includes Regular Languages",
-        "CFG",
-        "PDA & Turing Machines"
+        "Weekly Mock Test 2 (NPTEL / GO Classes Slot)",
+        "Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): Includes Regular Languages, CFG, PDA & Turing Machines"
       ],
-      "targetScore": 58.0
+      "targetScore": 56
     },
     {
       "id": 3,
       "mockNumber": "Mock 3",
-      "date": "2026-11-01",
+      "date": "Nov 01, 2026",
       "weekday": "Sunday",
-      "scope": "Weekly Mock Test 3 — Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): Includes 100% TOC + 75% Compiler Design (LL/LR Parsing)",
+      "scope": "Weekly Mock Test 3",
       "scopePoints": [
-        "Weekly Mock Test 3 — Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): Includes 100% TOC + 75% Compiler Design (LL/LR Parsing)"
+        "Weekly Mock Test 3",
+        "Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): Includes 100% TOC + 75% Compiler Design (LL/LR Parsing)"
       ],
-      "targetScore": 62.0
+      "targetScore": 60
     },
     {
       "id": 4,
       "mockNumber": "Mock 4",
-      "date": "2026-11-07",
+      "date": "Nov 07, 2026",
       "weekday": "Saturday",
-      "scope": "Weekly Mock Test 4 (Shifted from Sun due to Diwali) — Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): Includes 100% TOC, 100% CD + CN Flow Control/MAC/IPv4",
+      "scope": "Weekly Mock Test 4 (Shifted from Sun due to Diwali)",
       "scopePoints": [
-        "Weekly Mock Test 4 (Shifted from Sun due to Diwali) — Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): Includes 100% TOC",
-        "100% CD + CN Flow Control/MAC/IPv4"
+        "Weekly Mock Test 4 (Shifted from Sun due to Diwali)",
+        "Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): Includes 100% TOC, 100% CD + CN Flow Control/MAC/IPv4"
       ],
-      "targetScore": 65.0
+      "targetScore": 64
     },
     {
       "id": 5,
       "mockNumber": "Mock 5",
-      "date": "2026-11-15",
+      "date": "Nov 15, 2026",
       "weekday": "Sunday",
-      "scope": "Weekly Mock Test 5 — FIRST 100% FULL-SYLLABUS MOCK — Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): All 11 GATE CSE subjects active at 100% weightage",
+      "scope": "Weekly Mock Test 5 (TOC, CD & CN 100% Done + COA 36%)",
       "scopePoints": [
-        "Weekly Mock Test 5 — FIRST 100% FULL-SYLLABUS MOCK — Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): All 11 GATE CSE subjects active at 100% weightage"
+        "Weekly Mock Test 5 (TOC, CD & CN 100% Done + COA 36%)",
+        "Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): 100% TOC, CD, CN + COA Addressing Modes & ALU"
       ],
-      "targetScore": 68.0
+      "targetScore": 68
     },
     {
       "id": 6,
       "mockNumber": "Mock 6",
-      "date": "2026-11-22",
+      "date": "Nov 22, 2026",
       "weekday": "Sunday",
-      "scope": "Weekly Mock Test 6 (All-India Test Series) — Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): Practice 3-Round Paper Attempt Strategy (Easy -> Med -> Hard)",
+      "scope": "Weekly Mock Test 6",
       "scopePoints": [
-        "Weekly Mock Test 6 (All-India Test Series) — Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): Practice 3-Round Paper Attempt Strategy (Easy -> Med -> Hard)"
+        "Weekly Mock Test 6",
+        "FIRST 100% FULL-SYLLABUS MOCK!",
+        "Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): All 11 GATE CSE subjects (including 100% COA!) active at full weightage"
       ],
-      "targetScore": 70.0
+      "targetScore": 72
     },
     {
       "id": 7,
       "mockNumber": "Mock 7",
-      "date": "2026-11-29",
+      "date": "Nov 29, 2026",
       "weekday": "Sunday",
-      "scope": "Weekly Mock Test 7 (All-India Test Series) — Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): Focus on zeroing negative marking losses (<2.5 marks lost)",
+      "scope": "Weekly Mock Test 7 (All-India Test Series)",
       "scopePoints": [
-        "Weekly Mock Test 7 (All-India Test Series) — Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): Focus on zeroing negative marking losses (<2.5 marks lost)"
+        "Weekly Mock Test 7 (All-India Test Series)",
+        "Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): Focus on zeroing negative marking losses (<2.5 marks lost)"
       ],
-      "targetScore": 72.0
+      "targetScore": 74
     },
     {
       "id": 8,
       "mockNumber": "Mock 8",
-      "date": "2026-12-06",
+      "date": "Dec 06, 2026",
       "weekday": "Sunday",
-      "scope": "Weekly Mock Test 8 (All-India Test Series) — Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): Target 70+ Raw Marks milestone",
+      "scope": "Weekly Mock Test 8 (All-India Test Series)",
       "scopePoints": [
-        "Weekly Mock Test 8 (All-India Test Series) — Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): Target 70+ Raw Marks milestone"
+        "Weekly Mock Test 8 (All-India Test Series)",
+        "Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): Target 70+ Raw Marks milestone"
       ],
-      "targetScore": 74.0
+      "targetScore": 76
     },
     {
       "id": 9,
       "mockNumber": "Mock 9",
-      "date": "2026-12-13",
+      "date": "Dec 13, 2026",
       "weekday": "Sunday",
-      "scope": "Weekly Mock Test 9 (All-India Test Series) — Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): Alternate between GO Classes (Hard) & ACE/Made Easy",
+      "scope": "Weekly Mock Test 9 (All-India Test Series)",
       "scopePoints": [
-        "Weekly Mock Test 9 (All-India Test Series) — Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): Alternate between GO Classes (Hard) & ACE/Made Easy"
+        "Weekly Mock Test 9 (All-India Test Series)",
+        "Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): Alternate between GO Classes (Hard) & ACE/Made Easy"
       ],
-      "targetScore": 76.0
+      "targetScore": 78
     },
     {
       "id": 10,
       "mockNumber": "Mock 10",
-      "date": "2026-12-20",
+      "date": "Dec 20, 2026",
       "weekday": "Sunday",
-      "scope": "Weekly Mock Test 10 (All-India Test Series) — Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): Target 75+ Raw Marks milestone",
+      "scope": "Weekly Mock Test 10 (All-India Test Series)",
       "scopePoints": [
-        "Weekly Mock Test 10 (All-India Test Series) — Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): Target 75+ Raw Marks milestone"
+        "Weekly Mock Test 10 (All-India Test Series)",
+        "Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): Target 75+ Raw Marks milestone"
       ],
-      "targetScore": 78.0
+      "targetScore": 80
     },
     {
       "id": 11,
       "mockNumber": "Mock 11",
-      "date": "2026-12-27",
+      "date": "Dec 27, 2026",
       "weekday": "Sunday",
-      "scope": "Weekly Mock Test 11 (All-India Test Series) — Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): Year-end full benchmark simulation",
+      "scope": "Weekly Mock Test 11 (All-India Test Series)",
       "scopePoints": [
-        "Weekly Mock Test 11 (All-India Test Series) — Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): Year-end full benchmark simulation"
+        "Weekly Mock Test 11 (All-India Test Series)",
+        "Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): Year-end full benchmark simulation"
       ],
-      "targetScore": 80.0
+      "targetScore": 81
     },
     {
       "id": 12,
       "mockNumber": "Mock 12",
-      "date": "2027-01-03",
+      "date": "Jan 03, 2027",
       "weekday": "Sunday",
-      "scope": "Weekly Mock Test 12 (New Year All-India Mock) — Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): Target 80+ Raw Marks milestone",
+      "scope": "Weekly Mock Test 12 (New Year All-India Mock)",
       "scopePoints": [
-        "Weekly Mock Test 12 (New Year All-India Mock) — Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): Target 80+ Raw Marks milestone"
+        "Weekly Mock Test 12 (New Year All-India Mock)",
+        "Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): Target 80+ Raw Marks milestone"
       ],
-      "targetScore": 81.0
+      "targetScore": 83
     },
     {
       "id": 13,
       "mockNumber": "Mock 13",
-      "date": "2027-01-10",
+      "date": "Jan 10, 2027",
       "weekday": "Sunday",
-      "scope": "Weekly Mock Test 13 (Pre-Sankranti All-India Mock) — Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): High-difficulty stress-test simulation",
+      "scope": "Weekly Mock Test 13 (Pre-Sankranti All-India Mock)",
       "scopePoints": [
-        "Weekly Mock Test 13 (Pre-Sankranti All-India Mock) — Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): High-difficulty stress-test simulation"
+        "Weekly Mock Test 13 (Pre-Sankranti All-India Mock)",
+        "Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): High-difficulty stress-test simulation"
       ],
-      "targetScore": 82.5
+      "targetScore": 84
     },
     {
       "id": 14,
       "mockNumber": "Mock 14",
-      "date": "2027-01-17",
+      "date": "Jan 17, 2027",
       "weekday": "Sunday",
-      "scope": "Weekly Mock Test 14 (Post-Sankranti All-India Mock) — Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): Target 82–85+ Raw Marks milestone",
+      "scope": "Weekly Mock Test 14 (Post-Sankranti All-India Mock)",
       "scopePoints": [
-        "Weekly Mock Test 14 (Post-Sankranti All-India Mock) — Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): Target 82–85+ Raw Marks milestone"
+        "Weekly Mock Test 14 (Post-Sankranti All-India Mock)",
+        "Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): Target 82–85+ Raw Marks milestone"
       ],
-      "targetScore": 84.0
+      "targetScore": 86
     },
     {
       "id": 15,
       "mockNumber": "Mock 15",
-      "date": "2027-01-24",
+      "date": "Jan 24, 2027",
       "weekday": "Sunday",
-      "scope": "Weekly Mock Test 15 (Penultimate All-India Mock) — Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): Target 85+ Raw Marks (AIR < 10 Zone)",
+      "scope": "Weekly Mock Test 15 (Penultimate All-India Mock)",
       "scopePoints": [
-        "Weekly Mock Test 15 (Penultimate All-India Mock) — Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): Target 85+ Raw Marks (AIR < 10 Zone)"
+        "Weekly Mock Test 15 (Penultimate All-India Mock)",
+        "Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): Target 85+ Raw Marks (AIR < 10 Zone)"
       ],
-      "targetScore": 85.0
+      "targetScore": 87
     },
     {
       "id": 16,
       "mockNumber": "Mock 16",
-      "date": "2027-01-31",
+      "date": "Jan 31, 2027",
       "weekday": "Sunday",
-      "scope": "Weekly Mock Test 16 (Final Pre-GATE Dress Rehearsal) — Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): Exact exam-day biological clock & mindset rehearsal",
+      "scope": "Weekly Mock Test 16 (Final Pre-GATE Dress Rehearsal)",
       "scopePoints": [
-        "Weekly Mock Test 16 (Final Pre-GATE Dress Rehearsal) — Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): Exact exam-day biological clock & mindset rehearsal"
+        "Weekly Mock Test 16 (Final Pre-GATE Dress Rehearsal)",
+        "Full 65-Question / 100-Mark CBT Simulation (2:00–5:00 PM IST): Exact exam-day biological clock & mindset rehearsal"
       ],
-      "targetScore": 86.0
+      "targetScore": 89
     }
   ],
   "holidays": [
     {
       "id": 1,
       "holidayNumber": "Holiday 1",
-      "date": "2026-10-18",
+      "date": "Oct 18, 2026",
       "weekday": "Sunday",
       "name": "Saddula Bathukamma / Maha Saptami",
-      "targetHrs": 0.0,
-      "rule": "Telangana State Festival & Holidays in India Calendar — Complete Mental Rest",
+      "targetHrs": 0,
+      "rule": "Complete Rest - Zero study assigned. Recharge mentally with family.",
       "rulePoints": [
-        "Telangana State Festival & Holidays in India Calendar — Complete Mental Rest"
+        "Complete Mental Rest",
+        "Zero study or problem-solving assigned",
+        "Recharge mentally with family",
+        "Return stronger the next day"
       ]
     },
     {
       "id": 2,
       "holidayNumber": "Holiday 2",
-      "date": "2026-10-19",
+      "date": "Oct 19, 2026",
       "weekday": "Monday",
       "name": "Maharnavami / Maha Ashtami (Dussehra Block)",
-      "targetHrs": 0.0,
-      "rule": "Telangana Dasara Holiday Block — Zero Study Assigned",
+      "targetHrs": 0,
+      "rule": "Complete Rest - Zero study assigned. Recharge mentally with family.",
       "rulePoints": [
-        "Telangana Dasara Holiday Block — Zero Study Assigned"
+        "Complete Mental Rest",
+        "Zero study or problem-solving assigned",
+        "Recharge mentally with family",
+        "Return stronger the next day"
       ]
     },
     {
       "id": 3,
       "holidayNumber": "Holiday 3",
-      "date": "2026-10-20",
+      "date": "Oct 20, 2026",
       "weekday": "Tuesday",
       "name": "Dussehra / Vijaya Dasami",
-      "targetHrs": 0.0,
-      "rule": "National & Telangana Public Holiday — Zero Study Assigned",
+      "targetHrs": 0,
+      "rule": "Complete Rest - Zero study assigned. Recharge mentally with family.",
       "rulePoints": [
-        "National & Telangana Public Holiday — Zero Study Assigned"
+        "Complete Mental Rest",
+        "Zero study or problem-solving assigned",
+        "Recharge mentally with family",
+        "Return stronger the next day"
       ]
     },
     {
       "id": 4,
       "holidayNumber": "Holiday 4",
-      "date": "2026-10-21",
+      "date": "Oct 21, 2026",
       "weekday": "Wednesday",
       "name": "Following Day of Vijaya Dasami",
-      "targetHrs": 0.0,
-      "rule": "Telangana Official State Holiday — Zero Study Assigned",
+      "targetHrs": 0,
+      "rule": "Complete Rest - Zero study assigned. Recharge mentally with family.",
       "rulePoints": [
-        "Telangana Official State Holiday — Zero Study Assigned"
+        "Complete Mental Rest",
+        "Zero study or problem-solving assigned",
+        "Recharge mentally with family",
+        "Return stronger the next day"
       ]
     },
     {
       "id": 5,
       "holidayNumber": "Holiday 5",
-      "date": "2026-11-08",
+      "date": "Nov 08, 2026",
       "weekday": "Sunday",
       "name": "Diwali / Deepavali & Naraka Chaturdasi",
-      "targetHrs": 0.0,
-      "rule": "Public Holiday (Weekly Mock 4 Shifted to Sat, Nov 7) — Zero Study Assigned",
+      "targetHrs": 0,
+      "rule": "Complete Rest - Zero study assigned. Recharge mentally with family.",
       "rulePoints": [
-        "Public Holiday (Weekly Mock 4 Shifted to Sat, Nov 7) — Zero Study Assigned"
+        "Complete Mental Rest",
+        "Zero study or problem-solving assigned",
+        "Recharge mentally with family",
+        "Return stronger the next day"
       ]
     },
     {
       "id": 6,
       "holidayNumber": "Holiday 6",
-      "date": "2026-11-24",
+      "date": "Nov 24, 2026",
       "weekday": "Tuesday",
       "name": "Karthika Purnima / Guru Nanak Jayanti",
-      "targetHrs": 0.0,
-      "rule": "Telangana Public Holiday — Zero Study Assigned",
+      "targetHrs": 0,
+      "rule": "Complete Rest - Zero study assigned. Recharge mentally with family.",
       "rulePoints": [
-        "Telangana Public Holiday — Zero Study Assigned"
+        "Complete Mental Rest",
+        "Zero study or problem-solving assigned",
+        "Recharge mentally with family",
+        "Return stronger the next day"
       ]
     },
     {
       "id": 7,
       "holidayNumber": "Holiday 7",
-      "date": "2026-12-25",
+      "date": "Dec 25, 2026",
       "weekday": "Friday",
       "name": "Christmas Day",
-      "targetHrs": 0.0,
-      "rule": "Public Holiday — Mid-Winter Mental Recharge Break",
+      "targetHrs": 0,
+      "rule": "Complete Rest - Zero study assigned. Recharge mentally with family.",
       "rulePoints": [
-        "Public Holiday — Mid-Winter Mental Recharge Break"
+        "Complete Mental Rest",
+        "Zero study or problem-solving assigned",
+        "Recharge mentally with family",
+        "Return stronger the next day"
       ]
     },
     {
       "id": 8,
       "holidayNumber": "Holiday 8",
-      "date": "2027-01-01",
+      "date": "Jan 01, 2027",
       "weekday": "Friday",
       "name": "New Year's Day",
-      "targetHrs": 0.0,
-      "rule": "Public Holiday Break — Reset Before Final 35-Day Sprint",
+      "targetHrs": 0,
+      "rule": "Complete Rest - Zero study assigned. Recharge mentally with family.",
       "rulePoints": [
-        "Public Holiday Break — Reset Before Final 35-Day Sprint"
+        "Complete Mental Rest",
+        "Zero study or problem-solving assigned",
+        "Recharge mentally with family",
+        "Return stronger the next day"
       ]
     },
     {
       "id": 9,
       "holidayNumber": "Holiday 9",
-      "date": "2027-01-14",
+      "date": "Jan 14, 2027",
       "weekday": "Thursday",
       "name": "Bhogi Festival (Sankranti Block Day 1)",
-      "targetHrs": 0.0,
-      "rule": "Telugu Sankranti Festival Block — Zero Study Assigned",
+      "targetHrs": 0,
+      "rule": "Complete Rest - Zero study assigned. Recharge mentally with family.",
       "rulePoints": [
-        "Telugu Sankranti Festival Block — Zero Study Assigned"
+        "Complete Mental Rest",
+        "Zero study or problem-solving assigned",
+        "Recharge mentally with family",
+        "Return stronger the next day"
       ]
     },
     {
       "id": 10,
       "holidayNumber": "Holiday 10",
-      "date": "2027-01-15",
+      "date": "Jan 15, 2027",
       "weekday": "Friday",
       "name": "Makar Sankranti / Pedda Panduga (Day 2)",
-      "targetHrs": 0.0,
-      "rule": "Telugu Sankranti Festival Block — Zero Study Assigned",
+      "targetHrs": 0,
+      "rule": "Complete Rest - Zero study assigned. Recharge mentally with family.",
       "rulePoints": [
-        "Telugu Sankranti Festival Block — Zero Study Assigned"
+        "Complete Mental Rest",
+        "Zero study or problem-solving assigned",
+        "Recharge mentally with family",
+        "Return stronger the next day"
       ]
     },
     {
       "id": 11,
       "holidayNumber": "Holiday 11",
-      "date": "2027-01-16",
+      "date": "Jan 16, 2027",
       "weekday": "Saturday",
       "name": "Kanuma Festival (Sankranti Block Day 3)",
-      "targetHrs": 0.0,
-      "rule": "Telugu Sankranti Festival Block — Zero Study Assigned",
+      "targetHrs": 0,
+      "rule": "Complete Rest - Zero study assigned. Recharge mentally with family.",
       "rulePoints": [
-        "Telugu Sankranti Festival Block — Zero Study Assigned"
+        "Complete Mental Rest",
+        "Zero study or problem-solving assigned",
+        "Recharge mentally with family",
+        "Return stronger the next day"
       ]
     },
     {
       "id": 12,
       "holidayNumber": "Holiday 12",
-      "date": "2027-01-26",
+      "date": "Jan 26, 2027",
       "weekday": "Tuesday",
       "name": "Republic Day",
-      "targetHrs": 0.0,
-      "rule": "National Public Holiday — Final Pre-Exam Rest Buffer",
+      "targetHrs": 0,
+      "rule": "Complete Rest - Zero study assigned. Recharge mentally with family.",
       "rulePoints": [
-        "National Public Holiday — Final Pre-Exam Rest Buffer"
+        "Complete Mental Rest",
+        "Zero study or problem-solving assigned",
+        "Recharge mentally with family",
+        "Return stronger the next day"
+      ]
+    },
+    {
+      "id": 13,
+      "holidayNumber": "Holiday 13",
+      "date": "116 Days",
+      "weekday": "104 Active",
+      "name": "",
+      "targetHrs": 0,
+      "rule": "Complete Rest - Zero study assigned. Recharge mentally with family.",
+      "rulePoints": [
+        "Complete Mental Rest",
+        "Zero study or problem-solving assigned",
+        "Recharge mentally with family",
+        "Return stronger the next day"
       ]
     }
   ]

@@ -14,7 +14,7 @@
       "and string literal modification/length"
     ],
     "scheduledDays": "Day 1, Day 35, Day 43",
-    "pass1": "Completed",
+    "pass1": "Pending",
     "pass2": "Pending",
     "pass3": "Pending"
   },
@@ -30,7 +30,7 @@
       "Counting total function calls or printed value when `static` variable persists across recursive stack frames"
     ],
     "scheduledDays": "Day 1, Day 35, Day 50",
-    "pass1": "Completed",
+    "pass1": "Pending",
     "pass2": "Pending",
     "pass3": "Pending"
   },
@@ -47,7 +47,7 @@
       "infix-to-postfix stack max size"
     ],
     "scheduledDays": "Day 2, Day 35, Day 57",
-    "pass1": "Completed",
+    "pass1": "Pending",
     "pass2": "Pending",
     "pass3": "Pending"
   },
@@ -65,7 +65,7 @@
       "BST successor/predecessor"
     ],
     "scheduledDays": "Day 8, Day 35, Day 64",
-    "pass1": "Completed",
+    "pass1": "Pending",
     "pass2": "Pending",
     "pass3": "Pending"
   },
@@ -83,7 +83,7 @@
       "Linear/Quadratic probing insertion sequence & collision count"
     ],
     "scheduledDays": "Day 8, Day 43, Day 71",
-    "pass1": "Completed",
+    "pass1": "Pending",
     "pass2": "Pending",
     "pass3": "Pending"
   },
@@ -96,11 +96,13 @@
     "format": "MCQ + MSQ",
     "recurringTrap": "Ordering tricky functions (`n^log n`, `(log n)!`, `2^(√log n)`), solving recurrences via Master Theorem & substitution",
     "trapPoints": [
-      "Ordering tricky functions (`n^log n`, `(log n)!`, `2^(√log n)`)",
+      "Ordering tricky functions (`n^log n`",
+      "`(log n)!`",
+      "`2^(√log n)`)",
       "solving recurrences via Master Theorem & substitution"
     ],
     "scheduledDays": "Day 9, Day 36, Day 44",
-    "pass1": "Completed",
+    "pass1": "Pending",
     "pass2": "Pending",
     "pass3": "Pending"
   },
@@ -118,7 +120,7 @@
       "stability & in-place properties of sorting algorithms"
     ],
     "scheduledDays": "Day 9, Day 10, Day 36",
-    "pass1": "Completed",
+    "pass1": "Pending",
     "pass2": "Pending",
     "pass3": "Pending"
   },
@@ -136,7 +138,7 @@
       "Greedy choice counterexamples"
     ],
     "scheduledDays": "Day 10, Day 36, Day 51",
-    "pass1": "Completed",
+    "pass1": "Pending",
     "pass2": "Pending",
     "pass3": "Pending"
   },
@@ -153,7 +155,7 @@
       "time complexity of pseudo-polynomial 0/1 Knapsack"
     ],
     "scheduledDays": "Day 12, Day 36, Day 58",
-    "pass1": "Completed",
+    "pass1": "Pending",
     "pass2": "Pending",
     "pass3": "Pending"
   },
@@ -172,7 +174,7 @@
       "Bellman-Ford iterations"
     ],
     "scheduledDays": "Day 12, Day 36, Day 65",
-    "pass1": "Completed",
+    "pass1": "Pending",
     "pass2": "Pending",
     "pass3": "Pending"
   },
@@ -188,7 +190,7 @@
       "Finding exact minimum number of states in DFA for divisibility/modulo or substring patterns using Myhill-Nerode"
     ],
     "scheduledDays": "Day 1, Day 12, Day 31",
-    "pass1": "Pending (25% Done)",
+    "pass1": "Pending",
     "pass2": "Pending",
     "pass3": "Pending"
   },
@@ -219,7 +221,8 @@
     "recurringTrap": "Matching CFG to exact set-builder language, distinguishing DCFL (`wcw^R`, `a^n b^n`) from non-deterministic CFL (`ww^R`)",
     "trapPoints": [
       "Matching CFG to exact set-builder language",
-      "distinguishing DCFL (`wcw^R`, `a^n b^n`) from non-deterministic CFL (`ww^R`)"
+      "distinguishing DCFL (`wcw^R`",
+      "`a^n b^n`) from non-deterministic CFL (`ww^R`)"
     ],
     "scheduledDays": "Day 2, Day 8, Day 47",
     "pass1": "Pending",
@@ -238,11 +241,7 @@
       "Multi-select questions testing closure of Regular",
       "DCFL",
       "CFL",
-      "Recursive",
-      "and RE under Union",
-      "Intersection",
-      "Complement",
-      "Homomorphism"
+      "Recursive"
     ],
     "scheduledDays": "Day 1, Day 8, Day 9, Day 12",
     "pass1": "Pending",
@@ -362,7 +361,7 @@
       "and throughput with packet drops"
     ],
     "scheduledDays": "Day 21, Day 30, Day 33",
-    "pass1": "Pending (25% Done)",
+    "pass1": "Pending",
     "pass2": "Pending",
     "pass3": "Pending"
   },
@@ -465,7 +464,7 @@
       "Counting child processes created by `fork()` loops/logical AND/OR; SRTF & Round Robin turnaround/waiting time"
     ],
     "scheduledDays": "Day 21, Day 34, Day 42",
-    "pass1": "Completed",
+    "pass1": "Pending",
     "pass2": "Pending",
     "pass3": "Pending"
   },
@@ -483,7 +482,7 @@
       "or max processes in CS"
     ],
     "scheduledDays": "Day 22, Day 34, Day 49",
-    "pass1": "Completed",
+    "pass1": "Pending",
     "pass2": "Pending",
     "pass3": "Pending"
   },
@@ -499,7 +498,7 @@
       "Finding minimum resources to guarantee deadlock-free execution (`R >= P*(N-1) + 1`) and safe sequences in Banker's"
     ],
     "scheduledDays": "Day 23, Day 34, Day 56",
-    "pass1": "Completed",
+    "pass1": "Pending",
     "pass2": "Pending",
     "pass3": "Pending"
   },
@@ -517,7 +516,7 @@
       "TLB + Page Fault Effective Memory Access Time"
     ],
     "scheduledDays": "Day 26, Day 34, Day 63",
-    "pass1": "Completed",
+    "pass1": "Pending",
     "pass2": "Pending",
     "pass3": "Pending"
   },
@@ -533,7 +532,7 @@
       "Counting page faults for a reference string under LRU/FIFO/Optimal; Unix Inode max file size with single/double/triple indirect blocks"
     ],
     "scheduledDays": "Day 27, Day 42, Day 56",
-    "pass1": "Completed",
+    "pass1": "Pending",
     "pass2": "Pending",
     "pass3": "Pending"
   },
@@ -549,7 +548,7 @@
       "Minimum tables to represent an ER diagram; translating Relational Algebra division `R ÷ S` and TRC quantifiers"
     ],
     "scheduledDays": "Day 28, Day 37, Day 45",
-    "pass1": "Completed",
+    "pass1": "Pending",
     "pass2": "Pending",
     "pass3": "Pending"
   },
@@ -568,7 +567,7 @@
       "and `NULL` values"
     ],
     "scheduledDays": "Day 28, Day 33, Day 50",
-    "pass1": "Completed",
+    "pass1": "Pending",
     "pass2": "Pending",
     "pass3": "Pending"
   },
@@ -586,7 +585,7 @@
       "and checking lossless join"
     ],
     "scheduledDays": "Day 29, Day 37, Day 52",
-    "pass1": "Completed",
+    "pass1": "Pending",
     "pass2": "Pending",
     "pass3": "Pending"
   },
@@ -603,7 +602,7 @@
       "recoverability & 2PL"
     ],
     "scheduledDays": "Day 30, Day 45, Day 59",
-    "pass1": "Completed",
+    "pass1": "Pending",
     "pass2": "Pending",
     "pass3": "Pending"
   },
@@ -621,7 +620,7 @@
       "record pointer & block pointer sizes"
     ],
     "scheduledDays": "Day 30, Day 33, Day 66",
-    "pass1": "Completed",
+    "pass1": "Pending",
     "pass2": "Pending",
     "pass3": "Pending"
   },
@@ -637,7 +636,7 @@
       "Expanding instruction opcodes (2-address vs 1-address vs 0-address) and computing effective address in indexed/PC-relative modes"
     ],
     "scheduledDays": "Day 16, Day 37, Day 45",
-    "pass1": "Completed",
+    "pass1": "Pending",
     "pass2": "Pending",
     "pass3": "Pending"
   },
@@ -653,7 +652,7 @@
       "Counting stall cycles due to RAW data hazards (with and without operand forwarding) and branch penalty; computing CPI & speedup"
     ],
     "scheduledDays": "Day 17, Day 34, Day 52",
-    "pass1": "Completed",
+    "pass1": "Pending",
     "pass2": "Pending",
     "pass3": "Pending"
   },
@@ -669,11 +668,10 @@
       "Calculating Tag",
       "Set Index",
       "and Byte Offset bits",
-      "Tag Directory size",
-      "and L1/L2 Write-Through vs Write-Back EMAT"
+      "Tag Directory size"
     ],
     "scheduledDays": "Day 19, Day 26, Day 34",
-    "pass1": "Completed",
+    "pass1": "Pending",
     "pass2": "Pending",
     "pass3": "Pending"
   },
@@ -689,7 +687,7 @@
       "DMA cycle-stealing CPU slowdown percentage; converting 32-bit IEEE 754 hex pattern to decimal value"
     ],
     "scheduledDays": "Day 13, Day 20, Day 59",
-    "pass1": "Completed",
+    "pass1": "Pending",
     "pass2": "Pending",
     "pass3": "Pending"
   },
@@ -705,7 +703,7 @@
       "Counting Prime Implicants (PI) and Essential Prime Implicants (EPI) in 4-variable K-Map with Don't Cares"
     ],
     "scheduledDays": "Day 14, Day 31, Day 38",
-    "pass1": "Completed",
+    "pass1": "Pending",
     "pass2": "Pending",
     "pass3": "Pending"
   },
@@ -721,7 +719,7 @@
       "Finding Boolean expression implemented by cascaded `4:1` or `2:1` Multiplexers and active-low Decoders"
     ],
     "scheduledDays": "Day 14, Day 45, Day 52",
-    "pass1": "Completed",
+    "pass1": "Pending",
     "pass2": "Pending",
     "pass3": "Pending"
   },
@@ -739,7 +737,7 @@
       "and max clock frequency from flip-flop setup/propagation delay"
     ],
     "scheduledDays": "Day 15, Day 31, Day 66",
-    "pass1": "Completed",
+    "pass1": "Pending",
     "pass2": "Pending",
     "pass3": "Pending"
   },
@@ -756,7 +754,7 @@
       "finding logical equivalence & valid inference rules"
     ],
     "scheduledDays": "Day 8, Day 9, Day 35",
-    "pass1": "Completed",
+    "pass1": "Pending",
     "pass2": "Pending",
     "pass3": "Pending"
   },
@@ -774,7 +772,7 @@
       "and subgroup orders via Lagrange's Theorem"
     ],
     "scheduledDays": "Day 10, Day 21, Day 43",
-    "pass1": "Completed",
+    "pass1": "Pending",
     "pass2": "Pending",
     "pass3": "Pending"
   },
@@ -792,7 +790,7 @@
       "Derangements & Pigeonhole minimum guarantees"
     ],
     "scheduledDays": "Day 12, Day 27, Day 50",
-    "pass1": "Completed",
+    "pass1": "Pending",
     "pass2": "Pending",
     "pass3": "Pending"
   },
@@ -811,7 +809,7 @@
       "and vertex/edge connectivity"
     ],
     "scheduledDays": "Day 13, Day 27, Day 36",
-    "pass1": "Completed",
+    "pass1": "Pending",
     "pass2": "Pending",
     "pass3": "Pending"
   },
@@ -827,7 +825,7 @@
       "Using Trace = sum of eigenvalues and Det = product of eigenvalues; rank-nullity & system consistency conditions (`rank(A) = rank(A|b)`)"
     ],
     "scheduledDays": "Day 1, Day 2, Day 22, Day 29",
-    "pass1": "Completed",
+    "pass1": "Pending",
     "pass2": "Pending",
     "pass3": "Pending"
   },
@@ -845,7 +843,7 @@
       "Poisson/Exponential probability numericals"
     ],
     "scheduledDays": "Day 17, Day 19, Day 26, Day 29",
-    "pass1": "Completed",
+    "pass1": "Pending",
     "pass2": "Pending",
     "pass3": "Pending"
   },
@@ -863,7 +861,7 @@
       "and definite integral properties"
     ],
     "scheduledDays": "Day 14, Day 15, Day 29",
-    "pass1": "Completed",
+    "pass1": "Pending",
     "pass2": "Pending",
     "pass3": "Pending"
   },
@@ -879,12 +877,10 @@
       "Ratios",
       "Time/Work",
       "Permutations/Probability",
-      "Geometry/Mensuration",
-      "Syllogisms",
-      "Data Interpretation charts"
+      "Geometry/Mensuration"
     ],
     "scheduledDays": "Daily Block 3 + Day 30",
-    "pass1": "Completed",
+    "pass1": "Pending",
     "pass2": "Pending",
     "pass3": "Pending"
   },
@@ -903,8 +899,22 @@
       "Critical reasoning inference"
     ],
     "scheduledDays": "Daily Block 3 + Day 23",
-    "pass1": "Completed",
+    "pass1": "Pending",
     "pass2": "Pending",
     "pass3": "Pending"
+  },
+  {
+    "id": 53,
+    "subject": "TOTAL",
+    "topic": "52 High-Yield Clusters",
+    "tier": "All 11 Subjects",
+    "typicalMarks": 2.0,
+    "format": "Complete all 3 Passes before January 24, 2027",
+    "recurringTrap": "",
+    "trapPoints": [],
+    "scheduledDays": "Days 1–116",
+    "pass1": "=COUNTIF(H5:H56,\"Done\")&\"/52\"",
+    "pass2": "=COUNTIF(I5:I56,\"Done\")&\"/52\"",
+    "pass3": "=COUNTIF(J5:J56,\"Done\")&\"/52\""
   }
 ]

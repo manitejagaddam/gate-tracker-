@@ -57,8 +57,8 @@ export const ExecutiveDashboardView: React.FC<ExecutiveDashboardViewProps> = ({ 
               <CheckCircle2 size={18} />
             </div>
           </div>
-          <div className="kpi-card-val">Nov 13, 2026</div>
-          <div className="kpi-card-sub">21 Active Days (TOC 75%, CD 100%, CN 75%)</div>
+          <div className="kpi-card-val">Nov 21, 2026</div>
+          <div className="kpi-card-sub">28 Active Days (TOC 75%, CD 100%, CN 75%, COA 75%)</div>
         </div>
 
         <div className="kpi-banner-card card-target spring-tap">

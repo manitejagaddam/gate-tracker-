@@ -263,8 +263,8 @@ export const SheetTabs: React.FC<SheetTabsProps> = ({
             scroll-snap-type: x mandatory;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
-            gap: 0.45rem;
-            padding: 0.1rem;
+            gap: 0.4rem;
+            padding: 0.1rem 0.05rem;
           }
           .sheet-tabs-pill-bar::-webkit-scrollbar {
             display: none;
@@ -272,7 +272,7 @@ export const SheetTabs: React.FC<SheetTabsProps> = ({
           .sheet-tab-btn {
             flex: 0 0 auto;
             width: auto;
-            min-width: 200px;
+            min-width: 170px;
             scroll-snap-align: start;
           }
           .badge-short {
@@ -284,12 +284,34 @@ export const SheetTabs: React.FC<SheetTabsProps> = ({
         }
 
         @media (max-width: 640px) {
+          .sheet-tabs-container {
+            padding: 0.25rem;
+            border-radius: var(--radius-lg);
+          }
           .sheet-tab-btn {
-            min-width: 180px;
-            padding: 0.45rem 0.6rem;
+            min-width: 148px;
+            padding: 0.42rem 0.55rem;
           }
           .tab-sublabel {
             display: none;
+          }
+          .tab-label {
+            font-size: 0.76rem;
+          }
+          .tab-icon-wrap {
+            width: 24px;
+            height: 24px;
+          }
+          .tab-badge {
+            font-size: 0.62rem;
+            padding: 0.12rem 0.38rem;
+          }
+        }
+
+        @media (max-width: 400px) {
+          .sheet-tab-btn {
+            min-width: 130px;
+            padding: 0.38rem 0.5rem;
           }
         }
       `}</style>

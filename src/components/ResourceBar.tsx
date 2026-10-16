@@ -83,25 +83,26 @@ export const ResourceBar: React.FC = () => {
 
       <style jsx>{`
         .glass-resource-bar-wrapper {
-          margin-bottom: 1.35rem;
+          margin-bottom: 1.25rem;
           background: var(--bg-surface);
           backdrop-filter: var(--glass-blur);
           -webkit-backdrop-filter: var(--glass-blur);
           border: 1px solid var(--glass-border);
           border-radius: var(--radius-md);
-          padding: 0.65rem 1rem;
+          padding: 0.6rem 1rem;
           box-shadow: var(--glass-specular), var(--glass-shadow);
+          overflow: hidden;
         }
 
         .resource-bar-inner {
           display: flex;
           align-items: center;
-          gap: 0.85rem;
-          overflow: hidden;
+          gap: 0.75rem;
+          min-width: 0;
         }
 
         .resource-label {
-          font-size: 0.72rem;
+          font-size: 0.7rem;
           font-weight: 800;
           text-transform: uppercase;
           letter-spacing: 0.06em;
@@ -113,12 +114,16 @@ export const ResourceBar: React.FC = () => {
         .chips-scroll-container {
           display: flex;
           align-items: center;
-          gap: 0.5rem;
+          gap: 0.45rem;
           overflow-x: auto;
+          overflow-y: hidden;
           scrollbar-width: none;
           -ms-overflow-style: none;
-          padding: 0.15rem 0;
+          padding: 0.2rem 0;
           -webkit-overflow-scrolling: touch;
+          scroll-snap-type: x proximity;
+          flex: 1;
+          min-width: 0;
         }
 
         .chips-scroll-container::-webkit-scrollbar {
@@ -128,44 +133,59 @@ export const ResourceBar: React.FC = () => {
         .resource-chip {
           background: var(--bg-elevated);
           border: 1px solid var(--glass-border);
-          color: var(--accent);
-          padding: 0.35rem 0.75rem;
+          color: var(--text-secondary);
+          padding: 0.32rem 0.72rem;
           border-radius: var(--radius-pill);
-          font-size: 0.78rem;
+          font-size: 0.76rem;
           font-weight: 700;
           display: inline-flex;
           align-items: center;
-          gap: 0.4rem;
+          gap: 0.38rem;
           white-space: nowrap;
           flex-shrink: 0;
-          box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+          scroll-snap-align: start;
+          min-height: 32px;
+          box-shadow: inset 0 1px 0 rgba(255,255,255,0.07);
+          transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
         }
 
         .resource-chip:hover {
           background: var(--bg-card-hover);
           border-color: var(--glass-border-highlight);
-        }
-
-        .chip-ext {
-          opacity: 0.6;
-        }
-
-        .text-emerald {
-          color: var(--success);
-        }
-        .text-amber {
-          color: var(--warning);
-        }
-        .text-sky {
           color: var(--accent);
         }
 
-        @media (max-width: 640px) {
+        .chip-ext {
+          opacity: 0.5;
+          flex-shrink: 0;
+        }
+
+        .text-emerald { color: var(--success); }
+        .text-amber   { color: var(--warning); }
+        .text-accent  { color: var(--accent); }
+
+        @media (max-width: 860px) {
           .glass-resource-bar-wrapper {
             padding: 0.5rem 0.75rem;
           }
           .resource-label {
             display: none;
+          }
+          .resource-chip {
+            padding: 0.3rem 0.62rem;
+            font-size: 0.73rem;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .glass-resource-bar-wrapper {
+            padding: 0.4rem 0.65rem;
+            border-radius: var(--radius-sm);
+          }
+          .resource-chip {
+            font-size: 0.71rem;
+            padding: 0.28rem 0.55rem;
+            min-height: 30px;
           }
         }
       `}</style>

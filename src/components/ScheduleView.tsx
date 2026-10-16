@@ -696,8 +696,8 @@ export const ScheduleView: React.FC<ScheduleViewProps> = ({
       <style jsx global>{`
         .schedule-cards-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-          gap: 1.15rem;
+          grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+          gap: 1rem;
         }
 
         .schedule-day-card {
@@ -1328,15 +1328,51 @@ export const ScheduleView: React.FC<ScheduleViewProps> = ({
           color: var(--accent-cyan);
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 860px) {
           .schedule-cards-grid {
             grid-template-columns: 1fr;
+            gap: 0.85rem;
           }
           .schedule-day-card {
-            padding: 1rem;
+            padding: 1.1rem;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .schedule-day-card {
+            padding: 0.95rem;
+            border-radius: var(--radius-md);
           }
           .study-block-desc {
-            font-size: 0.84rem;
+            font-size: 0.83rem;
+          }
+          .card-top-row {
+            flex-wrap: wrap;
+            gap: 0.5rem;
+          }
+          .card-day-num {
+            font-size: 1.1rem;
+          }
+          .card-date-str {
+            font-size: 0.8rem;
+          }
+          .card-footer-row {
+            flex-wrap: wrap;
+            gap: 0.45rem;
+          }
+        }
+
+        @media (max-width: 400px) {
+          .schedule-day-card {
+            padding: 0.8rem;
+          }
+          .study-block-header {
+            flex-wrap: wrap;
+            gap: 0.35rem;
+          }
+          .quick-block-btn {
+            font-size: 0.72rem;
+            padding: 0.25rem 0.6rem;
           }
         }
       `}</style>

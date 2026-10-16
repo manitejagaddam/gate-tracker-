@@ -42,9 +42,6 @@ export default function TrackerHome() {
     updateDayMetrics,
     jumpToRealToday,
     jumpToFirstIncomplete,
-    exportJSON,
-    importJSON,
-    exportCSV,
     resetAllProgress,
   } = useTrackerState();
 
@@ -197,9 +194,6 @@ export default function TrackerHome() {
         onToggleTheme={toggleTheme}
         onToggleSound={toggleSound}
         onJumpToday={handleJumpTodayWithScroll}
-        onExportJSON={exportJSON}
-        onImportJSON={importJSON}
-        onExportCSV={exportCSV}
         onResetProgress={resetAllProgress}
         onShowToast={(msg) => setToastMsg(msg)}
       />
@@ -371,7 +365,6 @@ export default function TrackerHome() {
           display: flex;
           flex-direction: column;
           background-color: var(--bg-main);
-          padding-bottom: 5rem;
         }
 
         .tracker-main-container {
@@ -382,9 +375,18 @@ export default function TrackerHome() {
           flex: 1;
         }
 
-        @media (max-width: 768px) {
+        /* On mobile/tablet the floating bottom nav is visible — add safe clearance */
+        @media (max-width: 860px) {
           .tracker-main-container {
-            padding: 0.85rem 1rem;
+            padding: 0.9rem 1rem;
+            padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px));
+          }
+        }
+
+        @media (max-width: 480px) {
+          .tracker-main-container {
+            padding: 0.75rem 0.75rem;
+            padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px));
           }
         }
       `}</style>

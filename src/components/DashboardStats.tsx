@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { CheckCircle2, BookOpen, Cpu, Globe, Award, TrendingUp } from "lucide-react";
+import { CheckCircle2, BookOpen, Cpu, Globe, HardDrive, Award, TrendingUp } from "lucide-react";
 import { DaySchedule, DayUserState } from "@/types/tracker";
 
 interface DashboardStatsProps {
@@ -19,28 +19,36 @@ export const DashboardStats: React.FC<DashboardStatsProps> = ({
     (doneStudyDays.length / Math.max(1, activeStudyDays.length)) * 100
   );
 
-  // TOC
-  const tocDays = schedule.filter((d) => d.sylSubj === "TOC");
+  // TOC (Phase 1A: Oct 15–26) - starts at 25%
+  const tocDays = schedule.filter((d) => d.phase?.includes("Phase 1A"));
   const tocDone = tocDays.filter((d) => getDayState(d.id).b1).length;
   const tocPct = Math.min(
     100,
     Math.round(25 + (tocDone / Math.max(1, tocDays.length)) * 75)
   );
 
-  // CD
-  const cdDays = schedule.filter((d) => d.sylSubj === "CD");
+  // CD (Phase 1B: Oct 27–Nov 03) - starts at 0%
+  const cdDays = schedule.filter((d) => d.phase?.includes("Phase 1B"));
   const cdDone = cdDays.filter((d) => getDayState(d.id).b1).length;
   const cdPct = Math.min(
     100,
     Math.round((cdDone / Math.max(1, cdDays.length)) * 100)
   );
 
-  // CN
-  const cnDays = schedule.filter((d) => d.sylSubj === "CN");
+  // CN (Phase 1C: Nov 04–Nov 13) - starts at 25%
+  const cnDays = schedule.filter((d) => d.phase?.includes("Phase 1C"));
   const cnDone = cnDays.filter((d) => getDayState(d.id).b1).length;
   const cnPct = Math.min(
     100,
     Math.round(25 + (cnDone / Math.max(1, cnDays.length)) * 75)
+  );
+
+  // COA (Phase 1D: Nov 14–Nov 21) - starts at 25%
+  const coaDays = schedule.filter((d) => d.phase?.includes("Phase 1D"));
+  const coaDone = coaDays.filter((d) => getDayState(d.id).b1).length;
+  const coaPct = Math.min(
+    100,
+    Math.round(25 + (coaDone / Math.max(1, coaDays.length)) * 75)
   );
 
   // Mocks & PYQs
@@ -166,7 +174,31 @@ export const DashboardStats: React.FC<DashboardStatsProps> = ({
         </div>
       </div>
 
-      {/* 5. Weekly Mocks & PYQs */}
+      {/* 5. Computer Organization & Architecture */}
+      <div className="glass-kpi-card card-coa spring-tap">
+        <div className="kpi-header">
+          <span className="kpi-label">Comp Organization</span>
+          <div className="icon-squircle icon-cyan">
+            <HardDrive size={16} />
+          </div>
+        </div>
+        <div className="kpi-value-row">
+          <span className="kpi-main-number">{coaPct}%</span>
+          <span className="kpi-target-tag">Target: Nov 21</span>
+        </div>
+        <div className="progress-track">
+          <div
+            className="progress-fill fill-gradient-cyan"
+            style={{ width: `${coaPct}%` }}
+          />
+        </div>
+        <div className="kpi-footer">
+          <span>{coaDone}/{coaDays.length} Modules Done</span>
+          <span className="sub-tag">{coaPct >= 100 ? "Complete ✓" : "25% → 100%"}</span>
+        </div>
+      </div>
+
+      {/* 6. Weekly Mocks & PYQs */}
       <div className="glass-kpi-card card-mocks spring-tap">
         <div className="kpi-header">
           <span className="kpi-label">Mocks &amp; PYQ Volume</span>
@@ -199,7 +231,7 @@ export const DashboardStats: React.FC<DashboardStatsProps> = ({
       <style jsx>{`
         .stats-grid-container {
           display: grid;
-          grid-template-columns: repeat(5, 1fr);
+          grid-template-columns: 2fr repeat(4, 1fr);
           gap: 0.85rem;
           margin-bottom: 1.5rem;
         }
@@ -265,6 +297,7 @@ export const DashboardStats: React.FC<DashboardStatsProps> = ({
         .icon-sky { background: rgba(129, 140, 248, 0.15); color: #818cf8; }
         .icon-purple { background: rgba(168, 85, 247, 0.15); color: #c084fc; }
         .icon-emerald { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+        .icon-cyan { background: rgba(6, 182, 212, 0.15); color: #22d3ee; }
         .icon-amber { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
 
         .kpi-value-row {
@@ -357,6 +390,9 @@ export const DashboardStats: React.FC<DashboardStatsProps> = ({
         .fill-gradient-emerald {
           background: linear-gradient(90deg, #059669, #34d399);
         }
+        .fill-gradient-cyan {
+          background: linear-gradient(90deg, #0891b2, #22d3ee);
+        }
         .fill-gradient-amber {
           background: linear-gradient(90deg, #d97706, #fbbf24);
         }
@@ -384,41 +420,62 @@ export const DashboardStats: React.FC<DashboardStatsProps> = ({
         }
         .gap-1 { gap: 0.25rem; }
 
+        /* 1280px+: 6 cards across in 1 row */
+        .stats-grid-container {
+          display: grid;
+          grid-template-columns: repeat(6, 1fr);
+          gap: 0.75rem;
+          margin-bottom: 1.5rem;
+        }
+
+        /* 1200px down to 861px: 3-col x 2-row clean rectangle */
         @media (max-width: 1200px) {
           .stats-grid-container {
             grid-template-columns: repeat(3, 1fr);
-          }
-          .card-mocks {
-            grid-column: span 2;
+            gap: 0.75rem;
           }
         }
 
-        @media (max-width: 768px) {
+        /* 860px down to 481px: 2-col x 3-row paired cards */
+        @media (max-width: 860px) {
           .stats-grid-container {
             grid-template-columns: repeat(2, 1fr);
-            gap: 0.65rem;
+            gap: 0.7rem;
           }
-          .card-overall {
-            grid-column: span 2;
-          }
-          .card-mocks {
-            grid-column: span 2;
-          }
+          .card-overall { order: 1; }
+          .card-mocks   { order: 2; }
+          .card-toc     { order: 3; }
+          .card-cd      { order: 4; }
+          .card-cn      { order: 5; }
+          .card-coa     { order: 6; }
           .kpi-main-number {
-            font-size: 1.4rem;
+            font-size: 1.35rem;
           }
         }
 
+        /* 480px and below: compact 2-col layout with tighter padding */
         @media (max-width: 480px) {
           .stats-grid-container {
-            grid-template-columns: 1fr;
-            gap: 0.65rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.55rem;
           }
-          .card-overall, .card-mocks {
-            grid-column: span 1;
-          }
+          .card-overall { order: 1; }
+          .card-mocks   { order: 2; }
+          .card-toc     { order: 3; }
+          .card-cd      { order: 4; }
+          .card-cn      { order: 5; }
+          .card-coa     { order: 6; }
           .glass-kpi-card {
-            padding: 0.9rem;
+            padding: 0.8rem 0.85rem;
+          }
+          .kpi-main-number {
+            font-size: 1.25rem;
+          }
+          .kpi-label {
+            font-size: 0.65rem;
+          }
+          .kpi-footer {
+            font-size: 0.68rem;
           }
         }
       `}</style>

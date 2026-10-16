@@ -76,6 +76,7 @@ export interface TrackerState {
   viewLayout: ViewLayout;
   soundEnabled: boolean;
   days: Record<number, DayUserState>;
+  lastVisitedDate?: string;
 }
 
 // Sheet 1: Executive Dashboard Types

@@ -1,12 +1,9 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import {
   Sun,
   Moon,
-  Download,
-  Upload,
-  FileSpreadsheet,
   Calendar,
   Volume2,
   VolumeX,
@@ -31,9 +28,6 @@ interface NavbarProps {
   onToggleTheme: () => void;
   onToggleSound: () => void;
   onJumpToday: () => void;
-  onExportJSON: () => void;
-  onImportJSON: (file: File) => Promise<boolean>;
-  onExportCSV: () => void;
   onResetProgress: () => void;
   onShowToast: (msg: string) => void;
 }
@@ -49,28 +43,10 @@ export const Navbar: React.FC<NavbarProps> = ({
   onToggleTheme,
   onToggleSound,
   onJumpToday,
-  onExportJSON,
-  onImportJSON,
-  onExportCSV,
   onResetProgress,
   onShowToast,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-
-  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const ok = await onImportJSON(file);
-      if (ok) {
-        onShowToast("Progress backup restored successfully! 🎉");
-      } else {
-        onShowToast("Failed to restore backup. Invalid JSON file.");
-      }
-    }
-    if (fileInputRef.current) fileInputRef.current.value = "";
-    setMobileMenuOpen(false);
-  };
 
   return (
     <header className="navbar-glass-container">
@@ -134,37 +110,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             {soundEnabled ? <Volume2 size={16} /> : <VolumeX size={16} />}
           </button>
 
-          <button
-            onClick={onExportJSON}
-            className="action-btn spring-tap"
-            title="Download JSON backup"
-          >
-            <Download size={13} />
-            <span>Backup</span>
-          </button>
-
-          <label className="action-btn file-upload-label spring-tap" title="Restore previous JSON backup">
-            <Upload size={13} />
-            <span>Restore</span>
-            <input
-              type="file"
-              ref={fileInputRef}
-              accept=".json"
-              onChange={handleFileChange}
-              style={{ display: "none" }}
-            />
-          </label>
-
-          <button
-            onClick={onExportCSV}
-            className="action-btn spring-tap"
-            title="Export spreadsheet CSV"
-          >
-            <FileSpreadsheet size={13} />
-            <span>CSV</span>
-          </button>
-
-          {/* Syllabus Master Page Button (Right Beside Theme Toggle Button) */}
+          {/* Syllabus Master Page Button */}
           <button
             onClick={onOpenSyllabus}
             className={`action-btn syllabus-nav-btn spring-tap ${
@@ -255,39 +201,17 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           <div className="drawer-section">
-            <span className="drawer-label">Data Backup &amp; Sync</span>
+            <span className="drawer-label">Audio &amp; Navigation</span>
             <div className="drawer-grid">
               <button
                 onClick={() => {
-                  onExportJSON();
+                  onJumpToday();
                   setMobileMenuOpen(false);
                 }}
                 className="drawer-action-btn spring-tap"
               >
-                <Download size={14} />
-                <span>Export JSON</span>
-              </button>
-
-              <label className="drawer-action-btn spring-tap">
-                <Upload size={14} />
-                <span>Import JSON</span>
-                <input
-                  type="file"
-                  accept=".json"
-                  onChange={handleFileChange}
-                  style={{ display: "none" }}
-                />
-              </label>
-
-              <button
-                onClick={() => {
-                  onExportCSV();
-                  setMobileMenuOpen(false);
-                }}
-                className="drawer-action-btn spring-tap"
-              >
-                <FileSpreadsheet size={14} />
-                <span>Export CSV</span>
+                <Calendar size={14} />
+                <span>Jump Today</span>
               </button>
 
               <button
@@ -522,10 +446,6 @@ export const Navbar: React.FC<NavbarProps> = ({
           background: var(--bg-card-hover);
         }
 
-        .file-upload-label {
-          cursor: pointer;
-        }
-
         .syllabus-nav-btn {
           background: rgba(245, 158, 11, 0.08);
           border-color: rgba(245, 158, 11, 0.3);
@@ -622,7 +542,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           }
         }
 
-        @media (max-width: 1024px) {
+        @media (max-width: 860px) {
           .navbar-desktop-actions {
             display: none;
           }
@@ -632,17 +552,24 @@ export const Navbar: React.FC<NavbarProps> = ({
           .mobile-drawer {
             display: flex;
           }
+          .navbar-inner {
+            padding: 0.65rem 1rem;
+          }
         }
 
         @media (max-width: 480px) {
           .brand-heading {
-            font-size: 1.05rem;
+            font-size: 1rem;
           }
           .brand-subheading {
             display: none;
           }
           .navbar-inner {
-            padding: 0.65rem 1rem;
+            padding: 0.6rem 0.85rem;
+          }
+          .brand-aquamorphic-badge {
+            font-size: 0.7rem;
+            padding: 0.3rem 0.55rem;
           }
         }
       `}</style>

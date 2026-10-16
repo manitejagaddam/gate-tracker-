@@ -8,6 +8,26 @@ import confetti from "canvas-confetti";
 
 const STORAGE_KEY = "gate_2027_air10_tracker_v2";
 
+export function getLocalTodayIso(d = new Date()): string {
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+export function getTodayScheduledDay(d = new Date()) {
+  const todayIso = getLocalTodayIso(d);
+  const matched = SCHEDULE_DATA.find((item) => item.isoDate === todayIso);
+  if (matched) return matched;
+  // If date is before Day 1 start (Oct 15, 2026), default to Day 1
+  if (todayIso < SCHEDULE_DATA[0].isoDate) return SCHEDULE_DATA[0];
+  // If date is after last day, default to last day
+  if (todayIso > SCHEDULE_DATA[SCHEDULE_DATA.length - 1].isoDate) {
+    return SCHEDULE_DATA[SCHEDULE_DATA.length - 1];
+  }
+  return SCHEDULE_DATA[0];
+}
+
 const defaultInitialState: TrackerState = {
   activeDayId: 1,
   planMode: "master",
@@ -24,34 +44,71 @@ export function useTrackerState() {
   // Initialize from localStorage safely on client mount
   useEffect(() => {
     try {
+      const todayScheduled = getTodayScheduledDay();
+      const todayIso = getLocalTodayIso();
+
+      // Check if URL has ?day= parameter
+      let urlDayId: number | null = null;
+      if (typeof window !== "undefined") {
+        const params = new URLSearchParams(window.location.search);
+        const dayParam = params.get("day");
+        if (dayParam) {
+          const parsedDay = parseInt(dayParam, 10);
+          if (!isNaN(parsedDay) && parsedDay >= 1 && parsedDay <= SCHEDULE_DATA.length) {
+            urlDayId = parsedDay;
+          }
+        }
+      }
+
       const raw = localStorage.getItem(STORAGE_KEY);
       if (raw) {
         const parsed = JSON.parse(raw);
+
+        // If URL explicitly requested a day (?day=X), use that.
+        // Otherwise, if this is a new day / first visit today (or if saved day was from a prior day),
+        // automatically advance to TODAY's scheduled day!
+        let activeId = todayScheduled.id;
+        if (urlDayId !== null) {
+          activeId = urlDayId;
+        } else if (parsed.lastVisitedDate === todayIso && parsed.activeDayId) {
+          activeId = parsed.activeDayId;
+        } else {
+          // New calendar day rolled over: automatically show today's mission!
+          activeId = todayScheduled.id;
+        }
+
         setState((prev) => ({
           ...prev,
           ...parsed,
+          activeDayId: activeId,
+          lastVisitedDate: todayIso,
           days: parsed.days || {},
         }));
       } else {
         // Also check legacy key if user migrated from single-file index.html
         const legacy = localStorage.getItem("gate2027_air10_tracker_v1");
+        let activeId = urlDayId ?? todayScheduled.id;
+        let days = {};
+        let planMode: PlanMode = "master";
+        let theme: ThemeMode = "dark";
+
         if (legacy) {
-          const parsedLegacy = JSON.parse(legacy);
-          setState((prev) => ({
-            ...prev,
-            activeDayId: parsedLegacy.activeDayId || 1,
-            planMode: parsedLegacy.planMode === "pyqOnly" ? "pyqOnly" : "master",
-            theme: parsedLegacy.theme || "dark",
-            days: parsedLegacy.days || {},
-          }));
-        } else {
-          // Detect real today
-          const todayIso = new Date().toISOString().slice(0, 10);
-          const matched = SCHEDULE_DATA.find((d) => d.isoDate === todayIso);
-          if (matched) {
-            setState((prev) => ({ ...prev, activeDayId: matched.id }));
-          }
+          try {
+            const parsedLegacy = JSON.parse(legacy);
+            days = parsedLegacy.days || {};
+            if (parsedLegacy.planMode === "pyqOnly") planMode = "pyqOnly";
+            if (parsedLegacy.theme) theme = parsedLegacy.theme;
+          } catch {}
         }
+
+        setState((prev) => ({
+          ...prev,
+          activeDayId: activeId,
+          lastVisitedDate: todayIso,
+          planMode,
+          theme,
+          days,
+        }));
       }
     } catch (e) {
       console.error("Failed to load tracker state from localStorage", e);
@@ -69,7 +126,14 @@ export function useTrackerState() {
   useEffect(() => {
     if (!isHydrated) return;
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      const todayIso = getLocalTodayIso();
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify({
+          ...state,
+          lastVisitedDate: todayIso,
+        })
+      );
     } catch (e) {
       console.error("Failed to persist state", e);
     }
@@ -270,15 +334,9 @@ export function useTrackerState() {
   );
 
   const jumpToRealToday = useCallback(() => {
-    const todayIso = new Date().toISOString().slice(0, 10);
-    const matched = SCHEDULE_DATA.find((d) => d.isoDate === todayIso);
-    if (matched) {
-      setActiveDay(matched.id);
-      return matched;
-    }
-    // Default to Day 1
-    setActiveDay(1);
-    return SCHEDULE_DATA[0];
+    const today = getTodayScheduledDay();
+    setActiveDay(today.id);
+    return today;
   }, [setActiveDay]);
 
   const jumpToFirstIncomplete = useCallback(() => {
@@ -292,90 +350,6 @@ export function useTrackerState() {
     setActiveDay(1);
     return SCHEDULE_DATA[0];
   }, [setActiveDay, state.days]);
-
-  const exportJSON = useCallback(() => {
-    const blob = new Blob([JSON.stringify(state, null, 2)], {
-      type: "application/json",
-    });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `gate2027_air10_backup_${new Date().toISOString().slice(0, 10)}.json`;
-    a.click();
-    URL.revokeObjectURL(url);
-  }, [state]);
-
-  const importJSON = useCallback(async (file: File): Promise<boolean> => {
-    try {
-      const text = await file.text();
-      const parsed = JSON.parse(text);
-      if (parsed && typeof parsed === "object") {
-        setState((prev) => ({
-          ...prev,
-          ...parsed,
-          days: parsed.days || {},
-        }));
-        return true;
-      }
-      return false;
-    } catch {
-      return false;
-    }
-  }, []);
-
-  const exportCSV = useCallback(() => {
-    const headers = [
-      "Day",
-      "Date",
-      "Weekday",
-      "Phase",
-      "Block_1",
-      "Block_2",
-      "Block_3",
-      "Target_Questions",
-      "Status",
-      "PYQs_Solved",
-      "Mock_Score",
-      "Notes",
-    ];
-    const rows = [headers.join(",")];
-
-    SCHEDULE_DATA.forEach((d) => {
-      const st = getDayState(d.id);
-      const isDone = st.done;
-      const statusText = isDone
-        ? "Completed"
-        : d.category === "holiday"
-        ? "Holiday"
-        : "Pending";
-
-      const row = [
-        d.day,
-        d.date,
-        d.weekday,
-        `"${d.phase.replace(/"/g, '""')}"`,
-        `"${d.b1.replace(/"/g, '""')}"`,
-        `"${d.b2.replace(/"/g, '""')}"`,
-        `"${d.b3.replace(/"/g, '""')}"`,
-        `"${d.targetQ.replace(/"/g, '""')}"`,
-        statusText,
-        st.pyqs || "",
-        st.mockScore || "",
-        `"${(st.note || "").replace(/"/g, '""')}"`,
-      ];
-      rows.push(row.join(","));
-    });
-
-    const blob = new Blob([rows.join("\n")], {
-      type: "text/csv;charset=utf-8;",
-    });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "GATE_2027_CSE_AIR10_Tracked_Progress.csv";
-    a.click();
-    URL.revokeObjectURL(url);
-  }, [getDayState]);
 
   const resetAllProgress = useCallback(() => {
     if (
@@ -406,9 +380,6 @@ export function useTrackerState() {
     updateDayMetrics,
     jumpToRealToday,
     jumpToFirstIncomplete,
-    exportJSON,
-    importJSON,
-    exportCSV,
     resetAllProgress,
   };
 }

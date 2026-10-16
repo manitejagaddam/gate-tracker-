@@ -384,17 +384,50 @@ export const ControlsBar: React.FC<ControlsBarProps> = ({
           font-weight: 800;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 860px) {
           .controls-tools-row {
             flex-direction: column;
             align-items: stretch;
-            gap: 0.75rem;
+            gap: 0.65rem;
+          }
+          .search-input-wrapper {
+            min-width: 0;
+            width: 100%;
           }
           .tools-actions-group {
             justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .filter-pill-btn {
+            padding: 0.32rem 0.65rem;
+            font-size: 0.73rem;
+          }
+          .pill-counter {
+            font-size: 0.64rem;
+            padding: 0.1rem 0.38rem;
+          }
+          .filter-pills-row {
+            gap: 0.35rem;
           }
           .btn-label {
             display: none;
+          }
+          .density-btn {
+            padding: 0.32rem 0.55rem;
+          }
+          .layout-btn {
+            padding: 0.32rem 0.6rem;
+          }
+        }
+
+        @media (max-width: 400px) {
+          .filter-pill-btn {
+            padding: 0.28rem 0.55rem;
+            font-size: 0.68rem;
           }
         }
       `}</style>
